@@ -1,0 +1,100 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { SiteHeader, SiteFooter } from "@/components/site-chrome";
+import { WhatsAppFloat } from "@/components/whatsapp-float";
+import { PageHero } from "./about";
+import { CATEGORIES, COMPANY, allProducts } from "@/data/catalogue";
+import { useMemo, useState } from "react";
+import { Search, MessageCircle, ArrowRight } from "lucide-react";
+
+export const Route = createFileRoute("/products")({
+  head: () => ({
+    meta: [
+      { title: "Products | Zentramed Health Medical Supplies" },
+      { name: "description", content: "Browse Zentramed Health's full catalogue — PPE, lab diagnostics, imaging, oxygen therapy, hospital furniture, neonatal & surgical theatre equipment." },
+      { property: "og:title", content: "Zentramed Health Product Catalogue" },
+      { property: "og:description", content: "Full catalogue of medical supplies and equipment." },
+    ],
+  }),
+  component: ProductsPage,
+});
+
+function ProductsPage() {
+  const [q, setQ] = useState("");
+  const products = useMemo(() => allProducts(), []);
+  const filtered = q
+    ? products.filter((p) => p.name.toLowerCase().includes(q.toLowerCase()))
+    : [];
+
+  return (
+    <div>
+      <SiteHeader />
+      <PageHero title="Product Catalogue" subtitle="9 categories · 500+ items · sourced from certified global brands" />
+      <section className="mx-auto max-w-7xl px-4 py-10">
+        <div className="mb-8 flex items-center gap-2 rounded-md border border-border bg-background px-3 py-2 shadow-sm">
+          <Search className="h-4 w-4 text-muted-foreground" />
+          <input
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Search for a product…"
+            className="w-full bg-transparent text-sm outline-none"
+          />
+        </div>
+
+        {q && (
+          <div className="mb-10 rounded-xl border border-border bg-muted/30 p-4">
+            <div className="text-sm font-semibold text-brand">
+              {filtered.length} result{filtered.length === 1 ? "" : "s"} for "{q}"
+            </div>
+            <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {filtered.slice(0, 24).map((p) => (
+                <Link
+                  key={p.category + p.name}
+                  to="/products/$slug"
+                  params={{ slug: p.categorySlug }}
+                  className="rounded-md bg-background p-3 text-sm hover:border-brand hover:shadow"
+                >
+                  <div className="font-semibold text-foreground">{p.name}</div>
+                  <div className="text-xs text-muted-foreground">{p.category}</div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {CATEGORIES.map((c) => (
+            <Link
+              key={c.slug}
+              to="/products/$slug"
+              params={{ slug: c.slug }}
+              className="group flex flex-col rounded-xl border border-border bg-background p-6 hover:border-brand hover:shadow-[var(--shadow-card)]"
+            >
+              <h3 className="font-display text-lg font-semibold text-brand">{c.name}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{c.tagline}</p>
+              <div className="mt-4 text-xs text-muted-foreground">
+                {c.subcategories.reduce((n, s) => n + s.products.length, 0)} items
+              </div>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand group-hover:text-accent">
+                Browse <ArrowRight className="h-4 w-4" />
+              </span>
+            </Link>
+          ))}
+        </div>
+
+        <div className="mt-14 rounded-xl bg-brand p-8 text-brand-foreground">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h3 className="font-display text-2xl font-bold">Can't find what you need?</h3>
+              <p className="mt-1 text-brand-foreground/80">We source certified products globally on request.</p>
+            </div>
+            <a href={`https://wa.me/${COMPANY.whatsapp}`} className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 font-semibold text-accent-foreground">
+              <MessageCircle className="h-4 w-4" /> WhatsApp us
+            </a>
+          </div>
+        </div>
+      </section>
+      <SiteFooter />
+      <WhatsAppFloat />
+    </div>
+  );
+}
