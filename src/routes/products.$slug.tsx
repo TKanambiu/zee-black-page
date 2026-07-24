@@ -2,11 +2,11 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { PageHero } from "./about";
-import { getCategory, COMPANY, CATEGORIES } from "@/data/catalogue";
+import { getCategory, COMPANY, CATEGORIES, type Category } from "@/data/catalogue";
 import { ChevronRight, MessageCircle } from "lucide-react";
 
 export const Route = createFileRoute("/products/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params }): { category: Category } => {
     const category = getCategory(params.slug);
     if (!category) throw notFound();
     return { category };
