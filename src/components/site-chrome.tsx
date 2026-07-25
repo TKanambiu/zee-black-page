@@ -107,7 +107,11 @@ export function SiteHeader() {
                   <div className="absolute right-0 top-full z-50 mt-1 max-h-80 w-72 overflow-auto rounded-md border border-border bg-background shadow-xl">
                     <button
                       type="button"
-                      onClick={() => { setSelectedCat(null); setCatOpen(false); }}
+                      onClick={() => {
+                        setSelectedCat(null);
+                        setCatOpen(false);
+                        navigate({ to: "/products", search: query ? { q: query } : {} });
+                      }}
                       className="block w-full border-b border-border px-4 py-2.5 text-left text-sm text-muted-foreground hover:bg-muted"
                     >
                       All Categories
@@ -116,7 +120,11 @@ export function SiteHeader() {
                       <button
                         type="button"
                         key={c.slug}
-                        onClick={() => { setSelectedCat({ slug: c.slug, name: c.name }); setCatOpen(false); }}
+                        onClick={() => {
+                          setSelectedCat({ slug: c.slug, name: c.name });
+                          setCatOpen(false);
+                          navigate({ to: "/products/$slug", params: { slug: c.slug }, search: query ? { q: query } : {} });
+                        }}
                         className="block w-full border-b border-border px-4 py-2.5 text-left text-sm hover:bg-muted hover:text-brand"
                       >
                         {c.name}
