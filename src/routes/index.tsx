@@ -6,6 +6,7 @@ import aboutImg from "@/assets/about.jpg";
 import { ArrowRight, Wrench, GraduationCap, Truck, Search as SearchIcon, Stethoscope, HeartHandshake, Award, Sparkles, Briefcase, Users, Globe, ClipboardCheck } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { AutoSlider } from "@/components/auto-slider";
+import { CategoryMarquee } from "@/components/category-marquee";
 
 
 const SLIDES = [
@@ -217,39 +218,7 @@ function HomePage() {
             </Link>
           </div>
           <div className="mt-10">
-            <AutoSlider
-              intervalMs={2800}
-              items={CATEGORIES.map((c) => (
-                <Link
-                  key={c.slug}
-                  to="/products/$slug"
-                  params={{ slug: c.slug }}
-                  className="group relative mx-auto block max-w-2xl overflow-hidden rounded-xl bg-background shadow-sm ring-1 ring-border transition hover:shadow-[var(--shadow-card)] hover:ring-brand"
-                >
-                  <div className="relative aspect-[16/7] overflow-hidden">
-                    <img
-                      src={c.image}
-                      alt={c.name}
-                      loading="lazy"
-                      className="h-full w-full object-cover brightness-110 transition duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                      <h3 className="font-display text-2xl font-bold leading-tight md:text-3xl">{c.name}</h3>
-                      <p className="mt-1 text-sm text-white/85 md:text-base">{c.tagline}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between px-5 py-4">
-                    <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                      {c.subcategories.reduce((n, s) => n + s.products.length, 0)} items
-                    </span>
-                    <span className="inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:text-accent">
-                      Browse <ArrowRight className="h-4 w-4" />
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            />
+            <CategoryMarquee categories={CATEGORIES} />
           </div>
 
         </div>
