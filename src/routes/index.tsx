@@ -359,13 +359,8 @@ const TESTIMONIALS = [
 ];
 
 function TestimonialsSection() {
-  const [idx, setIdx] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setIdx((v) => (v + 1) % TESTIMONIALS.length), 6500);
-    return () => clearInterval(t);
-  }, []);
-  const active = TESTIMONIALS[idx];
-
+  // Duplicate for seamless marquee loop
+  const loop = [...TESTIMONIALS, ...TESTIMONIALS];
   return (
     <section className="relative overflow-hidden bg-muted/40 py-24">
       <div className="mx-auto max-w-6xl px-4">
@@ -378,48 +373,34 @@ function TestimonialsSection() {
           </h2>
         </div>
 
-        <div className="relative mt-14">
-          <div className="relative overflow-hidden rounded-2xl bg-background p-8 shadow-[var(--shadow-card)] ring-1 ring-border md:p-14">
-            <svg
-              viewBox="0 0 24 24"
-              className="absolute right-8 top-8 h-24 w-24 text-brand/5 md:h-40 md:w-40"
-              fill="currentColor"
-              aria-hidden
-            >
-              <path d="M7.17 6C4.32 6 2 8.32 2 11.17V18h6.83V11.17H5.17c0-1.65 1.35-3 3-3V6h-1zm10 0c-2.85 0-5.17 2.32-5.17 5.17V18H19V11.17h-3.83c0-1.65 1.35-3 3-3V6h-1z" />
-            </svg>
-            <div className="relative">
-              <p className="font-display text-xl leading-relaxed text-foreground md:text-3xl md:leading-snug">
-                "{active.quote}"
-              </p>
-              <div className="mt-8 flex items-center gap-4">
-                <div className="grid h-14 w-14 place-items-center rounded-full bg-brand font-display text-lg font-bold text-brand-foreground shadow-md">
-                  {active.initials}
-                </div>
-                <div>
-                  <div className="font-display font-semibold text-brand">{active.name}</div>
-                  <div className="text-sm text-muted-foreground">{active.role}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            {TESTIMONIALS.map((t, i) => (
-              <button
-                key={t.name}
-                onClick={() => setIdx(i)}
-                className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wider transition ${
-                  i === idx
-                    ? "bg-brand text-brand-foreground shadow"
-                    : "bg-background text-muted-foreground ring-1 ring-border hover:text-brand"
-                }`}
+        {/* Animated marquee of client "passports" */}
+        <div
+          className="group relative mt-14 overflow-hidden"
+          style={{
+            maskImage: "linear-gradient(90deg, transparent, black 8%, black 92%, transparent)",
+            WebkitMaskImage: "linear-gradient(90deg, transparent, black 8%, black 92%, transparent)",
+          }}
+        >
+          <div className="flex w-max gap-6 animate-[marquee_40s_linear_infinite] group-hover:[animation-play-state:paused]">
+            {loop.map((t, i) => (
+              <article
+                key={i}
+                className="w-[320px] shrink-0 rounded-2xl bg-background p-6 shadow-sm ring-1 ring-border md:w-[380px]"
               >
-                <span
-                  className={`h-1.5 w-1.5 rounded-full ${i === idx ? "bg-accent" : "bg-muted-foreground/40"}`}
-                />
-                {t.initials}
-              </button>
+                <div className="flex items-center gap-3 border-b border-dashed border-border pb-3">
+                  <div className="grid h-12 w-12 place-items-center rounded-full bg-brand font-display text-base font-bold text-brand-foreground">
+                    {t.initials}
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-display text-sm font-semibold text-brand">{t.name}</div>
+                    <div className="text-[11px] uppercase tracking-widest text-muted-foreground">{t.role}</div>
+                  </div>
+                  <span className="rounded border border-accent/40 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-accent">
+                    Verified
+                  </span>
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">"{t.quote}"</p>
+              </article>
             ))}
           </div>
         </div>
