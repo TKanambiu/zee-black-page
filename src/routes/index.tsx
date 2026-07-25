@@ -6,23 +6,8 @@ import heroImg from "@/assets/hero.jpg";
 import hero2 from "@/assets/hero2.jpg";
 import hero3 from "@/assets/hero3.jpg";
 import aboutImg from "@/assets/about.jpg";
-import {
-  ShieldCheck, Truck, Award, HeartHandshake, ArrowRight,
-  Stethoscope, Microscope, Baby, Bed, Activity, Syringe, Wind, ScanLine, HandHeart,
-} from "lucide-react";
-import { useEffect, useState } from "react";
+import { ShieldCheck, ArrowRight } from "lucide-react";
 
-const ICONS: Record<string, typeof Stethoscope> = {
-  "ppe-protective-wear": HandHeart,
-  "wound-care-dressings": Syringe,
-  "laboratory-diagnostics": Microscope,
-  "monitoring-homecare": Activity,
-  "respiratory-oxygen": Wind,
-  "neonatal-maternity": Baby,
-  "hospital-furniture": Bed,
-  "theater-emergency": Stethoscope,
-  "imaging-radiology": ScanLine,
-};
 
 const SLIDES = [
   {
