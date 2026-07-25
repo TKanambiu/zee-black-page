@@ -30,15 +30,16 @@ function ProductsPage() {
       <SiteHeader />
       <PageHero title="Product Catalogue" subtitle="9 categories · 500+ items · sourced from certified global brands" />
       <section className="mx-auto max-w-7xl px-4 py-10">
-        <div className="mb-8 flex items-center gap-2 rounded-md border border-border bg-background px-3 py-2 shadow-sm">
-          <Search className="h-4 w-4 text-muted-foreground" />
+        <div className="mb-8 flex items-center gap-3 rounded-xl border-2 border-brand bg-background px-4 py-3 shadow-md ring-4 ring-brand/10 focus-within:ring-brand/25">
+          <Search className="h-5 w-5 text-brand" />
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Search for a product…"
-            className="w-full bg-transparent text-sm outline-none"
+            placeholder="Search for a product, brand or category…"
+            className="w-full bg-transparent text-base font-medium outline-none placeholder:text-muted-foreground"
           />
         </div>
+
 
         {q && (
           <div className="mb-10 rounded-xl border border-border bg-muted/30 p-4">
