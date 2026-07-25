@@ -1,13 +1,3 @@
-import ppeImg from "@/assets/cat-ppe.jpg";
-import woundImg from "@/assets/cat-wound.jpg";
-import labImg from "@/assets/cat-lab.jpg";
-import monitorImg from "@/assets/cat-monitor.jpg";
-import oxygenImg from "@/assets/cat-oxygen.jpg";
-import neonatalImg from "@/assets/cat-neonatal.jpg";
-import furnitureImg from "@/assets/cat-furniture.jpg";
-import theaterImg from "@/assets/cat-theater.jpg";
-import imagingImg from "@/assets/cat-imaging.jpg";
-
 export type Product = {
   name: string;
   category: string;
@@ -24,15 +14,15 @@ export type Category = {
 };
 
 const IMG: Record<string, string> = {
-  "ppe-protective-wear": ppeImg,
-  "wound-care-dressings": woundImg,
-  "laboratory-diagnostics": labImg,
-  "monitoring-homecare": monitorImg,
-  "respiratory-oxygen": oxygenImg,
-  "neonatal-maternity": neonatalImg,
-  "hospital-furniture": furnitureImg,
-  "theater-emergency": theaterImg,
-  "imaging-radiology": imagingImg,
+  "ppe-protective-wear": "/cat-ppe.jpg",
+  "wound-care-dressings": "/cat-wound.jpg",
+  "laboratory-diagnostics": "/cat-lab.jpg",
+  "monitoring-homecare": "/cat-monitor.jpg",
+  "respiratory-oxygen": "/cat-oxygen.jpg",
+  "neonatal-maternity": "/cat-neonatal.jpg",
+  "hospital-furniture": "/cat-furniture.jpg",
+  "theater-emergency": "/cat-theater.jpg",
+  "imaging-radiology": "/cat-imaging.jpg",
 };
 
 const RAW_CATEGORIES: Omit<Category, "image">[] = [
