@@ -283,7 +283,8 @@ function HomePage() {
       {/* Testimonials */}
       <TestimonialsSection />
 
-
+      {/* CTA */}
+      <section className="bg-topbar text-topbar-foreground">
         <div className="mx-auto grid max-w-7xl items-center gap-6 px-4 py-14 md:grid-cols-[1fr_auto]">
           <div>
             <h2 className="font-display text-3xl font-bold md:text-4xl">Ready to equip your facility?</h2>
