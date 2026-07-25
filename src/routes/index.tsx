@@ -534,3 +534,55 @@ function CountUp({ end, duration = 1800 }: { end: number; duration?: number }) {
   return <span ref={ref} className="tabular-nums">{n.toLocaleString()}</span>;
 }
 
+const PARTNERS = [
+  { name: "3M", domain: "3m.com" },
+  { name: "Omron", domain: "omronhealthcare.com" },
+  { name: "Mindray", domain: "mindray.com" },
+  { name: "Olympus", domain: "olympus-global.com" },
+  { name: "Sritrang", domain: "sritranggloves.com" },
+  { name: "Polymed", domain: "polymedicure.com" },
+  { name: "Medica", domain: "medicagroup.com" },
+  { name: "Haier", domain: "haiermedical.com" },
+];
+
+function PartnershipsSection() {
+  return (
+    <section className="bg-muted/30 py-16">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="text-center">
+          <div className="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
+            <span className="h-px w-10 bg-accent" /> Global Manufacturers <span className="h-px w-10 bg-accent" />
+          </div>
+          <h2 className="mt-3 font-display text-3xl font-bold text-brand md:text-4xl">Our Brand Partnerships</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+            We partner with ISO-certified global manufacturers to bring you trusted medical technology.
+          </p>
+        </div>
+        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8">
+          {PARTNERS.map((p) => (
+            <div
+              key={p.name}
+              className="group flex aspect-[4/3] items-center justify-center rounded-xl bg-background p-4 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-md hover:ring-brand"
+              title={p.name}
+            >
+              <img
+                src={`https://logo.clearbit.com/${p.domain}`}
+                alt={`${p.name} logo`}
+                loading="lazy"
+                className="max-h-14 max-w-full object-contain grayscale transition duration-300 group-hover:grayscale-0"
+                onError={(e) => {
+                  const el = e.currentTarget;
+                  el.replaceWith(Object.assign(document.createElement("span"), {
+                    className: "font-display text-lg font-bold text-brand",
+                    textContent: p.name,
+                  }));
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
