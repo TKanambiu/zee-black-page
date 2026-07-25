@@ -358,6 +358,8 @@ const RAW_CATEGORIES: Omit<Category, "image">[] = [
   },
 ];
 
+export const CATEGORIES: Category[] = RAW_CATEGORIES.map((c) => ({ ...c, image: IMG[c.slug] }));
+
 export const COMPANY = {
   name: "Zentramed Health",
   tagline: "Advancing Healthcare and Humanitarian Solutions",
