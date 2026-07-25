@@ -3,10 +3,13 @@ import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { PageHero } from "./about";
 import { CATEGORIES, COMPANY, allProducts } from "@/data/catalogue";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Search, MessageCircle, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/products/")({
+  validateSearch: (s: Record<string, unknown>): { q?: string } => ({
+    q: typeof s.q === "string" ? s.q : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Products | Zentramed Health Medical Supplies" },
@@ -19,7 +22,9 @@ export const Route = createFileRoute("/products/")({
 });
 
 function ProductsPage() {
-  const [q, setQ] = useState("");
+  const { q: initialQ } = Route.useSearch();
+  const [q, setQ] = useState(initialQ ?? "");
+  useEffect(() => { if (initialQ !== undefined) setQ(initialQ); }, [initialQ]);
   const products = useMemo(() => allProducts(), []);
   const filtered = q
     ? products.filter((p) => p.name.toLowerCase().includes(q.toLowerCase()))
