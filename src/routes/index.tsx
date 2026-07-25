@@ -8,6 +8,7 @@ import hero3 from "@/assets/hero3.jpg";
 import aboutImg from "@/assets/about.jpg";
 import { ArrowRight, Wrench, GraduationCap, Truck, Search as SearchIcon, Stethoscope, HeartHandshake, ShieldCheck, Award, Globe2, Headphones, Package, BadgeCheck, Clock, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { AutoSlider } from "@/components/auto-slider";
 
 
 const SLIDES = [
@@ -200,39 +201,40 @@ function HomePage() {
               View all products <ArrowRight className="ml-1 inline h-4 w-4" />
             </Link>
           </div>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {CATEGORIES.map((c) => (
-              <Link
-                key={c.slug}
-                to="/products/$slug"
-                params={{ slug: c.slug }}
-                className="group relative overflow-hidden rounded-xl bg-background shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-[var(--shadow-card)] hover:ring-brand"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={c.image}
-                    alt={c.name}
-                    loading="lazy"
-                    width={800}
-                    height={600}
-                    className="h-full w-full object-cover brightness-110 transition duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-                    <h3 className="font-display text-xl font-bold leading-tight">{c.name}</h3>
-                    <p className="mt-1 text-sm text-white/80">{c.tagline}</p>
+          <div className="mt-10">
+            <AutoSlider
+              intervalMs={2800}
+              items={CATEGORIES.map((c) => (
+                <Link
+                  key={c.slug}
+                  to="/products/$slug"
+                  params={{ slug: c.slug }}
+                  className="group relative mx-auto block max-w-2xl overflow-hidden rounded-xl bg-background shadow-sm ring-1 ring-border transition hover:shadow-[var(--shadow-card)] hover:ring-brand"
+                >
+                  <div className="relative aspect-[16/7] overflow-hidden">
+                    <img
+                      src={c.image}
+                      alt={c.name}
+                      loading="lazy"
+                      className="h-full w-full object-cover brightness-110 transition duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                      <h3 className="font-display text-2xl font-bold leading-tight md:text-3xl">{c.name}</h3>
+                      <p className="mt-1 text-sm text-white/85 md:text-base">{c.tagline}</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-center justify-between px-5 py-4">
-                  <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                    {c.subcategories.reduce((n, s) => n + s.products.length, 0)} items
-                  </span>
-                  <span className="inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:text-accent">
-                    Browse <ArrowRight className="h-4 w-4" />
-                  </span>
-                </div>
-              </Link>
-            ))}
+                  <div className="flex items-center justify-between px-5 py-4">
+                    <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                      {c.subcategories.reduce((n, s) => n + s.products.length, 0)} items
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:text-accent">
+                      Browse <ArrowRight className="h-4 w-4" />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            />
           </div>
 
         </div>
@@ -251,31 +253,44 @@ function HomePage() {
             From procurement to installation, training and maintenance — we stand behind every product we deliver.
           </p>
         </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {[
+        <div className="mt-12">
+          <AutoSlider
+            intervalMs={2600}
+            items={[
             { icon: Wrench, title: "Equipment Installation", body: "Professional installation of hospital, laboratory and imaging equipment." },
             { icon: Stethoscope, title: "Maintenance & Repair", body: "Preventive maintenance contracts and rapid on-site repair services." },
             { icon: GraduationCap, title: "Training & Commissioning", body: "Operator training and commissioning to get your team confident from day one." },
             { icon: HeartHandshake, title: "Humanitarian Supply", body: "Bulk supply to NGOs and government programs with reliable logistics." },
             { icon: SearchIcon, title: "Custom Sourcing", body: "Can't find what you need? We source certified products globally on request." },
             { icon: Truck, title: "Regional Delivery", body: "Timely and secure delivery across Kenya and East Africa." },
-          ].map((s, idx) => (
-            <div
-              key={s.title}
-              className="relative overflow-hidden rounded-xl border border-border bg-background p-6 shadow-sm"
-            >
-              <div className="flex items-baseline justify-between border-b border-border pb-3">
-                <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-accent">
-                  0{idx + 1}
-                </span>
-                <span className="font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                  Service
-                </span>
-              </div>
-              <h3 className="mt-4 font-display text-lg font-bold text-brand">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-            </div>
-          ))}
+            ].map((s, idx) => {
+              const Icon = s.icon;
+              return (
+                <div
+                  key={s.title}
+                  className="relative mx-auto max-w-2xl overflow-hidden rounded-xl border border-border bg-background p-8 shadow-sm md:p-10"
+                >
+                  <div className="flex items-baseline justify-between border-b border-border pb-3">
+                    <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-accent">
+                      0{idx + 1}
+                    </span>
+                    <span className="font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                      Service
+                    </span>
+                  </div>
+                  <div className="mt-6 flex items-start gap-5">
+                    <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand">
+                      <Icon className="h-7 w-7" />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-xl font-bold text-brand">{s.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground md:text-base">{s.body}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          />
         </div>
       </section>
 
@@ -297,8 +312,10 @@ function HomePage() {
               transparent sourcing and dedicated after-sales support to every order.
             </p>
           </div>
-          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {[
+          <div className="mt-14">
+            <AutoSlider
+              intervalMs={2600}
+              items={[
               { icon: BadgeCheck, t: "Licensed Distributor", d: "Fully registered by the Pharmacy and Poisons Board and Kenya Medical Devices framework." },
               { icon: Award, t: "Certified Global Brands", d: "Direct partnerships with ISO-certified manufacturers in Europe, Asia and North America." },
               { icon: Truck, t: "Nationwide Logistics", d: "Same-day Nairobi dispatch and countrywide delivery — including cold-chain where required." },
@@ -307,26 +324,40 @@ function HomePage() {
               { icon: ShieldCheck, t: "Transparent Pricing", d: "Institutional discounts, itemised quotations and no hidden markups on bulk orders." },
               { icon: Globe2, t: "Custom Sourcing", d: "Global procurement desk sources certified alternatives within 48 hours." },
               { icon: Clock, t: "24/7 Order Line", d: "Dedicated WhatsApp and phone response, seven days a week — including emergency supply." },
-            ].map((f, idx) => (
-              <div
-                key={f.t}
-                className="relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.05] p-5 backdrop-blur-sm"
-              >
-                <div className="flex items-baseline justify-between border-b border-white/10 pb-3">
-                  <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-accent">
-                    0{idx + 1}
-                  </span>
-                  <span className="font-display text-[10px] font-semibold uppercase tracking-widest text-brand-foreground/50">
-                    Advantage
-                  </span>
-                </div>
-                <h3 className="mt-4 font-display text-base font-bold">{f.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-brand-foreground/75">{f.d}</p>
-              </div>
-            ))}
+              ].map((f, idx) => {
+                const Icon = f.icon;
+                return (
+                  <div
+                    key={f.t}
+                    className="relative mx-auto max-w-2xl overflow-hidden rounded-xl border border-white/10 bg-white/[0.06] p-8 backdrop-blur-sm md:p-10"
+                  >
+                    <div className="flex items-baseline justify-between border-b border-white/10 pb-3">
+                      <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-accent">
+                        0{idx + 1}
+                      </span>
+                      <span className="font-display text-[10px] font-semibold uppercase tracking-widest text-brand-foreground/50">
+                        Advantage
+                      </span>
+                    </div>
+                    <div className="mt-6 flex items-start gap-5">
+                      <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-accent/20 text-accent">
+                        <Icon className="h-7 w-7" />
+                      </div>
+                      <div>
+                        <h3 className="font-display text-xl font-bold">{f.t}</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-brand-foreground/80 md:text-base">{f.d}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            />
           </div>
         </div>
       </section>
+
+      {/* Brand Partnerships */}
+      <PartnershipsSection />
 
       {/* Testimonials */}
       <TestimonialsSection />
@@ -501,5 +532,57 @@ function CountUp({ end, duration = 1800 }: { end: number; duration?: number }) {
   }, [end, duration]);
 
   return <span ref={ref} className="tabular-nums">{n.toLocaleString()}</span>;
+}
+
+const PARTNERS = [
+  { name: "3M", domain: "3m.com" },
+  { name: "Omron", domain: "omronhealthcare.com" },
+  { name: "Mindray", domain: "mindray.com" },
+  { name: "Olympus", domain: "olympus-global.com" },
+  { name: "Sritrang", domain: "sritranggloves.com" },
+  { name: "Polymed", domain: "polymedicure.com" },
+  { name: "Medica", domain: "medicagroup.com" },
+  { name: "Haier", domain: "haiermedical.com" },
+];
+
+function PartnershipsSection() {
+  return (
+    <section className="bg-muted/30 py-16">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="text-center">
+          <div className="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
+            <span className="h-px w-10 bg-accent" /> Global Manufacturers <span className="h-px w-10 bg-accent" />
+          </div>
+          <h2 className="mt-3 font-display text-3xl font-bold text-brand md:text-4xl">Our Brand Partnerships</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+            We partner with ISO-certified global manufacturers to bring you trusted medical technology.
+          </p>
+        </div>
+        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8">
+          {PARTNERS.map((p) => (
+            <div
+              key={p.name}
+              className="group flex aspect-[4/3] items-center justify-center rounded-xl bg-background p-4 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-md hover:ring-brand"
+              title={p.name}
+            >
+              <img
+                src={`https://logo.clearbit.com/${p.domain}`}
+                alt={`${p.name} logo`}
+                loading="lazy"
+                className="max-h-14 max-w-full object-contain grayscale transition duration-300 group-hover:grayscale-0"
+                onError={(e) => {
+                  const el = e.currentTarget;
+                  el.replaceWith(Object.assign(document.createElement("span"), {
+                    className: "font-display text-lg font-bold text-brand",
+                    textContent: p.name,
+                  }));
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
