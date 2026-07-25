@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Menu, X, Search, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { COMPANY, CATEGORIES } from "@/data/catalogue";
 
 const NAV = [
@@ -18,6 +18,17 @@ export function SiteHeader() {
   const [selectedCat, setSelectedCat] = useState<{ slug: string; name: string } | null>(null);
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
+  const catRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!catOpen) return;
+    const onDoc = (e: MouseEvent) => {
+      if (catRef.current && !catRef.current.contains(e.target as Node)) setCatOpen(false);
+    };
+    document.addEventListener("mousedown", onDoc);
+    return () => document.removeEventListener("mousedown", onDoc);
+  }, [catOpen]);
+
   const primaryPhone = COMPANY.phones[0];
   const primaryPhoneHref = primaryPhone.replace(/\s/g, "");
 
@@ -83,10 +94,7 @@ export function SiteHeader() {
                 placeholder="Search for products"
                 className="min-w-0 flex-1 bg-transparent px-4 py-2.5 text-sm font-medium text-foreground outline-none placeholder:text-muted-foreground"
               />
-              <div
-                className="relative border-l border-border"
-                onMouseLeave={() => setCatOpen(false)}
-              >
+              <div ref={catRef} className="relative border-l border-border">
                 <button
                   type="button"
                   onClick={() => setCatOpen((o) => !o)}
