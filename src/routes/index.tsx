@@ -237,44 +237,41 @@ function HomePage() {
             From procurement to installation, training and maintenance — we stand behind every product we deliver.
           </p>
         </div>
-        <div className="mt-12">
-          <AutoSlider
-            intervalMs={2600}
-            items={[
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
             { icon: Wrench, title: "Equipment Installation", body: "Professional installation of hospital, laboratory and imaging equipment." },
             { icon: Stethoscope, title: "Maintenance & Repair", body: "Preventive maintenance contracts and rapid on-site repair services." },
             { icon: GraduationCap, title: "Training & Commissioning", body: "Operator training and commissioning to get your team confident from day one." },
             { icon: HeartHandshake, title: "Humanitarian Supply", body: "Bulk supply to NGOs and government programs with reliable logistics." },
             { icon: SearchIcon, title: "Custom Sourcing", body: "Can't find what you need? We source certified products globally on request." },
             { icon: Truck, title: "Regional Delivery", body: "Timely and secure delivery across Kenya and East Africa." },
-            ].map((s, idx) => {
-              const Icon = s.icon;
-              return (
-                <div
-                  key={s.title}
-                  className="relative mx-auto max-w-2xl overflow-hidden rounded-xl border border-border bg-background p-8 shadow-sm md:p-10"
-                >
-                  <div className="flex items-baseline justify-between border-b border-border pb-3">
-                    <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-accent">
-                      0{idx + 1}
-                    </span>
-                    <span className="font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                      Service
-                    </span>
+          ].map((s, idx) => {
+            const Icon = s.icon;
+            return (
+              <div
+                key={s.title}
+                className="group relative overflow-hidden rounded-xl border border-border bg-background p-7 shadow-sm transition hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg"
+              >
+                <div className="flex items-baseline justify-between border-b border-border pb-3">
+                  <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-accent">
+                    0{idx + 1}
+                  </span>
+                  <span className="font-display text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                    Service
+                  </span>
+                </div>
+                <div className="mt-5 flex items-start gap-4">
+                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand transition group-hover:bg-brand group-hover:text-brand-foreground">
+                    <Icon className="h-6 w-6" />
                   </div>
-                  <div className="mt-6 flex items-start gap-5">
-                    <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand">
-                      <Icon className="h-7 w-7" />
-                    </div>
-                    <div>
-                      <h3 className="font-display text-xl font-bold text-brand">{s.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground md:text-base">{s.body}</p>
-                    </div>
+                  <div>
+                    <h3 className="font-display text-lg font-bold text-brand">{s.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
                   </div>
                 </div>
-              );
-            })}
-          />
+              </div>
+            );
+          })}
         </div>
       </section>
 
