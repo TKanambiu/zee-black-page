@@ -7,6 +7,7 @@ import hero2 from "@/assets/hero2.jpg";
 import hero3 from "@/assets/hero3.jpg";
 import aboutImg from "@/assets/about.jpg";
 import { ShieldCheck, ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
 
 
 const SLIDES = [
