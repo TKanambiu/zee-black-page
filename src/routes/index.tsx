@@ -2,9 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { CATEGORIES, COMPANY } from "@/data/catalogue";
-import heroImg from "@/assets/hero.jpg";
-import hero2 from "@/assets/hero2.jpg";
-import hero3 from "@/assets/hero3.jpg";
 import aboutImg from "@/assets/about.jpg";
 import { ArrowRight, Wrench, GraduationCap, Truck, Search as SearchIcon, Stethoscope, HeartHandshake, Award, Sparkles, Briefcase, Users, Globe, ClipboardCheck } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -13,7 +10,7 @@ import { AutoSlider } from "@/components/auto-slider";
 
 const SLIDES = [
   {
-    img: heroImg,
+    img: "/hero1.png",
     eyebrow: "Advancing Healthcare & Humanitarian Solutions",
     title: "Leading Medical Equipment",
     accent: "Supplier in East Africa",
@@ -22,7 +19,7 @@ const SLIDES = [
     cta2: { label: "Our Services", to: "/services" as const },
   },
   {
-    img: hero2,
+    img: "/hero2.png",
     eyebrow: "Full-Service Distribution",
     title: "From Wards to Theatres,",
     accent: "we equip every room.",
@@ -31,13 +28,31 @@ const SLIDES = [
     cta2: { label: "Talk to Us", to: "/contact" as const },
   },
   {
-    img: hero3,
+    img: "/hero3.png",
     eyebrow: "Precision Laboratory Solutions",
     title: "Diagnostics that",
     accent: "professionals trust.",
     body: "Olympus microscopes, hematology analyzers, HemoCue systems, and complete lab consumables.",
     cta1: { label: "View Lab Range", to: "/products/$slug" as const, params: { slug: "laboratory-diagnostics" } },
     cta2: { label: "Request Quote", to: "/contact" as const },
+  },
+  {
+    img: "/hero4.png",
+    eyebrow: "Hospital & Ward Equipment",
+    title: "Reliable equipment for",
+    accent: "every hospital ward.",
+    body: "Beds, trolleys, monitoring and consumables — everything your ward needs from one trusted partner.",
+    cta1: { label: "Browse Furniture", to: "/products/$slug" as const, params: { slug: "hospital-furniture" } },
+    cta2: { label: "Contact Sales", to: "/contact" as const },
+  },
+  {
+    img: "/hero5.webp",
+    eyebrow: "Humanitarian Healthcare Solutions",
+    title: "Partnering with NGOs",
+    accent: "across Africa.",
+    body: "Bulk supply, cold-chain logistics and rapid response for humanitarian and government programs.",
+    cta1: { label: "Our Services", to: "/services" as const },
+    cta2: { label: "Request a Quote", to: "/contact" as const },
   },
 ];
 
