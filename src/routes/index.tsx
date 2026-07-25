@@ -3,7 +3,7 @@ import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { CATEGORIES, COMPANY } from "@/data/catalogue";
 import aboutImg from "@/assets/about.jpg";
-import { ArrowRight, Wrench, GraduationCap, Truck, Search as SearchIcon, Stethoscope, HeartHandshake, Award, Sparkles, Briefcase, Users, Globe, ClipboardCheck } from "lucide-react";
+import { ArrowRight, Sparkles, Briefcase, Users, Globe, ClipboardCheck } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { CategoryMarquee } from "@/components/category-marquee";
 
