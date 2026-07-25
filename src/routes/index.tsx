@@ -508,3 +508,48 @@ function PartnershipsSection() {
   );
 }
 
+function WhyChooseUsSection() {
+  const stats = [
+    { icon: Briefcase, value: 15, suffix: "+", label: "Years" },
+    { icon: Users, value: 2500, suffix: "+", label: "Happy Clients" },
+    { icon: ClipboardCheck, value: 500, suffix: "+", label: "Products" },
+    { icon: Globe, value: 5, suffix: "", label: "Countries" },
+  ];
+  return (
+    <section className="bg-background py-20">
+      <div className="mx-auto max-w-7xl px-4">
+        <h2 className="font-display text-3xl font-bold text-accent md:text-4xl">Why Choose Us</h2>
+        <p className="mt-6 max-w-5xl text-muted-foreground md:text-lg">
+          As a trusted supplier of{" "}
+          <span className="font-semibold text-accent">end-to-end medical equipment and solutions</span>{" "}
+          across East Africa, Zentramed Health is your comprehensive source for healthcare supplies.
+          Whether you're outfitting a rural clinic, equipping a referral hospital or managing a
+          humanitarian program, our depth of experience and adaptability allow us to meet healthcare
+          demands at every scale. With operations reaching five countries and a dedicated team of
+          specialists and biomedical engineers, we strive to be your trusted partner in delivering
+          superior care through timely, high-quality solutions.
+        </p>
+
+        <div className="mt-14 grid grid-cols-2 gap-8 md:grid-cols-4">
+          {stats.map((s) => {
+            const Icon = s.icon;
+            return (
+              <div key={s.label} className="text-center">
+                <div className="font-display text-5xl font-extrabold text-foreground md:text-6xl">
+                  <CountUp end={s.value} />{s.suffix}
+                </div>
+                <div className="mt-3 font-display text-lg font-bold text-foreground">{s.label}</div>
+                <div className="mt-5 grid place-items-center">
+                  <div className="grid h-16 w-16 place-items-center rounded-full bg-accent/10 text-accent">
+                    <Icon className="h-8 w-8" />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
