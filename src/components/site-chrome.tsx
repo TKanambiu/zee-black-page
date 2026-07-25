@@ -217,15 +217,14 @@ export function SiteFooter() {
     <footer className="mt-24 bg-topbar text-topbar-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4">
         <div>
-          <div className="font-display text-2xl font-bold">
-            Zentramed<span className="text-accent">Health</span>
-          </div>
+          <img src="/logo.png" alt="Zentramed Health" className="h-14 w-auto" />
           <p className="mt-3 text-sm text-topbar-foreground/70">{COMPANY.tagline}</p>
           <p className="mt-4 text-sm text-topbar-foreground/70">
             Trusted supplier of medical supplies, equipment and healthcare solutions to hospitals,
             clinics, NGOs and humanitarian organizations across Africa.
           </p>
         </div>
+
         <div>
           <h4 className="font-display font-semibold">Quick Links</h4>
           <ul className="mt-4 space-y-2 text-sm text-topbar-foreground/80">
