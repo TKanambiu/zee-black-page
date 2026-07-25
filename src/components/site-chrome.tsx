@@ -1,5 +1,5 @@
-import { Link } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { Menu, X, Search, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { COMPANY, CATEGORIES } from "@/data/catalogue";
 
@@ -14,8 +14,21 @@ const NAV = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [cats, setCats] = useState(false);
+  const [catOpen, setCatOpen] = useState(false);
+  const [selectedCat, setSelectedCat] = useState<{ slug: string; name: string } | null>(null);
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
   const primaryPhone = COMPANY.phones[0];
   const primaryPhoneHref = primaryPhone.replace(/\s/g, "");
+
+  const submitSearch = () => {
+    if (selectedCat) {
+      navigate({ to: "/products/$slug", params: { slug: selectedCat.slug } });
+    } else {
+      navigate({ to: "/products" });
+    }
+  };
+
   return (
     <header className="sticky top-0 z-40 bg-background">
       {/* Contact strip — thicker, clickable, phone pulses */}
@@ -55,31 +68,68 @@ export function SiteHeader() {
       </div>
 
       <div className="border-b border-border">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4">
-          <Link to="/" className="flex items-center gap-3">
-            <img src="/logo.png" alt="Zentramed Health" className="h-12 w-auto md:h-14" />
-            <div className="leading-tight hidden sm:block">
-              <div className="font-display text-xl font-bold text-brand">
-                Zentramed<span className="text-accent">Health</span>
-              </div>
-              <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                {COMPANY.tagline}
-              </div>
-            </div>
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 md:gap-6">
+          <Link to="/" className="flex shrink-0 items-center">
+            <img src="/logo.png" alt="Zentramed Health — Advancing Healthcare and Humanitarian Solutions" className="h-16 w-auto md:h-20" />
           </Link>
-          <div className="hidden flex-1 max-w-md md:block">
-            <Link
-              to="/products"
-              className="flex items-center gap-2 rounded-md border-2 border-brand bg-background px-4 py-2.5 text-sm font-medium text-muted-foreground shadow-sm ring-4 ring-brand/10 transition hover:ring-brand/25"
-            >
-              <svg viewBox="0 0 24 24" className="h-4 w-4 text-brand" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-              Search products, brands, categories…
-            </Link>
-          </div>
+          <form
+            onSubmit={(e) => { e.preventDefault(); submitSearch(); }}
+            className="hidden flex-1 md:block"
+          >
+            <div className="flex items-stretch overflow-hidden rounded-md border-2 border-brand bg-background shadow-sm ring-4 ring-brand/10 transition focus-within:ring-brand/25">
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search for products"
+                className="min-w-0 flex-1 bg-transparent px-4 py-2.5 text-sm font-medium text-foreground outline-none placeholder:text-muted-foreground"
+              />
+              <div
+                className="relative border-l border-border"
+                onMouseLeave={() => setCatOpen(false)}
+              >
+                <button
+                  type="button"
+                  onClick={() => setCatOpen((o) => !o)}
+                  className="flex h-full items-center gap-2 whitespace-nowrap px-4 text-sm font-semibold text-brand hover:bg-muted"
+                >
+                  {selectedCat?.name ?? "Select Category"}
+                  <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                </button>
+                {catOpen && (
+                  <div className="absolute right-0 top-full z-50 mt-1 max-h-80 w-72 overflow-auto rounded-md border border-border bg-background shadow-xl">
+                    <button
+                      type="button"
+                      onClick={() => { setSelectedCat(null); setCatOpen(false); }}
+                      className="block w-full border-b border-border px-4 py-2.5 text-left text-sm text-muted-foreground hover:bg-muted"
+                    >
+                      All Categories
+                    </button>
+                    {CATEGORIES.map((c) => (
+                      <button
+                        type="button"
+                        key={c.slug}
+                        onClick={() => { setSelectedCat({ slug: c.slug, name: c.name }); setCatOpen(false); }}
+                        className="block w-full border-b border-border px-4 py-2.5 text-left text-sm hover:bg-muted hover:text-brand"
+                      >
+                        {c.name}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <button
+                type="submit"
+                aria-label="Search"
+                className="flex items-center justify-center bg-brand px-5 text-brand-foreground hover:bg-brand/90"
+              >
+                <Search className="h-5 w-5" />
+              </button>
+            </div>
+          </form>
           <a
             href={`https://wa.me/${COMPANY.whatsapp}`}
             target="_blank" rel="noreferrer"
-            className="hidden rounded-md bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground hover:brightness-95 md:inline-flex"
+            className="hidden shrink-0 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground hover:brightness-95 lg:inline-flex"
           >
             Order via WhatsApp
           </a>
