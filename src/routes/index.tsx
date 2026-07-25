@@ -6,23 +6,9 @@ import heroImg from "@/assets/hero.jpg";
 import hero2 from "@/assets/hero2.jpg";
 import hero3 from "@/assets/hero3.jpg";
 import aboutImg from "@/assets/about.jpg";
-import {
-  ShieldCheck, Truck, Award, HeartHandshake, ArrowRight,
-  Stethoscope, Microscope, Baby, Bed, Activity, Syringe, Wind, ScanLine, HandHeart,
-} from "lucide-react";
+import { ShieldCheck, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const ICONS: Record<string, typeof Stethoscope> = {
-  "ppe-protective-wear": HandHeart,
-  "wound-care-dressings": Syringe,
-  "laboratory-diagnostics": Microscope,
-  "monitoring-homecare": Activity,
-  "respiratory-oxygen": Wind,
-  "neonatal-maternity": Baby,
-  "hospital-furniture": Bed,
-  "theater-emergency": Stethoscope,
-  "imaging-radiology": ScanLine,
-};
 
 const SLIDES = [
   {
@@ -128,24 +114,23 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Trust bar */}
-      <section className="border-b border-border bg-muted/40">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-6 md:grid-cols-4">
+      {/* Trust bar — typographic, no icons */}
+      <section className="border-y border-border bg-background">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-border md:grid-cols-4">
           {[
-            { icon: Award, label: "500+ Products in Catalogue" },
-            { icon: ShieldCheck, label: "Certified & Approved" },
-            { icon: Truck, label: "Reliable Regional Delivery" },
-            { icon: HeartHandshake, label: "After-Sales Support" },
+            { stat: "500+", label: "Products in catalogue" },
+            { stat: "9", label: "Specialised categories" },
+            { stat: "24/7", label: "WhatsApp response" },
+            { stat: "100%", label: "Certified sourcing" },
           ].map((f) => (
-            <div key={f.label} className="flex items-center gap-3">
-              <div className="grid h-11 w-11 place-items-center rounded-full bg-brand/10 text-brand">
-                <f.icon className="h-5 w-5" />
-              </div>
-              <div className="text-sm font-semibold text-foreground">{f.label}</div>
+            <div key={f.label} className="px-6 py-8">
+              <div className="font-display text-3xl font-bold text-brand md:text-4xl">{f.stat}</div>
+              <div className="mt-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">{f.label}</div>
             </div>
           ))}
         </div>
       </section>
+
 
       {/* About */}
       <section className="mx-auto max-w-7xl px-4 py-20">
@@ -199,28 +184,41 @@ function HomePage() {
               View all products <ArrowRight className="ml-1 inline h-4 w-4" />
             </Link>
           </div>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {CATEGORIES.map((c) => {
-              const Icon = ICONS[c.slug] ?? Stethoscope;
-              return (
-                <Link
-                  key={c.slug}
-                  to="/products/$slug"
-                  params={{ slug: c.slug }}
-                  className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-background p-6 transition hover:-translate-y-1 hover:border-brand hover:shadow-[var(--shadow-card)]"
-                >
-                  <div className="grid h-12 w-12 place-items-center rounded-lg bg-brand/10 text-brand group-hover:bg-accent group-hover:text-accent-foreground">
-                    <Icon className="h-6 w-6" />
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {CATEGORIES.map((c) => (
+              <Link
+                key={c.slug}
+                to="/products/$slug"
+                params={{ slug: c.slug }}
+                className="group relative overflow-hidden rounded-xl bg-background shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-[var(--shadow-card)] hover:ring-brand"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src={c.image}
+                    alt={c.name}
+                    loading="lazy"
+                    width={800}
+                    height={600}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+                    <h3 className="font-display text-xl font-bold leading-tight">{c.name}</h3>
+                    <p className="mt-1 text-sm text-white/80">{c.tagline}</p>
                   </div>
-                  <h3 className="mt-4 font-display text-lg font-semibold text-foreground">{c.name}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{c.tagline}</p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand group-hover:text-accent">
+                </div>
+                <div className="flex items-center justify-between px-5 py-4">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                    {c.subcategories.reduce((n, s) => n + s.products.length, 0)} items
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:text-accent">
                     Browse <ArrowRight className="h-4 w-4" />
                   </span>
-                </Link>
-              );
-            })}
+                </div>
+              </Link>
+            ))}
           </div>
+
         </div>
       </section>
 

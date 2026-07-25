@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, Menu, X, Search } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { COMPANY, CATEGORIES } from "@/data/catalogue";
 
@@ -14,28 +14,50 @@ const NAV = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [cats, setCats] = useState(false);
+  const primaryPhone = COMPANY.phones[0];
+  const primaryPhoneHref = primaryPhone.replace(/\s/g, "");
   return (
     <header className="sticky top-0 z-40 bg-background">
-      <div className="bg-topbar text-topbar-foreground text-xs">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-2">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
-            <a href={`mailto:${COMPANY.email}`} className="inline-flex items-center gap-1.5 hover:text-accent">
-              <Mail className="h-3.5 w-3.5" /> {COMPANY.email}
+      {/* Contact strip — thicker, clickable, phone pulses */}
+      <div className="bg-topbar text-topbar-foreground">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 text-sm">
+          <a
+            href={`https://maps.google.com/?q=${encodeURIComponent(COMPANY.address)}`}
+            target="_blank"
+            rel="noreferrer"
+            className="group inline-flex items-center gap-2 font-medium hover:text-accent"
+          >
+            <span className="grid h-7 w-7 place-items-center rounded-full bg-white/10 group-hover:bg-accent/20">
+              <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s-8-7.5-8-13a8 8 0 1 1 16 0c0 5.5-8 13-8 13Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            </span>
+            <span className="tracking-wide">{COMPANY.address}</span>
+          </a>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <a href={`mailto:${COMPANY.email}`} className="group inline-flex items-center gap-2 font-medium hover:text-accent">
+              <span className="grid h-7 w-7 place-items-center rounded-full bg-white/10 group-hover:bg-accent/20">
+                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              </span>
+              <span className="tracking-wide">{COMPANY.email}</span>
             </a>
-            <a href={`tel:${COMPANY.phones[0].replace(/\s/g, "")}`} className="inline-flex items-center gap-1.5 hover:text-accent">
-              <Phone className="h-3.5 w-3.5" /> {COMPANY.phones[0]}
+            <a
+              href={`tel:${primaryPhoneHref}`}
+              className="relative inline-flex items-center gap-2 rounded-full bg-accent px-4 py-1.5 font-bold text-accent-foreground shadow-md ring-2 ring-accent/40 animate-pulse-ring"
+            >
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-red-600" />
+              </span>
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92Z"/></svg>
+              <span className="tracking-wide">{primaryPhone}</span>
             </a>
-          </div>
-          <div className="inline-flex items-center gap-1.5">
-            <MapPin className="h-3.5 w-3.5" /> {COMPANY.address}
           </div>
         </div>
       </div>
 
       <div className="border-b border-border">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="grid h-10 w-10 place-items-center rounded-md bg-brand text-brand-foreground font-display font-bold">Z</div>
+          <Link to="/" className="flex items-center gap-3">
+            <div className="grid h-11 w-11 place-items-center rounded-md bg-brand text-brand-foreground font-display text-lg font-bold shadow-md">Z</div>
             <div className="leading-tight">
               <div className="font-display text-xl font-bold text-brand">
                 Zentramed<span className="text-accent">Health</span>
@@ -46,8 +68,12 @@ export function SiteHeader() {
             </div>
           </Link>
           <div className="hidden flex-1 max-w-md md:block">
-            <Link to="/products" className="flex items-center gap-2 rounded-md border border-border bg-muted/50 px-3 py-2 text-sm text-muted-foreground hover:border-brand">
-              <Search className="h-4 w-4" /> Search products…
+            <Link
+              to="/products"
+              className="flex items-center gap-2 rounded-md border-2 border-brand bg-background px-4 py-2.5 text-sm font-medium text-muted-foreground shadow-sm ring-4 ring-brand/10 transition hover:ring-brand/25"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4 text-brand" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+              Search products, brands, categories…
             </Link>
           </div>
           <a
@@ -154,12 +180,20 @@ export function SiteFooter() {
         </div>
         <div>
           <h4 className="font-display font-semibold">Contact</h4>
-          <ul className="mt-4 space-y-2 text-sm text-topbar-foreground/80">
-            <li className="flex gap-2"><MapPin className="h-4 w-4 shrink-0 mt-0.5" /> {COMPANY.address}</li>
+          <ul className="mt-4 space-y-3 text-sm text-topbar-foreground/80">
+            <li>
+              <a href={`https://maps.google.com/?q=${encodeURIComponent(COMPANY.address)}`} target="_blank" rel="noreferrer" className="hover:text-accent">
+                {COMPANY.address}
+              </a>
+            </li>
             {COMPANY.phones.map((p) => (
-              <li key={p} className="flex gap-2"><Phone className="h-4 w-4 shrink-0 mt-0.5" /> {p}</li>
+              <li key={p}>
+                <a href={`tel:${p.replace(/\s/g, "")}`} className="font-semibold hover:text-accent">{p}</a>
+              </li>
             ))}
-            <li className="flex gap-2"><Mail className="h-4 w-4 shrink-0 mt-0.5" /> {COMPANY.email}</li>
+            <li>
+              <a href={`mailto:${COMPANY.email}`} className="hover:text-accent">{COMPANY.email}</a>
+            </li>
           </ul>
         </div>
       </div>
