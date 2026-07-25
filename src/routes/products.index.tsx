@@ -6,7 +6,7 @@ import { CATEGORIES, COMPANY, allProducts } from "@/data/catalogue";
 import { useMemo, useState } from "react";
 import { Search, MessageCircle, ArrowRight } from "lucide-react";
 
-export const Route = createFileRoute("/products")({
+export const Route = createFileRoute("/products/")({
   head: () => ({
     meta: [
       { title: "Products | Zentramed Health Medical Supplies" },
