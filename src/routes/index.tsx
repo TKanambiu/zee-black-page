@@ -114,24 +114,23 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Trust bar */}
-      <section className="border-b border-border bg-muted/40">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-6 md:grid-cols-4">
+      {/* Trust bar — typographic, no icons */}
+      <section className="border-y border-border bg-background">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-border md:grid-cols-4">
           {[
-            { icon: Award, label: "500+ Products in Catalogue" },
-            { icon: ShieldCheck, label: "Certified & Approved" },
-            { icon: Truck, label: "Reliable Regional Delivery" },
-            { icon: HeartHandshake, label: "After-Sales Support" },
+            { stat: "500+", label: "Products in catalogue" },
+            { stat: "9", label: "Specialised categories" },
+            { stat: "24/7", label: "WhatsApp response" },
+            { stat: "100%", label: "Certified sourcing" },
           ].map((f) => (
-            <div key={f.label} className="flex items-center gap-3">
-              <div className="grid h-11 w-11 place-items-center rounded-full bg-brand/10 text-brand">
-                <f.icon className="h-5 w-5" />
-              </div>
-              <div className="text-sm font-semibold text-foreground">{f.label}</div>
+            <div key={f.label} className="px-6 py-8">
+              <div className="font-display text-3xl font-bold text-brand md:text-4xl">{f.stat}</div>
+              <div className="mt-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">{f.label}</div>
             </div>
           ))}
         </div>
       </section>
+
 
       {/* About */}
       <section className="mx-auto max-w-7xl px-4 py-20">
