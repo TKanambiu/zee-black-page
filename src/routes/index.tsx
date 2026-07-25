@@ -245,8 +245,45 @@ function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-brand text-brand-foreground">
+      {/* Why Us */}
+      <section className="relative overflow-hidden bg-brand text-brand-foreground">
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, white 1px, transparent 1px), radial-gradient(circle at 80% 60%, white 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
+        <div className="relative mx-auto max-w-7xl px-4 py-24">
+          <div className="max-w-2xl">
+            <div className="text-sm font-semibold uppercase tracking-widest text-accent">Why Zentramed Health</div>
+            <h2 className="mt-2 font-display text-3xl font-bold md:text-5xl">
+              A partner your facility <span className="text-accent">can rely on.</span>
+            </h2>
+            <p className="mt-4 text-brand-foreground/80 md:text-lg">
+              From certification to commissioning, we go beyond supply — bringing world-class standards,
+              transparent sourcing and dedicated after-sales support to every order.
+            </p>
+          </div>
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              { k: "01", t: "Licensed Distributor", d: "Fully registered and licensed by the Pharmacy and Poisons Board and Kenya Medical Devices regulatory framework." },
+              { k: "02", t: "Certified Global Brands", d: "Direct partnerships with ISO-certified manufacturers in Europe, Asia and North America." },
+              { k: "03", t: "Nationwide Logistics", d: "Same-day Nairobi dispatch and reliable countrywide delivery — including cold-chain where required." },
+              { k: "04", t: "Technical Support", d: "In-house biomedical engineers for installation, calibration, training and rapid on-site service." },
+              { k: "05", t: "Humanitarian Ready", d: "Proven track record supplying NGOs, UN programs and government tenders across East Africa." },
+              { k: "06", t: "Transparent Pricing", d: "Institutional discounts, itemised quotations and no hidden markups on bulk orders." },
+              { k: "07", t: "Custom Sourcing", d: "Can't find an item? Our global procurement desk sources certified alternatives within 48 hours." },
+              { k: "08", t: "24/7 Order Line", d: "Dedicated WhatsApp and phone response, seven days a week — including emergency supply." },
+            ].map((f) => (
+              <div key={f.k} className="group relative rounded-xl bg-white/5 p-6 backdrop-blur-sm ring-1 ring-white/10 transition hover:bg-white/10 hover:ring-accent">
+                <div className="font-display text-4xl font-bold text-accent/70 group-hover:text-accent">{f.k}</div>
+                <h3 className="mt-3 font-display text-lg font-semibold">{f.t}</h3>
+                <p className="mt-2 text-sm text-brand-foreground/75">{f.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <TestimonialsSection />
+
+
         <div className="mx-auto grid max-w-7xl items-center gap-6 px-4 py-14 md:grid-cols-[1fr_auto]">
           <div>
             <h2 className="font-display text-3xl font-bold md:text-4xl">Ready to equip your facility?</h2>
