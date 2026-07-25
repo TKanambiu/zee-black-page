@@ -306,3 +306,120 @@ function HomePage() {
     </div>
   );
 }
+
+const TESTIMONIALS = [
+  {
+    quote:
+      "Zentramed has been our go-to partner for theatre consumables for over three years. Their response time and product quality are simply unmatched in the region.",
+    name: "Dr. Aisha Wanjiru",
+    role: "Medical Director, Nairobi Surgical Centre",
+    initials: "AW",
+  },
+  {
+    quote:
+      "We equipped a 60-bed county hospital with Zentramed — from beds to imaging. Installation was seamless and their after-sales support is world-class.",
+    name: "Eng. Peter Kimani",
+    role: "Biomedical Lead, County Health Services",
+    initials: "PK",
+  },
+  {
+    quote:
+      "Reliable, transparent and fast. Zentramed supplied a full humanitarian PPE order for our field mission in under a week. A truly professional team.",
+    name: "Sarah Odhiambo",
+    role: "Logistics Coordinator, International NGO",
+    initials: "SO",
+  },
+  {
+    quote:
+      "Their lab team helped us specify, install and train our staff on new hematology analyzers. The precision and follow-through is exceptional.",
+    name: "Dr. Michael Otieno",
+    role: "Head of Laboratory, Regional Referral Hospital",
+    initials: "MO",
+  },
+];
+
+function TestimonialsSection() {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setIdx((v) => (v + 1) % TESTIMONIALS.length), 6500);
+    return () => clearInterval(t);
+  }, []);
+  const active = TESTIMONIALS[idx];
+
+  return (
+    <section className="relative overflow-hidden bg-muted/40 py-24">
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="text-center">
+          <div className="text-sm font-semibold uppercase tracking-widest text-accent">
+            Trusted by Healthcare Leaders
+          </div>
+          <h2 className="mt-2 font-display text-3xl font-bold text-brand md:text-5xl">
+            What our clients say
+          </h2>
+        </div>
+
+        <div className="relative mt-14">
+          <div className="relative overflow-hidden rounded-2xl bg-background p-8 shadow-[var(--shadow-card)] ring-1 ring-border md:p-14">
+            <svg
+              viewBox="0 0 24 24"
+              className="absolute right-8 top-8 h-24 w-24 text-brand/5 md:h-40 md:w-40"
+              fill="currentColor"
+              aria-hidden
+            >
+              <path d="M7.17 6C4.32 6 2 8.32 2 11.17V18h6.83V11.17H5.17c0-1.65 1.35-3 3-3V6h-1zm10 0c-2.85 0-5.17 2.32-5.17 5.17V18H19V11.17h-3.83c0-1.65 1.35-3 3-3V6h-1z" />
+            </svg>
+            <div className="relative">
+              <p className="font-display text-xl leading-relaxed text-foreground md:text-3xl md:leading-snug">
+                "{active.quote}"
+              </p>
+              <div className="mt-8 flex items-center gap-4">
+                <div className="grid h-14 w-14 place-items-center rounded-full bg-brand font-display text-lg font-bold text-brand-foreground shadow-md">
+                  {active.initials}
+                </div>
+                <div>
+                  <div className="font-display font-semibold text-brand">{active.name}</div>
+                  <div className="text-sm text-muted-foreground">{active.role}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            {TESTIMONIALS.map((t, i) => (
+              <button
+                key={t.name}
+                onClick={() => setIdx(i)}
+                className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wider transition ${
+                  i === idx
+                    ? "bg-brand text-brand-foreground shadow"
+                    : "bg-background text-muted-foreground ring-1 ring-border hover:text-brand"
+                }`}
+              >
+                <span
+                  className={`h-1.5 w-1.5 rounded-full ${i === idx ? "bg-accent" : "bg-muted-foreground/40"}`}
+                />
+                {t.initials}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-14 grid gap-6 border-t border-border pt-10 sm:grid-cols-3">
+          {[
+            { stat: "150+", label: "Hospitals & clinics served" },
+            { stat: "40+", label: "NGO & humanitarian partners" },
+            { stat: "98%", label: "On-time delivery rate" },
+          ].map((s) => (
+            <div key={s.label} className="text-center">
+              <div className="font-display text-3xl font-bold text-brand md:text-4xl">{s.stat}</div>
+              <div className="mt-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
