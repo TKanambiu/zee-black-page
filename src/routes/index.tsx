@@ -134,7 +134,7 @@ function HomePage() {
 
 
       {/* About — editorial, professional */}
-      <section className="relative mx-auto max-w-7xl px-4 py-24">
+      <section className="relative mx-auto max-w-7xl px-4 py-16">
         <div className="grid items-center gap-14 md:grid-cols-2">
           <div className="relative">
             <div className="absolute -left-4 -top-4 hidden h-full w-full rounded-2xl border-2 border-accent/40 md:block" />
@@ -187,7 +187,7 @@ function HomePage() {
       </section>
 
       {/* Categories grid */}
-      <section className="bg-muted/40 py-20">
+      <section className="bg-muted/40 py-14">
         <div className="mx-auto max-w-7xl px-4">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -239,7 +239,7 @@ function HomePage() {
       </section>
 
       {/* Services */}
-      <section className="mx-auto max-w-7xl px-4 py-24">
+      <section className="mx-auto max-w-7xl px-4 py-16">
         <div className="mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
             <span className="h-px w-10 bg-accent" /> Our Services <span className="h-px w-10 bg-accent" />
@@ -284,7 +284,7 @@ function HomePage() {
         <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, white 1.5px, transparent 1.5px), radial-gradient(circle at 80% 60%, white 1.5px, transparent 1.5px)", backgroundSize: "48px 48px" }} />
         <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-accent/20 blur-3xl" />
         <div className="absolute -right-32 bottom-20 h-96 w-96 rounded-full bg-accent/10 blur-3xl" />
-        <div className="relative mx-auto max-w-7xl px-4 py-28">
+        <div className="relative mx-auto max-w-7xl px-4 py-20">
           <div className="mx-auto max-w-3xl text-center">
             <div className="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
               <span className="h-px w-10 bg-accent/70" /> Why Zentramed Health <span className="h-px w-10 bg-accent/70" />
