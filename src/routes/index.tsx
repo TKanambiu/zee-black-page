@@ -184,28 +184,41 @@ function HomePage() {
               View all products <ArrowRight className="ml-1 inline h-4 w-4" />
             </Link>
           </div>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {CATEGORIES.map((c) => {
-              const Icon = ICONS[c.slug] ?? Stethoscope;
-              return (
-                <Link
-                  key={c.slug}
-                  to="/products/$slug"
-                  params={{ slug: c.slug }}
-                  className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-background p-6 transition hover:-translate-y-1 hover:border-brand hover:shadow-[var(--shadow-card)]"
-                >
-                  <div className="grid h-12 w-12 place-items-center rounded-lg bg-brand/10 text-brand group-hover:bg-accent group-hover:text-accent-foreground">
-                    <Icon className="h-6 w-6" />
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {CATEGORIES.map((c) => (
+              <Link
+                key={c.slug}
+                to="/products/$slug"
+                params={{ slug: c.slug }}
+                className="group relative overflow-hidden rounded-xl bg-background shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-[var(--shadow-card)] hover:ring-brand"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src={c.image}
+                    alt={c.name}
+                    loading="lazy"
+                    width={800}
+                    height={600}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+                    <h3 className="font-display text-xl font-bold leading-tight">{c.name}</h3>
+                    <p className="mt-1 text-sm text-white/80">{c.tagline}</p>
                   </div>
-                  <h3 className="mt-4 font-display text-lg font-semibold text-foreground">{c.name}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{c.tagline}</p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand group-hover:text-accent">
+                </div>
+                <div className="flex items-center justify-between px-5 py-4">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                    {c.subcategories.reduce((n, s) => n + s.products.length, 0)} items
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:text-accent">
                     Browse <ArrowRight className="h-4 w-4" />
                   </span>
-                </Link>
-              );
-            })}
+                </div>
+              </Link>
+            ))}
           </div>
+
         </div>
       </section>
 
