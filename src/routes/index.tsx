@@ -64,14 +64,14 @@ function HomePage() {
       <SiteHeader />
 
       {/* Hero slider — horizontal slide-left with visible imagery */}
-      <section className="relative h-[560px] w-full overflow-hidden md:h-[640px]">
+      <section className="relative h-[440px] w-full overflow-hidden md:h-[520px]">
         <div
           className="flex h-full transition-transform duration-[900ms] ease-[cubic-bezier(0.65,0,0.35,1)]"
           style={{ width: `${SLIDES.length * 100}%`, transform: `translateX(-${i * (100 / SLIDES.length)}%)` }}
         >
           {SLIDES.map((s, idx) => (
             <div key={idx} className="relative h-full shrink-0" style={{ width: `${100 / SLIDES.length}%` }}>
-              <img src={s.img} alt="" className="h-full w-full object-cover" />
+              <img src={s.img} alt="" className="h-full w-full object-cover brightness-110" />
               <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
               <div className="relative mx-auto flex h-full max-w-7xl items-center px-4">
                 <div className="max-w-xl text-white">
@@ -134,7 +134,7 @@ function HomePage() {
 
 
       {/* About — editorial, professional */}
-      <section className="relative mx-auto max-w-7xl px-4 py-24">
+      <section className="relative mx-auto max-w-7xl px-4 py-16">
         <div className="grid items-center gap-14 md:grid-cols-2">
           <div className="relative">
             <div className="absolute -left-4 -top-4 hidden h-full w-full rounded-2xl border-2 border-accent/40 md:block" />
@@ -187,7 +187,7 @@ function HomePage() {
       </section>
 
       {/* Categories grid */}
-      <section className="bg-muted/40 py-20">
+      <section className="bg-muted/40 py-14">
         <div className="mx-auto max-w-7xl px-4">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -239,7 +239,7 @@ function HomePage() {
       </section>
 
       {/* Services */}
-      <section className="mx-auto max-w-7xl px-4 py-24">
+      <section className="mx-auto max-w-7xl px-4 py-16">
         <div className="mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
             <span className="h-px w-10 bg-accent" /> Our Services <span className="h-px w-10 bg-accent" />
@@ -251,7 +251,7 @@ function HomePage() {
             From procurement to installation, training and maintenance — we stand behind every product we deliver.
           </p>
         </div>
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[
             { icon: Wrench, title: "Equipment Installation", body: "Professional installation of hospital, laboratory and imaging equipment." },
             { icon: Stethoscope, title: "Maintenance & Repair", body: "Preventive maintenance contracts and rapid on-site repair services." },
@@ -262,24 +262,18 @@ function HomePage() {
           ].map((s, idx) => (
             <div
               key={s.title}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-background p-7 shadow-sm transition-all hover:-translate-y-1 hover:border-brand hover:shadow-[var(--shadow-card)]"
+              className="relative overflow-hidden rounded-xl border border-border bg-background p-6 shadow-sm"
             >
-              <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-brand/5 transition-transform group-hover:scale-150" />
-              <div className="relative">
-                <div className="flex items-center justify-between">
-                  <div className="grid h-14 w-14 place-items-center rounded-xl bg-gradient-to-br from-brand to-brand/70 text-brand-foreground shadow-md transition-transform group-hover:scale-110">
-                    <s.icon className="h-6 w-6" />
-                  </div>
-                  <span className="font-display text-xs font-bold tracking-widest text-muted-foreground/40">
-                    0{idx + 1}
-                  </span>
-                </div>
-                <h3 className="mt-5 font-display text-lg font-bold text-brand">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-                <div className="mt-5 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-widest text-accent opacity-0 transition-opacity group-hover:opacity-100">
-                  Learn more <ArrowRight className="h-3.5 w-3.5" />
-                </div>
+              <div className="flex items-baseline justify-between border-b border-border pb-3">
+                <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-accent">
+                  0{idx + 1}
+                </span>
+                <span className="font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  Service
+                </span>
               </div>
+              <h3 className="mt-4 font-display text-lg font-bold text-brand">{s.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
             </div>
           ))}
         </div>
@@ -290,7 +284,7 @@ function HomePage() {
         <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, white 1.5px, transparent 1.5px), radial-gradient(circle at 80% 60%, white 1.5px, transparent 1.5px)", backgroundSize: "48px 48px" }} />
         <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-accent/20 blur-3xl" />
         <div className="absolute -right-32 bottom-20 h-96 w-96 rounded-full bg-accent/10 blur-3xl" />
-        <div className="relative mx-auto max-w-7xl px-4 py-28">
+        <div className="relative mx-auto max-w-7xl px-4 py-20">
           <div className="mx-auto max-w-3xl text-center">
             <div className="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
               <span className="h-px w-10 bg-accent/70" /> Why Zentramed Health <span className="h-px w-10 bg-accent/70" />
@@ -303,7 +297,7 @@ function HomePage() {
               transparent sourcing and dedicated after-sales support to every order.
             </p>
           </div>
-          <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {[
               { icon: BadgeCheck, t: "Licensed Distributor", d: "Fully registered by the Pharmacy and Poisons Board and Kenya Medical Devices framework." },
               { icon: Award, t: "Certified Global Brands", d: "Direct partnerships with ISO-certified manufacturers in Europe, Asia and North America." },
@@ -316,17 +310,18 @@ function HomePage() {
             ].map((f, idx) => (
               <div
                 key={f.t}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-accent/60 hover:bg-white/[0.09]"
+                className="relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.05] p-5 backdrop-blur-sm"
               >
-                <div className="absolute right-4 top-4 font-display text-xs font-bold tracking-widest text-white/20">
-                  0{idx + 1}
+                <div className="flex items-baseline justify-between border-b border-white/10 pb-3">
+                  <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-accent">
+                    0{idx + 1}
+                  </span>
+                  <span className="font-display text-[10px] font-semibold uppercase tracking-widest text-brand-foreground/50">
+                    Advantage
+                  </span>
                 </div>
-                <div className="grid h-12 w-12 place-items-center rounded-xl bg-accent/20 text-accent ring-1 ring-accent/40 transition-all group-hover:bg-accent group-hover:text-accent-foreground">
-                  <f.icon className="h-6 w-6" />
-                </div>
-                <h3 className="mt-5 font-display text-lg font-bold">{f.t}</h3>
+                <h3 className="mt-4 font-display text-base font-bold">{f.t}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-brand-foreground/75">{f.d}</p>
-                <div className="mt-4 h-0.5 w-8 bg-accent/60 transition-all group-hover:w-full" />
               </div>
             ))}
           </div>
