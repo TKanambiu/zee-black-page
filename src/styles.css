@@ -70,11 +70,12 @@
   --topbar: oklch(0.28 0.05 180);
   --topbar-foreground: oklch(0.985 0 0);
 
-  --gradient-hero: linear-gradient(90deg, oklch(0.2 0.04 200 / 0.82) 0%, oklch(0.2 0.04 200 / 0.55) 45%, oklch(0.2 0.04 200 / 0.1) 100%);
+  --gradient-hero: linear-gradient(90deg, oklch(0.2 0.04 200 / 0.6) 0%, oklch(0.2 0.04 200 / 0.32) 45%, oklch(0.2 0.04 200 / 0.05) 100%);
   --shadow-card: 0 6px 24px -12px oklch(0.36 0.06 180 / 0.25);
 }
 
 @layer base {
+  html { font-size: 15px; }
   * { border-color: var(--color-border); }
   body {
     background-color: var(--color-background);
