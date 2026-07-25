@@ -156,16 +156,12 @@ function HomePage() {
             <div className="absolute -left-4 -top-4 hidden h-full w-full rounded-2xl border-2 border-accent/40 md:block" />
             <img src={aboutImg} alt="Healthcare professional with instruments" className="relative rounded-2xl shadow-2xl" loading="lazy" />
             <div className="absolute -bottom-8 -right-6 hidden rounded-xl bg-background p-5 shadow-2xl ring-1 ring-border md:block">
-              <div className="flex items-center gap-3">
-                <div className="grid h-12 w-12 place-items-center rounded-full bg-brand text-brand-foreground">
-                  <Award className="h-6 w-6" />
-                </div>
-                <div>
-                  <div className="font-display text-2xl font-bold text-brand">15+ Years</div>
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground">Industry expertise</div>
-                </div>
+              <div>
+                <div className="font-display text-2xl font-bold text-brand">15+ Years</div>
+                <div className="text-xs uppercase tracking-widest text-muted-foreground">Industry expertise</div>
               </div>
             </div>
+
           </div>
           <div>
             <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
@@ -238,39 +234,32 @@ function HomePage() {
         </div>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            { icon: Wrench, title: "Equipment Installation", body: "Professional installation of hospital, laboratory and imaging equipment." },
-            { icon: Stethoscope, title: "Maintenance & Repair", body: "Preventive maintenance contracts and rapid on-site repair services." },
-            { icon: GraduationCap, title: "Training & Commissioning", body: "Operator training and commissioning to get your team confident from day one." },
-            { icon: HeartHandshake, title: "Humanitarian Supply", body: "Bulk supply to NGOs and government programs with reliable logistics." },
-            { icon: SearchIcon, title: "Custom Sourcing", body: "Can't find what you need? We source certified products globally on request." },
-            { icon: Truck, title: "Regional Delivery", body: "Timely and secure delivery across Kenya and East Africa." },
-          ].map((s, idx) => {
-            const Icon = s.icon;
-            return (
-              <div
-                key={s.title}
-                className="group relative overflow-hidden rounded-xl border border-border bg-background p-7 shadow-sm transition hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg"
-              >
-                <div className="flex items-baseline justify-between border-b border-border pb-3">
-                  <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-accent">
-                    0{idx + 1}
-                  </span>
-                  <span className="font-display text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
-                    Service
-                  </span>
-                </div>
-                <div className="mt-5 flex items-start gap-4">
-                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand transition group-hover:bg-brand group-hover:text-brand-foreground">
-                    <Icon className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-display text-lg font-bold text-brand">{s.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-                  </div>
-                </div>
+            { title: "Equipment Installation", body: "Professional installation of hospital, laboratory and imaging equipment." },
+            { title: "Maintenance & Repair", body: "Preventive maintenance contracts and rapid on-site repair services." },
+            { title: "Training & Commissioning", body: "Operator training and commissioning to get your team confident from day one." },
+            { title: "Humanitarian Supply", body: "Bulk supply to NGOs and government programs with reliable logistics." },
+            { title: "Custom Sourcing", body: "Can't find what you need? We source certified products globally on request." },
+            { title: "Regional Delivery", body: "Timely and secure delivery across Kenya and East Africa." },
+          ].map((s, idx) => (
+            <div
+              key={s.title}
+              className="group relative overflow-hidden rounded-xl border border-border bg-background p-7 shadow-sm transition hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg"
+            >
+              <div className="flex items-baseline justify-between border-b border-border pb-3">
+                <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-accent">
+                  0{idx + 1}
+                </span>
+                <span className="font-display text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                  Service
+                </span>
               </div>
-            );
-          })}
+              <div className="mt-5">
+                <h3 className="font-display text-lg font-bold text-brand">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+              </div>
+            </div>
+          ))}
+
         </div>
       </section>
 
