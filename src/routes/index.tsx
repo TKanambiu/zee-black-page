@@ -2,18 +2,16 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { CATEGORIES, COMPANY } from "@/data/catalogue";
-import heroImg from "@/assets/hero.jpg";
-import hero2 from "@/assets/hero2.jpg";
-import hero3 from "@/assets/hero3.jpg";
 import aboutImg from "@/assets/about.jpg";
 import { ArrowRight, Wrench, GraduationCap, Truck, Search as SearchIcon, Stethoscope, HeartHandshake, Award, Sparkles, Briefcase, Users, Globe, ClipboardCheck } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { AutoSlider } from "@/components/auto-slider";
+import { CategoryMarquee } from "@/components/category-marquee";
 
 
 const SLIDES = [
   {
-    img: heroImg,
+    img: "/hero1.png",
     eyebrow: "Advancing Healthcare & Humanitarian Solutions",
     title: "Leading Medical Equipment",
     accent: "Supplier in East Africa",
@@ -22,7 +20,7 @@ const SLIDES = [
     cta2: { label: "Our Services", to: "/services" as const },
   },
   {
-    img: hero2,
+    img: "/hero2.png",
     eyebrow: "Full-Service Distribution",
     title: "From Wards to Theatres,",
     accent: "we equip every room.",
@@ -31,13 +29,31 @@ const SLIDES = [
     cta2: { label: "Talk to Us", to: "/contact" as const },
   },
   {
-    img: hero3,
+    img: "/hero3.png",
     eyebrow: "Precision Laboratory Solutions",
     title: "Diagnostics that",
     accent: "professionals trust.",
     body: "Olympus microscopes, hematology analyzers, HemoCue systems, and complete lab consumables.",
     cta1: { label: "View Lab Range", to: "/products/$slug" as const, params: { slug: "laboratory-diagnostics" } },
     cta2: { label: "Request Quote", to: "/contact" as const },
+  },
+  {
+    img: "/hero4.png",
+    eyebrow: "Hospital & Ward Equipment",
+    title: "Reliable equipment for",
+    accent: "every hospital ward.",
+    body: "Beds, trolleys, monitoring and consumables — everything your ward needs from one trusted partner.",
+    cta1: { label: "Browse Furniture", to: "/products/$slug" as const, params: { slug: "hospital-furniture" } },
+    cta2: { label: "Contact Sales", to: "/contact" as const },
+  },
+  {
+    img: "/hero5.webp",
+    eyebrow: "Humanitarian Healthcare Solutions",
+    title: "Partnering with NGOs",
+    accent: "across Africa.",
+    body: "Bulk supply, cold-chain logistics and rapid response for humanitarian and government programs.",
+    cta1: { label: "Our Services", to: "/services" as const },
+    cta2: { label: "Request a Quote", to: "/contact" as const },
   },
 ];
 
@@ -202,39 +218,7 @@ function HomePage() {
             </Link>
           </div>
           <div className="mt-10">
-            <AutoSlider
-              intervalMs={2800}
-              items={CATEGORIES.map((c) => (
-                <Link
-                  key={c.slug}
-                  to="/products/$slug"
-                  params={{ slug: c.slug }}
-                  className="group relative mx-auto block max-w-2xl overflow-hidden rounded-xl bg-background shadow-sm ring-1 ring-border transition hover:shadow-[var(--shadow-card)] hover:ring-brand"
-                >
-                  <div className="relative aspect-[16/7] overflow-hidden">
-                    <img
-                      src={c.image}
-                      alt={c.name}
-                      loading="lazy"
-                      className="h-full w-full object-cover brightness-110 transition duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                      <h3 className="font-display text-2xl font-bold leading-tight md:text-3xl">{c.name}</h3>
-                      <p className="mt-1 text-sm text-white/85 md:text-base">{c.tagline}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between px-5 py-4">
-                    <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                      {c.subcategories.reduce((n, s) => n + s.products.length, 0)} items
-                    </span>
-                    <span className="inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:text-accent">
-                      Browse <ArrowRight className="h-4 w-4" />
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            />
+            <CategoryMarquee categories={CATEGORIES} />
           </div>
 
         </div>

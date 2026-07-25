@@ -96,3 +96,9 @@
   to { transform: translateX(-50%); }
 }
 
+@keyframes cat-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-cat-marquee { animation: cat-marquee 40s linear infinite; }
+
