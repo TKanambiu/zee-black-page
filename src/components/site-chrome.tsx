@@ -23,9 +23,9 @@ export function SiteHeader() {
 
   const submitSearch = () => {
     if (selectedCat) {
-      navigate({ to: "/products/$slug", params: { slug: selectedCat.slug } });
+      navigate({ to: "/products/$slug", params: { slug: selectedCat.slug }, search: query ? { q: query } : {} });
     } else {
-      navigate({ to: "/products" });
+      navigate({ to: "/products", search: query ? { q: query } : {} });
     }
   };
 
@@ -68,9 +68,9 @@ export function SiteHeader() {
       </div>
 
       <div className="border-b border-border">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 md:gap-6">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 md:gap-6 md:py-2.5">
           <Link to="/" className="flex shrink-0 items-center">
-            <img src="/logo.png" alt="Zentramed Health — Advancing Healthcare and Humanitarian Solutions" className="h-16 w-auto md:h-20" />
+            <img src="/logo.png" alt="Zentramed Health — Advancing Healthcare and Humanitarian Solutions" className="h-20 w-auto md:h-24" />
           </Link>
           <form
             onSubmit={(e) => { e.preventDefault(); submitSearch(); }}

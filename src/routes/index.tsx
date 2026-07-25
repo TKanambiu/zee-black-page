@@ -152,8 +152,8 @@ function HomePage() {
             </div>
           </div>
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" /> About Zentramed Health
+            <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
+              <span className="h-px w-10 bg-accent" /> About Zentramed Health
             </div>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-brand md:text-5xl">
               Advancing healthcare, <span className="italic text-accent">together.</span>
@@ -191,8 +191,10 @@ function HomePage() {
         <div className="mx-auto max-w-7xl px-4">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <div className="text-sm font-semibold uppercase tracking-widest text-accent">What We Supply</div>
-              <h2 className="mt-2 font-display text-3xl font-bold text-brand md:text-4xl">Explore Our Categories</h2>
+              <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
+                <span className="h-px w-10 bg-accent" /> What We Supply
+              </div>
+              <h2 className="mt-3 font-display text-3xl font-bold text-brand md:text-4xl">Explore Our Categories</h2>
             </div>
             <Link to="/products" className="text-sm font-semibold text-brand hover:text-accent">
               View all products <ArrowRight className="ml-1 inline h-4 w-4" />
@@ -213,9 +215,9 @@ function HomePage() {
                     loading="lazy"
                     width={800}
                     height={600}
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    className="h-full w-full object-cover brightness-110 transition duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-5 text-white">
                     <h3 className="font-display text-xl font-bold leading-tight">{c.name}</h3>
                     <p className="mt-1 text-sm text-white/80">{c.tagline}</p>
@@ -239,8 +241,8 @@ function HomePage() {
       {/* Services */}
       <section className="mx-auto max-w-7xl px-4 py-24">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" /> Our Services
+          <div className="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
+            <span className="h-px w-10 bg-accent" /> Our Services <span className="h-px w-10 bg-accent" />
           </div>
           <h2 className="mt-3 font-display text-3xl font-bold text-brand md:text-5xl">
             Beyond supply — <span className="text-accent">end-to-end support</span>
@@ -290,8 +292,8 @@ function HomePage() {
         <div className="absolute -right-32 bottom-20 h-96 w-96 rounded-full bg-accent/10 blur-3xl" />
         <div className="relative mx-auto max-w-7xl px-4 py-28">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent backdrop-blur-sm">
-              <Sparkles className="h-3.5 w-3.5" /> Why Zentramed Health
+            <div className="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
+              <span className="h-px w-10 bg-accent/70" /> Why Zentramed Health <span className="h-px w-10 bg-accent/70" />
             </div>
             <h2 className="mt-5 font-display text-4xl font-bold leading-tight md:text-6xl">
               A partner your facility <span className="italic text-accent">can rely on.</span>
@@ -401,10 +403,10 @@ function TestimonialsSection() {
     <section className="relative overflow-hidden bg-muted/40 py-24">
       <div className="mx-auto max-w-6xl px-4">
         <div className="text-center">
-          <div className="text-sm font-semibold uppercase tracking-widest text-accent">
-            Trusted by Healthcare Leaders
+          <div className="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
+            <span className="h-px w-10 bg-accent" /> Trusted by Healthcare Leaders <span className="h-px w-10 bg-accent" />
           </div>
-          <h2 className="mt-2 font-display text-3xl font-bold text-brand md:text-5xl">
+          <h2 className="mt-3 font-display text-3xl font-bold text-brand md:text-5xl">
             What our clients say
           </h2>
         </div>
