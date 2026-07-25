@@ -5,10 +5,10 @@ type Props = {
   items: ReactNode[];
   intervalMs?: number;
   className?: string;
-  perView?: { base: number; md?: number; lg?: number };
 };
 
-export function AutoSlider({ items, intervalMs = 2600, className = "", perView }: Props) {
+/** One-at-a-time auto-advancing slider. Slides right-to-left, pauses on hover. */
+export function AutoSlider({ items, intervalMs = 2600, className = "" }: Props) {
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
   const n = items.length;
@@ -19,10 +19,6 @@ export function AutoSlider({ items, intervalMs = 2600, className = "", perView }
     return () => clearInterval(t);
   }, [paused, n, intervalMs]);
 
-  const base = perView?.base ?? 1;
-  const md = perView?.md ?? base;
-  const lg = perView?.lg ?? md;
-
   return (
     <div
       className={`relative ${className}`}
@@ -32,14 +28,10 @@ export function AutoSlider({ items, intervalMs = 2600, className = "", perView }
       <div className="overflow-hidden">
         <div
           className="flex transition-transform duration-700 ease-[cubic-bezier(0.65,0,0.35,1)]"
-          style={{ transform: `translateX(-${i * (100 / n)}%)`, width: `${(n / base) * 100}%` }}
+          style={{ width: `${n * 100}%`, transform: `translateX(-${i * (100 / n)}%)` }}
         >
           {items.map((child, idx) => (
-            <div
-              key={idx}
-              className={`shrink-0 px-3 basis-full md:basis-1/${md} lg:basis-1/${lg}`}
-              style={{ width: `${100 / n}%` }}
-            >
+            <div key={idx} className="shrink-0 px-2" style={{ width: `${100 / n}%` }}>
               {child}
             </div>
           ))}
@@ -49,14 +41,14 @@ export function AutoSlider({ items, intervalMs = 2600, className = "", perView }
       <button
         aria-label="Previous"
         onClick={() => setI((v) => (v - 1 + n) % n)}
-        className="absolute -left-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-background p-2 shadow-lg ring-1 ring-border hover:text-accent md:block"
+        className="absolute left-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-background p-2 shadow-lg ring-1 ring-border hover:text-accent md:block"
       >
         <ChevronLeft className="h-5 w-5" />
       </button>
       <button
         aria-label="Next"
         onClick={() => setI((v) => (v + 1) % n)}
-        className="absolute -right-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-background p-2 shadow-lg ring-1 ring-border hover:text-accent md:block"
+        className="absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-background p-2 shadow-lg ring-1 ring-border hover:text-accent md:block"
       >
         <ChevronRight className="h-5 w-5" />
       </button>
