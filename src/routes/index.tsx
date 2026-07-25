@@ -6,7 +6,7 @@ import heroImg from "@/assets/hero.jpg";
 import hero2 from "@/assets/hero2.jpg";
 import hero3 from "@/assets/hero3.jpg";
 import aboutImg from "@/assets/about.jpg";
-import { ArrowRight, Wrench, GraduationCap, Truck, Search as SearchIcon, Stethoscope, HeartHandshake, ShieldCheck, Award, Globe2, Headphones, Package, BadgeCheck, Clock, Sparkles } from "lucide-react";
+import { ArrowRight, Wrench, GraduationCap, Truck, Search as SearchIcon, Stethoscope, HeartHandshake, Award, Sparkles, Briefcase, Users, Globe, ClipboardCheck } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { AutoSlider } from "@/components/auto-slider";
 
@@ -294,67 +294,8 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Why Us */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand via-brand to-topbar text-brand-foreground">
-        <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, white 1.5px, transparent 1.5px), radial-gradient(circle at 80% 60%, white 1.5px, transparent 1.5px)", backgroundSize: "48px 48px" }} />
-        <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-accent/20 blur-3xl" />
-        <div className="absolute -right-32 bottom-20 h-96 w-96 rounded-full bg-accent/10 blur-3xl" />
-        <div className="relative mx-auto max-w-7xl px-4 py-20">
-          <div className="mx-auto max-w-3xl text-center">
-            <div className="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
-              <span className="h-px w-10 bg-accent/70" /> Why Zentramed Health <span className="h-px w-10 bg-accent/70" />
-            </div>
-            <h2 className="mt-5 font-display text-4xl font-bold leading-tight md:text-6xl">
-              A partner your facility <span className="italic text-accent">can rely on.</span>
-            </h2>
-            <p className="mt-5 text-brand-foreground/85 md:text-lg">
-              From certification to commissioning, we bring world-class standards,
-              transparent sourcing and dedicated after-sales support to every order.
-            </p>
-          </div>
-          <div className="mt-14">
-            <AutoSlider
-              intervalMs={2600}
-              items={[
-              { icon: BadgeCheck, t: "Licensed Distributor", d: "Fully registered by the Pharmacy and Poisons Board and Kenya Medical Devices framework." },
-              { icon: Award, t: "Certified Global Brands", d: "Direct partnerships with ISO-certified manufacturers in Europe, Asia and North America." },
-              { icon: Truck, t: "Nationwide Logistics", d: "Same-day Nairobi dispatch and countrywide delivery — including cold-chain where required." },
-              { icon: Wrench, t: "Technical Support", d: "In-house biomedical engineers for installation, calibration, training and on-site service." },
-              { icon: HeartHandshake, t: "Humanitarian Ready", d: "Proven track record supplying NGOs, UN programs and government tenders across East Africa." },
-              { icon: ShieldCheck, t: "Transparent Pricing", d: "Institutional discounts, itemised quotations and no hidden markups on bulk orders." },
-              { icon: Globe2, t: "Custom Sourcing", d: "Global procurement desk sources certified alternatives within 48 hours." },
-              { icon: Clock, t: "24/7 Order Line", d: "Dedicated WhatsApp and phone response, seven days a week — including emergency supply." },
-              ].map((f, idx) => {
-                const Icon = f.icon;
-                return (
-                  <div
-                    key={f.t}
-                    className="relative mx-auto max-w-2xl overflow-hidden rounded-xl border border-white/10 bg-white/[0.06] p-8 backdrop-blur-sm md:p-10"
-                  >
-                    <div className="flex items-baseline justify-between border-b border-white/10 pb-3">
-                      <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-accent">
-                        0{idx + 1}
-                      </span>
-                      <span className="font-display text-[10px] font-semibold uppercase tracking-widest text-brand-foreground/50">
-                        Advantage
-                      </span>
-                    </div>
-                    <div className="mt-6 flex items-start gap-5">
-                      <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-accent/20 text-accent">
-                        <Icon className="h-7 w-7" />
-                      </div>
-                      <div>
-                        <h3 className="font-display text-xl font-bold">{f.t}</h3>
-                        <p className="mt-2 text-sm leading-relaxed text-brand-foreground/80 md:text-base">{f.d}</p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            />
-          </div>
-        </div>
-      </section>
+      {/* Why Choose Us — stats layout */}
+      <WhyChooseUsSection />
 
       {/* Brand Partnerships */}
       <PartnershipsSection />
@@ -418,13 +359,8 @@ const TESTIMONIALS = [
 ];
 
 function TestimonialsSection() {
-  const [idx, setIdx] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setIdx((v) => (v + 1) % TESTIMONIALS.length), 6500);
-    return () => clearInterval(t);
-  }, []);
-  const active = TESTIMONIALS[idx];
-
+  // Duplicate for seamless marquee loop
+  const loop = [...TESTIMONIALS, ...TESTIMONIALS];
   return (
     <section className="relative overflow-hidden bg-muted/40 py-24">
       <div className="mx-auto max-w-6xl px-4">
@@ -437,48 +373,34 @@ function TestimonialsSection() {
           </h2>
         </div>
 
-        <div className="relative mt-14">
-          <div className="relative overflow-hidden rounded-2xl bg-background p-8 shadow-[var(--shadow-card)] ring-1 ring-border md:p-14">
-            <svg
-              viewBox="0 0 24 24"
-              className="absolute right-8 top-8 h-24 w-24 text-brand/5 md:h-40 md:w-40"
-              fill="currentColor"
-              aria-hidden
-            >
-              <path d="M7.17 6C4.32 6 2 8.32 2 11.17V18h6.83V11.17H5.17c0-1.65 1.35-3 3-3V6h-1zm10 0c-2.85 0-5.17 2.32-5.17 5.17V18H19V11.17h-3.83c0-1.65 1.35-3 3-3V6h-1z" />
-            </svg>
-            <div className="relative">
-              <p className="font-display text-xl leading-relaxed text-foreground md:text-3xl md:leading-snug">
-                "{active.quote}"
-              </p>
-              <div className="mt-8 flex items-center gap-4">
-                <div className="grid h-14 w-14 place-items-center rounded-full bg-brand font-display text-lg font-bold text-brand-foreground shadow-md">
-                  {active.initials}
-                </div>
-                <div>
-                  <div className="font-display font-semibold text-brand">{active.name}</div>
-                  <div className="text-sm text-muted-foreground">{active.role}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            {TESTIMONIALS.map((t, i) => (
-              <button
-                key={t.name}
-                onClick={() => setIdx(i)}
-                className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wider transition ${
-                  i === idx
-                    ? "bg-brand text-brand-foreground shadow"
-                    : "bg-background text-muted-foreground ring-1 ring-border hover:text-brand"
-                }`}
+        {/* Animated marquee of client "passports" */}
+        <div
+          className="group relative mt-14 overflow-hidden"
+          style={{
+            maskImage: "linear-gradient(90deg, transparent, black 8%, black 92%, transparent)",
+            WebkitMaskImage: "linear-gradient(90deg, transparent, black 8%, black 92%, transparent)",
+          }}
+        >
+          <div className="flex w-max gap-6 animate-[marquee_40s_linear_infinite] group-hover:[animation-play-state:paused]">
+            {loop.map((t, i) => (
+              <article
+                key={i}
+                className="w-[320px] shrink-0 rounded-2xl bg-background p-6 shadow-sm ring-1 ring-border md:w-[380px]"
               >
-                <span
-                  className={`h-1.5 w-1.5 rounded-full ${i === idx ? "bg-accent" : "bg-muted-foreground/40"}`}
-                />
-                {t.initials}
-              </button>
+                <div className="flex items-center gap-3 border-b border-dashed border-border pb-3">
+                  <div className="grid h-12 w-12 place-items-center rounded-full bg-brand font-display text-base font-bold text-brand-foreground">
+                    {t.initials}
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-display text-sm font-semibold text-brand">{t.name}</div>
+                    <div className="text-[11px] uppercase tracking-widest text-muted-foreground">{t.role}</div>
+                  </div>
+                  <span className="rounded border border-accent/40 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-accent">
+                    Verified
+                  </span>
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">"{t.quote}"</p>
+              </article>
             ))}
           </div>
         </div>
@@ -580,6 +502,51 @@ function PartnershipsSection() {
               />
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhyChooseUsSection() {
+  const stats = [
+    { icon: Briefcase, value: 15, suffix: "+", label: "Years" },
+    { icon: Users, value: 2500, suffix: "+", label: "Happy Clients" },
+    { icon: ClipboardCheck, value: 500, suffix: "+", label: "Products" },
+    { icon: Globe, value: 5, suffix: "", label: "Countries" },
+  ];
+  return (
+    <section className="bg-background py-20">
+      <div className="mx-auto max-w-7xl px-4">
+        <h2 className="font-display text-3xl font-bold text-accent md:text-4xl">Why Choose Us</h2>
+        <p className="mt-6 max-w-5xl text-muted-foreground md:text-lg">
+          As a trusted supplier of{" "}
+          <span className="font-semibold text-accent">end-to-end medical equipment and solutions</span>{" "}
+          across East Africa, Zentramed Health is your comprehensive source for healthcare supplies.
+          Whether you're outfitting a rural clinic, equipping a referral hospital or managing a
+          humanitarian program, our depth of experience and adaptability allow us to meet healthcare
+          demands at every scale. With operations reaching five countries and a dedicated team of
+          specialists and biomedical engineers, we strive to be your trusted partner in delivering
+          superior care through timely, high-quality solutions.
+        </p>
+
+        <div className="mt-14 grid grid-cols-2 gap-8 md:grid-cols-4">
+          {stats.map((s) => {
+            const Icon = s.icon;
+            return (
+              <div key={s.label} className="text-center">
+                <div className="font-display text-5xl font-extrabold text-foreground md:text-6xl">
+                  <CountUp end={s.value} />{s.suffix}
+                </div>
+                <div className="mt-3 font-display text-lg font-bold text-foreground">{s.label}</div>
+                <div className="mt-5 grid place-items-center">
+                  <div className="grid h-16 w-16 place-items-center rounded-full bg-accent/10 text-accent">
+                    <Icon className="h-8 w-8" />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
