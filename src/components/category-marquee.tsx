@@ -34,7 +34,7 @@ export function CategoryMarquee({ categories }: Props) {
                 className="h-full w-full object-cover transition duration-500 group-hover/card:scale-105"
               />
             </div>
-            <div className="bg-accent px-5 py-4 text-accent-foreground">
+            <div className="bg-brand px-5 py-4 text-brand-foreground">
               <div className="font-display text-lg font-semibold leading-tight md:text-xl">
                 {c.name}
               </div>
