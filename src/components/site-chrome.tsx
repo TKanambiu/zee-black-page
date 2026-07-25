@@ -57,8 +57,8 @@ export function SiteHeader() {
       <div className="border-b border-border">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4">
           <Link to="/" className="flex items-center gap-3">
-            <div className="grid h-11 w-11 place-items-center rounded-md bg-brand text-brand-foreground font-display text-lg font-bold shadow-md">Z</div>
-            <div className="leading-tight">
+            <img src="/logo.png" alt="Zentramed Health" className="h-12 w-auto md:h-14" />
+            <div className="leading-tight hidden sm:block">
               <div className="font-display text-xl font-bold text-brand">
                 Zentramed<span className="text-accent">Health</span>
               </div>
