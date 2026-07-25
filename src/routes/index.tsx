@@ -6,7 +6,7 @@ import heroImg from "@/assets/hero.jpg";
 import hero2 from "@/assets/hero2.jpg";
 import hero3 from "@/assets/hero3.jpg";
 import aboutImg from "@/assets/about.jpg";
-import { ArrowRight, Wrench, GraduationCap, Truck, Search as SearchIcon, Stethoscope, HeartHandshake, ShieldCheck, Award, Globe2, Headphones, Package, BadgeCheck, Clock, Sparkles } from "lucide-react";
+import { ArrowRight, Wrench, GraduationCap, Truck, Search as SearchIcon, Stethoscope, HeartHandshake, Award, Sparkles, Briefcase, Users, Globe, ClipboardCheck } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { AutoSlider } from "@/components/auto-slider";
 
@@ -294,67 +294,8 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Why Us */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand via-brand to-topbar text-brand-foreground">
-        <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, white 1.5px, transparent 1.5px), radial-gradient(circle at 80% 60%, white 1.5px, transparent 1.5px)", backgroundSize: "48px 48px" }} />
-        <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-accent/20 blur-3xl" />
-        <div className="absolute -right-32 bottom-20 h-96 w-96 rounded-full bg-accent/10 blur-3xl" />
-        <div className="relative mx-auto max-w-7xl px-4 py-20">
-          <div className="mx-auto max-w-3xl text-center">
-            <div className="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
-              <span className="h-px w-10 bg-accent/70" /> Why Zentramed Health <span className="h-px w-10 bg-accent/70" />
-            </div>
-            <h2 className="mt-5 font-display text-4xl font-bold leading-tight md:text-6xl">
-              A partner your facility <span className="italic text-accent">can rely on.</span>
-            </h2>
-            <p className="mt-5 text-brand-foreground/85 md:text-lg">
-              From certification to commissioning, we bring world-class standards,
-              transparent sourcing and dedicated after-sales support to every order.
-            </p>
-          </div>
-          <div className="mt-14">
-            <AutoSlider
-              intervalMs={2600}
-              items={[
-              { icon: BadgeCheck, t: "Licensed Distributor", d: "Fully registered by the Pharmacy and Poisons Board and Kenya Medical Devices framework." },
-              { icon: Award, t: "Certified Global Brands", d: "Direct partnerships with ISO-certified manufacturers in Europe, Asia and North America." },
-              { icon: Truck, t: "Nationwide Logistics", d: "Same-day Nairobi dispatch and countrywide delivery — including cold-chain where required." },
-              { icon: Wrench, t: "Technical Support", d: "In-house biomedical engineers for installation, calibration, training and on-site service." },
-              { icon: HeartHandshake, t: "Humanitarian Ready", d: "Proven track record supplying NGOs, UN programs and government tenders across East Africa." },
-              { icon: ShieldCheck, t: "Transparent Pricing", d: "Institutional discounts, itemised quotations and no hidden markups on bulk orders." },
-              { icon: Globe2, t: "Custom Sourcing", d: "Global procurement desk sources certified alternatives within 48 hours." },
-              { icon: Clock, t: "24/7 Order Line", d: "Dedicated WhatsApp and phone response, seven days a week — including emergency supply." },
-              ].map((f, idx) => {
-                const Icon = f.icon;
-                return (
-                  <div
-                    key={f.t}
-                    className="relative mx-auto max-w-2xl overflow-hidden rounded-xl border border-white/10 bg-white/[0.06] p-8 backdrop-blur-sm md:p-10"
-                  >
-                    <div className="flex items-baseline justify-between border-b border-white/10 pb-3">
-                      <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-accent">
-                        0{idx + 1}
-                      </span>
-                      <span className="font-display text-[10px] font-semibold uppercase tracking-widest text-brand-foreground/50">
-                        Advantage
-                      </span>
-                    </div>
-                    <div className="mt-6 flex items-start gap-5">
-                      <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-accent/20 text-accent">
-                        <Icon className="h-7 w-7" />
-                      </div>
-                      <div>
-                        <h3 className="font-display text-xl font-bold">{f.t}</h3>
-                        <p className="mt-2 text-sm leading-relaxed text-brand-foreground/80 md:text-base">{f.d}</p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            />
-          </div>
-        </div>
-      </section>
+      {/* Why Choose Us — stats layout */}
+      <WhyChooseUsSection />
 
       {/* Brand Partnerships */}
       <PartnershipsSection />
