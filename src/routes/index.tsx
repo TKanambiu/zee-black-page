@@ -87,9 +87,9 @@ function HomePage() {
           style={{ width: `${SLIDES.length * 100}%`, transform: `translateX(-${i * (100 / SLIDES.length)}%)` }}
         >
           {SLIDES.map((s, idx) => (
-            <div key={idx} className="relative h-full shrink-0" style={{ width: `${100 / SLIDES.length}%` }}>
-              <img src={s.img} alt="" className="h-full w-full object-cover brightness-110" />
-              <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
+            <div key={idx} className="relative h-full shrink-0 bg-brand" style={{ width: `${100 / SLIDES.length}%` }}>
+              <img src={s.img} alt="" className="h-full w-full object-contain md:object-cover object-center" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-full md:w-2/3" style={{ background: "var(--gradient-hero)" }} />
               <div className="relative mx-auto flex h-full max-w-7xl items-center px-4">
                 <div className="max-w-xl text-white">
                   <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-accent/95 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent-foreground shadow-lg">
