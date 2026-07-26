@@ -81,7 +81,7 @@ export function SiteHeader() {
       <div className="border-b border-border">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 md:gap-6 md:py-2.5">
           <Link to="/" className="flex shrink-0 items-center">
-            <img src="/logo.png" alt="Zentramed Health — Advancing Healthcare and Humanitarian Solutions" className="h-20 w-auto md:h-24" />
+            <img src="/logo.png" alt="Zentramed Health — Advancing Healthcare and Humanitarian Solutions" className="h-28 w-auto md:h-36" />
           </Link>
           <form
             onSubmit={(e) => { e.preventDefault(); submitSearch(); }}
@@ -217,8 +217,10 @@ export function SiteFooter() {
     <footer className="mt-24 bg-topbar text-topbar-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4">
         <div>
-          <img src="/logo.png" alt="Zentramed Health" className="h-14 w-auto" />
-          <p className="mt-3 text-sm text-topbar-foreground/70">{COMPANY.tagline}</p>
+          <div className="inline-block rounded-lg bg-white p-3 shadow-lg">
+            <img src="/logo.png" alt="Zentramed Health" className="h-20 w-auto" />
+          </div>
+          <p className="mt-4 text-sm text-topbar-foreground/70">{COMPANY.tagline}</p>
           <p className="mt-4 text-sm text-topbar-foreground/70">
             Trusted supplier of medical supplies, equipment and healthcare solutions to hospitals,
             clinics, NGOs and humanitarian organizations across Africa.
