@@ -201,6 +201,7 @@ export function SiteHeader() {
             ))}
             <a
               href={`https://wa.me/${COMPANY.whatsapp}`}
+              target="_blank" rel="noreferrer"
               className="block bg-accent px-4 py-3 text-sm font-semibold text-accent-foreground"
             >
               Order via WhatsApp
