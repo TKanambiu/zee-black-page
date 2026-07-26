@@ -449,26 +449,33 @@ function PartnershipsSection() {
             We partner with ISO-certified global manufacturers to bring you trusted medical technology.
           </p>
         </div>
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8">
+        <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
           {PARTNERS.map((p) => (
             <div
               key={p.name}
-              className="group flex aspect-[4/3] items-center justify-center rounded-xl bg-background p-4 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-md hover:ring-brand"
+              className="group relative flex aspect-[5/3] items-center justify-center overflow-hidden rounded-2xl border-4 border-brand bg-background shadow-[0_10px_30px_-12px_rgba(0,0,0,0.25)] ring-1 ring-brand/20 transition hover:-translate-y-1.5 hover:border-accent hover:shadow-[0_18px_40px_-14px_rgba(0,0,0,0.35)]"
               title={p.name}
             >
-              <img
-                src={`https://logo.clearbit.com/${p.domain}`}
-                alt={`${p.name} logo`}
-                loading="lazy"
-                className="max-h-14 max-w-full object-contain grayscale transition duration-300 group-hover:grayscale-0"
-                onError={(e) => {
-                  const el = e.currentTarget;
-                  el.replaceWith(Object.assign(document.createElement("span"), {
-                    className: "font-display text-lg font-bold text-brand",
-                    textContent: p.name,
-                  }));
-                }}
-              />
+              <div className="absolute inset-0 bg-gradient-to-br from-brand/5 via-transparent to-accent/5" />
+              <div className="relative flex h-full w-full flex-col items-center justify-center px-4">
+                <img
+                  src={`https://logo.clearbit.com/${p.domain}`}
+                  alt={`${p.name} logo`}
+                  loading="lazy"
+                  className="max-h-16 max-w-[80%] object-contain transition duration-300 group-hover:scale-105"
+                  onError={(e) => {
+                    const el = e.currentTarget;
+                    el.replaceWith(Object.assign(document.createElement("span"), {
+                      className: "font-display text-2xl font-extrabold tracking-tight text-brand",
+                      textContent: p.name,
+                    }));
+                  }}
+                />
+                <span className="mt-3 text-xs font-bold uppercase tracking-widest text-brand/80">
+                  {p.name}
+                </span>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 h-1.5 bg-gradient-to-r from-brand via-accent to-brand" />
             </div>
           ))}
         </div>
