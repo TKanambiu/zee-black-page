@@ -201,6 +201,7 @@ export function SiteHeader() {
             ))}
             <a
               href={`https://wa.me/${COMPANY.whatsapp}`}
+              target="_blank" rel="noreferrer"
               className="block bg-accent px-4 py-3 text-sm font-semibold text-accent-foreground"
             >
               Order via WhatsApp
@@ -215,59 +216,99 @@ export function SiteHeader() {
 export function SiteFooter() {
   return (
     <footer className="mt-24 bg-topbar text-topbar-foreground">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4">
-        <div>
-          <div className="inline-block rounded-lg bg-white p-3 shadow-lg">
-            <img src="/logo.png" alt="Zentramed Health" className="h-20 w-auto" />
+      {/* Newsletter / CTA band */}
+      <div className="border-b border-white/10 bg-gradient-to-r from-brand to-topbar">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6 px-4 py-8">
+          <div>
+            <h3 className="font-display text-xl font-semibold text-white md:text-2xl">Need a quote or product advice?</h3>
+            <p className="mt-1 text-sm text-white/70">Our specialists respond within one business day.</p>
           </div>
-          <p className="mt-4 text-sm text-topbar-foreground/70">{COMPANY.tagline}</p>
-          <p className="mt-4 text-sm text-topbar-foreground/70">
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={`https://wa.me/${COMPANY.whatsapp}`}
+              target="_blank" rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground shadow-md hover:brightness-95"
+            >
+              WhatsApp Us
+            </a>
+            <Link to="/contact" className="inline-flex items-center rounded-full border border-white/40 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10">
+              Contact Sales
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-12">
+        <div className="md:col-span-4">
+          <div className="inline-flex items-center justify-center rounded-xl bg-white px-4 py-3 shadow-lg ring-1 ring-white/20">
+            <img src="/logo.png" alt="Zentramed Health" className="h-16 w-auto" />
+          </div>
+          <p className="mt-5 text-sm leading-relaxed text-topbar-foreground/75">
             Trusted supplier of medical supplies, equipment and healthcare solutions to hospitals,
             clinics, NGOs and humanitarian organizations across Africa.
           </p>
+          <div className="mt-5 flex flex-wrap gap-2">
+            <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80">ISO-aligned</span>
+            <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80">Certified brands</span>
+            <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80">Pan-African delivery</span>
+          </div>
         </div>
 
-        <div>
-          <h4 className="font-display font-semibold">Quick Links</h4>
-          <ul className="mt-4 space-y-2 text-sm text-topbar-foreground/80">
+        <div className="md:col-span-2">
+          <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white">Company</h4>
+          <ul className="mt-5 space-y-2.5 text-sm text-topbar-foreground/75">
             {NAV.map((n) => (
-              <li key={n.to}><Link to={n.to} className="hover:text-accent">{n.label}</Link></li>
+              <li key={n.to}><Link to={n.to} className="transition hover:text-accent">{n.label}</Link></li>
             ))}
           </ul>
         </div>
-        <div>
-          <h4 className="font-display font-semibold">Top Categories</h4>
-          <ul className="mt-4 space-y-2 text-sm text-topbar-foreground/80">
+
+        <div className="md:col-span-3">
+          <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white">Top Categories</h4>
+          <ul className="mt-5 space-y-2.5 text-sm text-topbar-foreground/75">
             {CATEGORIES.slice(0, 5).map((c) => (
               <li key={c.slug}>
-                <Link to="/products/$slug" params={{ slug: c.slug }} className="hover:text-accent">{c.name}</Link>
+                <Link to="/products/$slug" params={{ slug: c.slug }} className="transition hover:text-accent">{c.name}</Link>
               </li>
             ))}
           </ul>
         </div>
-        <div>
-          <h4 className="font-display font-semibold">Contact</h4>
-          <ul className="mt-4 space-y-3 text-sm text-topbar-foreground/80">
+
+        <div className="md:col-span-3">
+          <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white">Get in Touch</h4>
+          <ul className="mt-5 space-y-3 text-sm text-topbar-foreground/75">
             <li>
-              <a href={`https://maps.google.com/?q=${encodeURIComponent(COMPANY.address)}`} target="_blank" rel="noreferrer" className="hover:text-accent">
+              <a href={`https://maps.google.com/?q=${encodeURIComponent(COMPANY.address)}`} target="_blank" rel="noreferrer" className="flex items-start gap-2 hover:text-accent">
+                <span className="mt-0.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                 {COMPANY.address}
               </a>
             </li>
             {COMPANY.phones.map((p) => (
               <li key={p}>
-                <a href={`tel:${p.replace(/\s/g, "")}`} className="font-semibold hover:text-accent">{p}</a>
+                <a href={`tel:${p.replace(/\s/g, "")}`} className="flex items-center gap-2 font-semibold text-white hover:text-accent">
+                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+                  {p}
+                </a>
               </li>
             ))}
             <li>
-              <a href={`mailto:${COMPANY.email}`} className="hover:text-accent">{COMPANY.email}</a>
+              <a href={`mailto:${COMPANY.email}`} className="flex items-center gap-2 hover:text-accent">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+                {COMPANY.email}
+              </a>
             </li>
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-4 text-xs text-topbar-foreground/60">
+
+      <div className="border-t border-white/10 bg-black/20">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-5 text-xs text-topbar-foreground/60">
           <div>© {new Date().getFullYear()} Zentramed Health. All rights reserved.</div>
-          <div>{COMPANY.social}</div>
+          <div className="flex items-center gap-4">
+            <span className="text-white/50">{COMPANY.social}</span>
+            <span className="hidden h-3 w-px bg-white/20 sm:block" />
+            <span>Nairobi · Kenya</span>
+          </div>
         </div>
       </div>
     </footer>

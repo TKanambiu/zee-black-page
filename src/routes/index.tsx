@@ -10,49 +10,40 @@ import { CategoryMarquee } from "@/components/category-marquee";
 
 const SLIDES = [
   {
-    img: "/hero1.png",
-    eyebrow: "Advancing Healthcare & Humanitarian Solutions",
-    title: "Leading Medical Equipment",
-    accent: "Supplier in East Africa",
-    body: "Empowering healthcare professionals with certified global brands, expert technical support, and full-service distribution.",
+    img: "/hero1.webp",
+    eyebrow: "Respiratory & Critical Care",
+    title: "Advanced Ventilation,",
+    accent: "the VQ200 Series.",
+    body: "High-performance ventilators and respiratory support for ICUs, theatres and emergency response across Africa.",
     cta1: { label: "Shop Products", to: "/products" as const },
     cta2: { label: "Our Services", to: "/services" as const },
   },
   {
-    img: "/hero2.png",
-    eyebrow: "Full-Service Distribution",
-    title: "From Wards to Theatres,",
-    accent: "we equip every room.",
-    body: "Hospital furniture, surgical theatre, imaging, respiratory and neonatal — all under one trusted supplier.",
+    img: "/hero2.webp",
+    eyebrow: "Ophthalmic Solutions",
+    title: "Complete Eye",
+    accent: "Examination Workshops.",
+    body: "Full ophthalmic refraction units and vision-care equipment for hospitals, clinics and optical centres.",
     cta1: { label: "Explore Catalogue", to: "/products" as const },
     cta2: { label: "Talk to Us", to: "/contact" as const },
   },
   {
-    img: "/hero3.png",
-    eyebrow: "Precision Laboratory Solutions",
-    title: "Diagnostics that",
-    accent: "professionals trust.",
-    body: "Olympus microscopes, hematology analyzers, HemoCue systems, and complete lab consumables.",
+    img: "/hero3.webp",
+    eyebrow: "Rapid Diagnostics",
+    title: "HIV Test Kits &",
+    accent: "trusted diagnostics.",
+    body: "WHO-prequalified rapid test kits and laboratory diagnostics delivered reliably nationwide.",
     cta1: { label: "View Lab Range", to: "/products/$slug" as const, params: { slug: "laboratory-diagnostics" } },
     cta2: { label: "Request Quote", to: "/contact" as const },
   },
   {
-    img: "/hero4.png",
-    eyebrow: "Hospital & Ward Equipment",
-    title: "Reliable equipment for",
-    accent: "every hospital ward.",
-    body: "Beds, trolleys, monitoring and consumables — everything your ward needs from one trusted partner.",
+    img: "/hero4.webp",
+    eyebrow: "Renal Care",
+    title: "Dialysis Machines for",
+    accent: "modern renal units.",
+    body: "Reliable hemodialysis systems, consumables and technical support for renal centres across the region.",
     cta1: { label: "Browse Furniture", to: "/products/$slug" as const, params: { slug: "hospital-furniture" } },
     cta2: { label: "Contact Sales", to: "/contact" as const },
-  },
-  {
-    img: "/hero5.webp",
-    eyebrow: "Humanitarian Healthcare Solutions",
-    title: "Partnering with NGOs",
-    accent: "across Africa.",
-    body: "Bulk supply, cold-chain logistics and rapid response for humanitarian and government programs.",
-    cta1: { label: "Our Services", to: "/services" as const },
-    cta2: { label: "Request a Quote", to: "/contact" as const },
   },
 ];
 
@@ -280,7 +271,7 @@ function HomePage() {
             <p className="mt-2 text-brand-foreground/80">Talk to our team for tailored quotes, bulk orders and technical advice.</p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a href={`https://wa.me/${COMPANY.whatsapp}`} className="rounded-md bg-accent px-6 py-3 font-semibold text-accent-foreground">
+            <a href={`https://wa.me/${COMPANY.whatsapp}`} target="_blank" rel="noreferrer" className="rounded-md bg-accent px-6 py-3 font-semibold text-accent-foreground hover:brightness-95">
               Order via WhatsApp
             </a>
             <Link to="/contact" className="rounded-md border border-white/70 px-6 py-3 font-semibold hover:bg-white/10">
