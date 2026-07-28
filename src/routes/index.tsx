@@ -3,7 +3,6 @@ import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { CATEGORIES, COMPANY } from "@/data/catalogue";
 import aboutImg from "@/assets/about.jpg";
-import { ArrowRight, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { CategoryMarquee } from "@/components/category-marquee";
 
@@ -103,7 +102,7 @@ function HomePage() {
               <div className="absolute inset-0 mx-auto flex h-full max-w-7xl items-center px-4">
                 <div className="max-w-2xl text-white">
                   <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-accent/95 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent-foreground shadow-lg">
-                    <Sparkles className="h-3.5 w-3.5" /> {s.eyebrow}
+                    {s.eyebrow}
                   </div>
                   <h1 className="font-display text-3xl font-bold leading-tight drop-shadow-lg md:text-5xl">
                     {s.title}{" "}
@@ -127,7 +126,7 @@ function HomePage() {
                       Order via WhatsApp
                     </a>
                     <Link to="/contact" className="rounded-md border-2 border-white/80 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur-sm hover:bg-white/20">
-                      Request Quote <ArrowRight className="ml-1 inline h-4 w-4" />
+                      Request Quote →
                     </Link>
                   </div>
                 </div>
@@ -212,7 +211,7 @@ function HomePage() {
               ))}
             </dl>
             <Link to="/about" className="mt-10 inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-brand to-brand/80 px-6 py-3 text-sm font-semibold text-brand-foreground shadow-lg transition hover:brightness-110">
-              Learn more about us <ArrowRight className="h-4 w-4" />
+              Learn more about us →
             </Link>
           </div>
         </div>
@@ -229,7 +228,7 @@ function HomePage() {
               <h2 className="mt-3 font-display text-3xl font-bold text-brand md:text-4xl">Explore Our Categories</h2>
             </div>
             <Link to="/products" className="text-sm font-semibold text-brand hover:text-accent">
-              View all products <ArrowRight className="ml-1 inline h-4 w-4" />
+              View all products →
             </Link>
           </div>
           <div className="mt-10">
