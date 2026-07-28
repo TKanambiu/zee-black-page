@@ -3,7 +3,7 @@ import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { CATEGORIES, COMPANY } from "@/data/catalogue";
 import aboutImg from "@/assets/about.jpg";
-import { ArrowRight, Sparkles, Briefcase, Users, Globe, ClipboardCheck, ShieldCheck, Truck, Layers, Headphones, Wrench, GraduationCap, HeartHandshake, PackageSearch, MapPin, Settings2 } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { CategoryMarquee } from "@/components/category-marquee";
 
@@ -200,24 +200,16 @@ function HomePage() {
             </div>
             <dl className="mt-8 grid gap-4 sm:grid-cols-2">
               {[
-                { icon: ShieldCheck, t: "Quality Assured Sourcing", d: "ISO-certified suppliers only." },
-                { icon: Layers, t: "Wide Product Range", d: "9 categories, 500+ SKUs." },
-                { icon: Truck, t: "Reliable Delivery", d: "Nationwide, cold-chain ready." },
-                { icon: Headphones, t: "Customer-First Support", d: "Dedicated account managers." },
-              ].map((v) => {
-                const Icon = v.icon;
-                return (
-                  <div key={v.t} className="group flex gap-3 rounded-xl border border-border bg-background/70 p-4 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-md">
-                    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-brand to-brand/70 text-brand-foreground shadow-md">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <dt className="font-display text-sm font-bold text-brand">{v.t}</dt>
-                      <dd className="mt-0.5 text-xs text-muted-foreground">{v.d}</dd>
-                    </div>
-                  </div>
-                );
-              })}
+                { t: "Quality Assured Sourcing", d: "ISO-certified suppliers only." },
+                { t: "Wide Product Range", d: "9 categories, 500+ SKUs." },
+                { t: "Reliable Delivery", d: "Nationwide, cold-chain ready." },
+                { t: "Customer-First Support", d: "Dedicated account managers." },
+              ].map((v) => (
+                <div key={v.t} className="group rounded-xl border-l-2 border-accent/60 bg-background/70 p-4 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-accent hover:shadow-md">
+                  <dt className="font-display text-sm font-bold text-brand">{v.t}</dt>
+                  <dd className="mt-1 text-xs text-muted-foreground">{v.d}</dd>
+                </div>
+              ))}
             </dl>
             <Link to="/about" className="mt-10 inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-brand to-brand/80 px-6 py-3 text-sm font-semibold text-brand-foreground shadow-lg transition hover:brightness-110">
               Learn more about us <ArrowRight className="h-4 w-4" />
@@ -265,15 +257,13 @@ function HomePage() {
           </div>
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { icon: Wrench, image: "/svc-installation.webp", title: "Equipment Installation", body: "Professional installation of hospital, laboratory and imaging equipment." },
-              { icon: Settings2, image: "/svc-maintenance.webp", title: "Maintenance & Repair", body: "Preventive maintenance contracts and rapid on-site repair services." },
-              { icon: GraduationCap, image: "/svc-training.webp", title: "Training & Commissioning", body: "Operator training and commissioning to get your team confident from day one." },
-              { icon: HeartHandshake, image: "/svc-humanitarian.webp", title: "Humanitarian Supply", body: "Bulk supply to NGOs and government programs with reliable logistics." },
-              { icon: PackageSearch, image: "/svc-custom-sourcing.webp", title: "Custom Sourcing", body: "Can't find what you need? We source certified products globally on request." },
-              { icon: MapPin, image: "/svc-delivery.webp", title: "Regional Delivery", body: "Timely and secure delivery across Kenya and East Africa." },
-            ].map((s, idx) => {
-              const Icon = s.icon;
-              return (
+              { image: "/svc-installation.webp", title: "Equipment Installation", body: "Professional installation of hospital, laboratory and imaging equipment." },
+              { image: "/svc-maintenance.webp", title: "Maintenance & Repair", body: "Preventive maintenance contracts and rapid on-site repair services." },
+              { image: "/svc-training.webp", title: "Training & Commissioning", body: "Operator training and commissioning to get your team confident from day one." },
+              { image: "/svc-humanitarian.webp", title: "Humanitarian Supply", body: "Bulk supply to NGOs and government programs with reliable logistics." },
+              { image: "/svc-custom-sourcing.webp", title: "Custom Sourcing", body: "Can't find what you need? We source certified products globally on request." },
+              { image: "/svc-delivery.webp", title: "Regional Delivery", body: "Timely and secure delivery across Kenya and East Africa." },
+            ].map((s, idx) => (
                 <div
                   key={s.title}
                   className="group relative overflow-hidden rounded-2xl bg-white/[0.06] shadow-lg ring-1 ring-white/10 backdrop-blur-sm transition hover:-translate-y-1.5 hover:ring-accent/60"
@@ -286,9 +276,6 @@ function HomePage() {
                       className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-brand via-brand/40 to-transparent" />
-                    <div className="absolute left-4 top-4 grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-accent to-accent/70 text-accent-foreground shadow-lg ring-1 ring-white/20">
-                      <Icon className="h-5 w-5" />
-                    </div>
                     <span className="absolute right-4 top-4 font-display text-3xl font-black text-white/30">
                       0{idx + 1}
                     </span>
@@ -298,8 +285,7 @@ function HomePage() {
                     <p className="mt-2 text-sm leading-relaxed text-brand-foreground/80">{s.body}</p>
                   </div>
                 </div>
-              );
-            })}
+            ))}
           </div>
         </div>
       </section>
@@ -529,10 +515,10 @@ function PartnershipsSection() {
 
 function WhyChooseUsSection() {
   const stats = [
-    { icon: Briefcase, value: 15, suffix: "+", label: "Years" },
-    { icon: Users, value: 2500, suffix: "+", label: "Happy Clients" },
-    { icon: ClipboardCheck, value: 500, suffix: "+", label: "Products" },
-    { icon: Globe, value: 5, suffix: "", label: "Countries" },
+    { value: 15, suffix: "+", label: "Years" },
+    { value: 2500, suffix: "+", label: "Happy Clients" },
+    { value: 500, suffix: "+", label: "Products" },
+    { value: 5, suffix: "", label: "Countries" },
   ];
   return (
     <section className="bg-background py-20">
@@ -550,22 +536,14 @@ function WhyChooseUsSection() {
         </p>
 
         <div className="mt-14 grid grid-cols-2 gap-8 md:grid-cols-4">
-          {stats.map((s) => {
-            const Icon = s.icon;
-            return (
-              <div key={s.label} className="text-center">
-                <div className="font-display text-5xl font-extrabold text-foreground md:text-6xl">
-                  <CountUp end={s.value} />{s.suffix}
-                </div>
-                <div className="mt-3 font-display text-lg font-bold text-foreground">{s.label}</div>
-                <div className="mt-5 grid place-items-center">
-                  <div className="grid h-16 w-16 place-items-center rounded-full bg-accent/10 text-accent">
-                    <Icon className="h-8 w-8" />
-                  </div>
-                </div>
+          {stats.map((s) => (
+            <div key={s.label} className="text-center">
+              <div className="font-display text-5xl font-extrabold text-accent md:text-6xl">
+                <CountUp end={s.value} />{s.suffix}
               </div>
-            );
-          })}
+              <div className="mt-3 font-display text-sm font-bold uppercase tracking-widest text-foreground">{s.label}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
