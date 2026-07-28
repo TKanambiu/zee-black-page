@@ -316,9 +316,6 @@ function HomePage() {
             <a href={`https://wa.me/${COMPANY.whatsapp}`} target="_blank" rel="noreferrer" className="rounded-md bg-accent px-6 py-3 font-semibold text-accent-foreground hover:brightness-95">
               Order via WhatsApp
             </a>
-            <Link to="/contact" className="rounded-md border border-white/70 px-6 py-3 font-semibold hover:bg-white/10">
-              Request a Quote
-            </Link>
           </div>
         </div>
       </section>
@@ -390,8 +387,13 @@ function TestimonialsSection() {
                 className="w-[320px] shrink-0 rounded-2xl bg-background p-6 shadow-sm ring-1 ring-border md:w-[380px]"
               >
                 <div className="flex items-center gap-3 border-b border-dashed border-border pb-3">
-                  <div className="grid h-12 w-12 place-items-center rounded-full bg-brand font-display text-base font-bold text-brand-foreground">
-                    {t.initials}
+                  <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-brand/20 to-accent/20 ring-2 ring-accent/40 transition-transform duration-500 hover:scale-110 hover:rotate-3">
+                    <img
+                      src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(t.name)}&backgroundType=gradientLinear&backgroundColor=b6e3f4,c0aede,ffd5dc`}
+                      alt={t.name}
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                   <div className="flex-1">
                     <div className="font-display text-sm font-semibold text-brand">{t.name}</div>
