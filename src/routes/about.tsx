@@ -80,10 +80,14 @@ function AboutPage() {
 
 export function PageHero({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
-    <section className="bg-brand text-brand-foreground">
-      <div className="mx-auto max-w-7xl px-4 py-16">
-        <h1 className="font-display text-4xl font-bold md:text-5xl">{title}</h1>
-        {subtitle && <p className="mt-2 text-brand-foreground/80">{subtitle}</p>}
+    <section className="relative overflow-hidden bg-gradient-to-br from-brand via-brand to-topbar text-brand-foreground">
+      <div className="pointer-events-none absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "22px 22px" }} />
+      <div className="relative mx-auto max-w-7xl px-4 py-20 text-center">
+        <div className="mx-auto inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
+          <span className="h-px w-10 bg-accent" /> Zentramed Health <span className="h-px w-10 bg-accent" />
+        </div>
+        <h1 className="mt-4 font-display text-4xl font-bold md:text-5xl">{title}</h1>
+        {subtitle && <p className="mx-auto mt-3 max-w-2xl text-brand-foreground/80">{subtitle}</p>}
       </div>
     </section>
   );
