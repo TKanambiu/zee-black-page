@@ -2,6 +2,7 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { Menu, X, Search, ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { COMPANY, CATEGORIES } from "@/data/catalogue";
+import { WhatsAppButton } from "@/components/whatsapp-button";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -142,13 +143,9 @@ export function SiteHeader() {
               </button>
             </div>
           </form>
-          <a
-            href={`https://wa.me/${COMPANY.whatsapp}`}
-            target="_blank" rel="noreferrer"
-            className="hidden shrink-0 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground hover:brightness-95 lg:inline-flex"
-          >
-            Order via WhatsApp
-          </a>
+          <div className="hidden shrink-0 lg:block">
+            <WhatsAppButton size="sm" badge={null} />
+          </div>
           <button className="md:hidden" onClick={() => setOpen((o) => !o)} aria-label="Toggle menu">
             {open ? <X /> : <Menu />}
           </button>
@@ -199,13 +196,9 @@ export function SiteHeader() {
                 {n.label}
               </Link>
             ))}
-            <a
-              href={`https://wa.me/${COMPANY.whatsapp}`}
-              target="_blank" rel="noreferrer"
-              className="block bg-accent px-4 py-3 text-sm font-semibold text-accent-foreground"
-            >
-              Order via WhatsApp
-            </a>
+            <div className="p-3">
+              <WhatsAppButton size="sm" badge={null} className="w-full justify-center" />
+            </div>
           </div>
         )}
       </nav>
@@ -224,13 +217,7 @@ export function SiteFooter() {
             <p className="mt-1 text-sm text-white/70">Our specialists respond within one business day.</p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a
-              href={`https://wa.me/${COMPANY.whatsapp}`}
-              target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground shadow-md hover:brightness-95"
-            >
-              WhatsApp Us
-            </a>
+            <WhatsAppButton size="sm" label="WhatsApp Us" badge={null} />
             <Link to="/contact" className="inline-flex items-center rounded-full border border-white/40 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10">
               Contact Sales
             </Link>

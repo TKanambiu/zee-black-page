@@ -5,6 +5,7 @@ import { CATEGORIES, COMPANY } from "@/data/catalogue";
 import aboutImg from "@/assets/about.jpg";
 import { useEffect, useRef, useState } from "react";
 import { CategoryMarquee } from "@/components/category-marquee";
+import { WhatsAppButton } from "@/components/whatsapp-button";
 
 
 const SLIDES = [
@@ -118,15 +119,9 @@ function HomePage() {
                     ))}
                   </ul>
                   <div className="mt-6 flex flex-wrap gap-3">
-                    <a
-                      href={`https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(s.waText)}`}
-                      target="_blank" rel="noreferrer"
-                      className="inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 font-semibold text-accent-foreground shadow-lg transition hover:brightness-95"
-                    >
-                      Order via WhatsApp
-                    </a>
+                    <WhatsAppButton text={s.waText} />
                     <Link to="/contact" className="rounded-md border-2 border-white/80 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur-sm hover:bg-white/20">
-                      Request Quote →
+                      Contact Sales →
                     </Link>
                   </div>
                 </div>
@@ -306,9 +301,7 @@ function HomePage() {
             <p className="mt-2 text-brand-foreground/80">Talk to our team for tailored quotes, bulk orders and technical advice.</p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a href={`https://wa.me/${COMPANY.whatsapp}`} target="_blank" rel="noreferrer" className="rounded-md bg-accent px-6 py-3 font-semibold text-accent-foreground hover:brightness-95">
-              Order via WhatsApp
-            </a>
+            <WhatsAppButton />
           </div>
         </div>
       </section>
@@ -380,9 +373,9 @@ function TestimonialsSection() {
                 className="w-[320px] shrink-0 rounded-2xl bg-background p-6 shadow-sm ring-1 ring-border md:w-[380px]"
               >
                 <div className="flex items-center gap-3 border-b border-dashed border-border pb-3">
-                  <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-brand/20 to-accent/20 ring-2 ring-accent/40 transition-transform duration-500 hover:scale-110 hover:rotate-3">
+                  <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full bg-brand ring-2 ring-accent/40">
                     <img
-                      src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(t.name)}&backgroundType=gradientLinear&backgroundColor=b6e3f4,c0aede,ffd5dc`}
+                      src={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(t.name)}&backgroundColor=6d28d9,7c3aed,5b21b6&fontFamily=Poppins&fontWeight=600`}
                       alt={t.name}
                       loading="lazy"
                       className="h-full w-full object-cover"
@@ -452,6 +445,7 @@ function CountUp({ end, duration = 1800 }: { end: number; duration?: number }) {
 
   return <span ref={ref} className="tabular-nums">{n.toLocaleString()}</span>;
 }
+
 
 const PARTNERS = [
   { name: "3M", domain: "3m.com" },
