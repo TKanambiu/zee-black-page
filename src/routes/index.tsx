@@ -11,39 +11,59 @@ import { CategoryMarquee } from "@/components/category-marquee";
 const SLIDES = [
   {
     img: "/hero1.webp",
-    eyebrow: "Respiratory & Critical Care",
-    title: "Advanced Ventilation,",
-    accent: "the VQ200 Series.",
-    body: "High-performance ventilators and respiratory support for ICUs, theatres and emergency response across Africa.",
-    cta1: { label: "Shop Products", to: "/products" as const },
-    cta2: { label: "Our Services", to: "/services" as const },
+    eyebrow: "Molecular Diagnostics",
+    title: "Yuanzan VQ-200",
+    accent: "qPCR System.",
+    body: "True diagnostic freedom — a high-precision, 96-well real-time PCR system that is completely open and affordable.",
+    bullets: [
+      "Consumable freedom: works with any brand of tubes, strips and plates",
+      "Built-in 9\" touchscreen with embedded computer — no external PC",
+      "Elite thermal uniformity ≤ ± 0.15°C, beating industry standards",
+      "Motorized lid & auto-loading chamber — ready for robotic integration",
+    ],
+    waText: "Hello Zentramed Health, I'd like to order the Yuanzan VQ-200 qPCR System.",
   },
   {
     img: "/hero2.webp",
     eyebrow: "Ophthalmic Solutions",
-    title: "Complete Eye",
-    accent: "Examination Workshops.",
-    body: "Full ophthalmic refraction units and vision-care equipment for hospitals, clinics and optical centres.",
-    cta1: { label: "Explore Catalogue", to: "/products" as const },
-    cta2: { label: "Talk to Us", to: "/contact" as const },
+    title: "Ophthalmic Refraction",
+    accent: "Unit — Eye Exam Workshop.",
+    body: "Complete ophthalmic refraction workstations for hospitals, clinics and optical centres — accurate, ergonomic and clinic-ready.",
+    bullets: [
+      "Integrated chair, stand and instrument arms for full eye exams",
+      "Precision refraction, tonometry and slit-lamp mounting",
+      "Smooth motorised height and positioning controls",
+      "Installation, calibration and operator training included",
+    ],
+    waText: "Hello Zentramed Health, I'd like to order the Ophthalmic Refraction Unit.",
   },
   {
     img: "/hero3.webp",
     eyebrow: "Rapid Diagnostics",
-    title: "HIV Test Kits &",
-    accent: "trusted diagnostics.",
-    body: "WHO-prequalified rapid test kits and laboratory diagnostics delivered reliably nationwide.",
-    cta1: { label: "View Lab Range", to: "/products/$slug" as const, params: { slug: "laboratory-diagnostics" } },
-    cta2: { label: "Request Quote", to: "/contact" as const },
+    title: "HIV Rapid",
+    accent: "Test Kit.",
+    body: "Laboratory-grade accuracy right at the point of care — rapid, reliable and equipment-free screening.",
+    bullets: [
+      "100% accuracy — certified sensitivity and specificity",
+      "Ultra-fast results in 15–25 minutes",
+      "Micro sample: only 40µl whole blood, serum or plasma",
+      "WHO PQ & CE IVDR compliant · stable 24 months at 4–30°C",
+    ],
+    waText: "Hello Zentramed Health, I'd like to order the HIV Rapid Test Kits.",
   },
   {
     img: "/hero4.webp",
     eyebrow: "Renal Care",
-    title: "Dialysis Machines for",
-    accent: "modern renal units.",
-    body: "Reliable hemodialysis systems, consumables and technical support for renal centres across the region.",
-    cta1: { label: "Browse Furniture", to: "/products/$slug" as const, params: { slug: "hospital-furniture" } },
-    cta2: { label: "Contact Sales", to: "/contact" as const },
+    title: "Wesley W-T6008S",
+    accent: "Hemodialysis Machine.",
+    body: "Advanced blood purification for acute and chronic renal failure — intelligent automation with rigorous real-time monitoring.",
+    bullets: [
+      "All-in-one therapy: HD, on-line HDF and isolated ultrafiltration",
+      "Closed volume balance chamber for hyper-accurate fluid control",
+      "15\" touchscreen with guided visual and audible alarms",
+      "30-minute backup battery keeps the blood pump running on power loss",
+    ],
+    waText: "Hello Zentramed Health, I'd like to order the Wesley W-T6008S Hemodialysis Machine.",
   },
 ];
 
@@ -71,7 +91,7 @@ function HomePage() {
       <SiteHeader />
 
       {/* Hero slider — horizontal slide-left with visible imagery */}
-      <section className="relative h-[440px] w-full overflow-hidden md:h-[520px]">
+      <section className="relative h-[560px] w-full overflow-hidden md:h-[600px]">
         <div
           className="flex h-full transition-transform duration-[900ms] ease-[cubic-bezier(0.65,0,0.35,1)]"
           style={{ width: `${SLIDES.length * 100}%`, transform: `translateX(-${i * (100 / SLIDES.length)}%)` }}
@@ -81,26 +101,33 @@ function HomePage() {
               <img src={s.img} alt="" className="h-full w-full object-contain md:object-cover object-center" />
               <div className="pointer-events-none absolute inset-y-0 left-0 w-full md:w-2/3" style={{ background: "var(--gradient-hero)" }} />
               <div className="relative mx-auto flex h-full max-w-7xl items-center px-4">
-                <div className="max-w-xl text-white">
-                  <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-accent/95 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent-foreground shadow-lg">
+                <div className="max-w-2xl text-white">
+                  <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-accent/95 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent-foreground shadow-lg">
                     <Sparkles className="h-3.5 w-3.5" /> {s.eyebrow}
                   </div>
-                  <h1 className="font-display text-4xl font-bold leading-tight drop-shadow-lg md:text-6xl">
-                    {s.title}
-                    <br />
+                  <h1 className="font-display text-3xl font-bold leading-tight drop-shadow-lg md:text-5xl">
+                    {s.title}{" "}
                     <span className="text-accent">{s.accent}</span>
                   </h1>
-                  <p className="mt-5 max-w-lg text-white/95 drop-shadow md:text-lg">{s.body}</p>
-                  <div className="mt-8 flex flex-wrap gap-3">
-                    <Link
-                      to={s.cta1.to as "/products"}
-                      params={"params" in s.cta1 ? (s.cta1 as { params: { slug: string } }).params : undefined}
-                      className="rounded-md bg-accent px-6 py-3 font-semibold text-accent-foreground shadow-lg transition hover:brightness-95"
+                  <p className="mt-3 max-w-xl text-sm text-white/95 drop-shadow md:text-base">{s.body}</p>
+                  <ul className="mt-4 space-y-1.5 text-sm text-white/95 md:text-[15px]">
+                    {s.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2 drop-shadow">
+                        <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <a
+                      href={`https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(s.waText)}`}
+                      target="_blank" rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 font-semibold text-accent-foreground shadow-lg transition hover:brightness-95"
                     >
-                      {s.cta1.label}
-                    </Link>
-                    <Link to={s.cta2.to} className="rounded-md border-2 border-white/80 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur-sm hover:bg-white/20">
-                      {s.cta2.label} <ArrowRight className="ml-1 inline h-4 w-4" />
+                      Order via WhatsApp
+                    </a>
+                    <Link to="/contact" className="rounded-md border-2 border-white/80 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur-sm hover:bg-white/20">
+                      Request Quote <ArrowRight className="ml-1 inline h-4 w-4" />
                     </Link>
                   </div>
                 </div>
