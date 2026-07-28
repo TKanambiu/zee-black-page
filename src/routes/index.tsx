@@ -265,30 +265,38 @@ function HomePage() {
           </div>
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { icon: Wrench, title: "Equipment Installation", body: "Professional installation of hospital, laboratory and imaging equipment." },
-              { icon: Settings2, title: "Maintenance & Repair", body: "Preventive maintenance contracts and rapid on-site repair services." },
-              { icon: GraduationCap, title: "Training & Commissioning", body: "Operator training and commissioning to get your team confident from day one." },
-              { icon: HeartHandshake, title: "Humanitarian Supply", body: "Bulk supply to NGOs and government programs with reliable logistics." },
-              { icon: PackageSearch, title: "Custom Sourcing", body: "Can't find what you need? We source certified products globally on request." },
-              { icon: MapPin, title: "Regional Delivery", body: "Timely and secure delivery across Kenya and East Africa." },
+              { icon: Wrench, image: "/svc-installation.webp", title: "Equipment Installation", body: "Professional installation of hospital, laboratory and imaging equipment." },
+              { icon: Settings2, image: "/svc-maintenance.webp", title: "Maintenance & Repair", body: "Preventive maintenance contracts and rapid on-site repair services." },
+              { icon: GraduationCap, image: "/svc-training.webp", title: "Training & Commissioning", body: "Operator training and commissioning to get your team confident from day one." },
+              { icon: HeartHandshake, image: "/svc-humanitarian.webp", title: "Humanitarian Supply", body: "Bulk supply to NGOs and government programs with reliable logistics." },
+              { icon: PackageSearch, image: "/svc-custom-sourcing.webp", title: "Custom Sourcing", body: "Can't find what you need? We source certified products globally on request." },
+              { icon: MapPin, image: "/svc-delivery.webp", title: "Regional Delivery", body: "Timely and secure delivery across Kenya and East Africa." },
             ].map((s, idx) => {
               const Icon = s.icon;
               return (
                 <div
                   key={s.title}
-                  className="group relative overflow-hidden rounded-2xl bg-white/[0.06] p-7 shadow-lg ring-1 ring-white/10 backdrop-blur-sm transition hover:-translate-y-1.5 hover:bg-white/[0.1] hover:ring-accent/60"
+                  className="group relative overflow-hidden rounded-2xl bg-white/[0.06] shadow-lg ring-1 ring-white/10 backdrop-blur-sm transition hover:-translate-y-1.5 hover:ring-accent/60"
                 >
-                  <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-accent/10 blur-2xl transition group-hover:bg-accent/25" />
-                  <div className="relative flex items-center justify-between">
-                    <div className="grid h-14 w-14 place-items-center rounded-xl bg-gradient-to-br from-accent to-accent/70 text-accent-foreground shadow-lg ring-1 ring-white/20">
-                      <Icon className="h-7 w-7" />
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img
+                      src={s.image}
+                      alt={s.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand via-brand/40 to-transparent" />
+                    <div className="absolute left-4 top-4 grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-accent to-accent/70 text-accent-foreground shadow-lg ring-1 ring-white/20">
+                      <Icon className="h-5 w-5" />
                     </div>
-                    <span className="font-display text-4xl font-black text-white/10 transition group-hover:text-white/20">
+                    <span className="absolute right-4 top-4 font-display text-3xl font-black text-white/30">
                       0{idx + 1}
                     </span>
                   </div>
-                  <h3 className="relative mt-5 font-display text-lg font-bold text-white">{s.title}</h3>
-                  <p className="relative mt-2 text-sm leading-relaxed text-brand-foreground/80">{s.body}</p>
+                  <div className="p-6">
+                    <h3 className="font-display text-lg font-bold text-white">{s.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-brand-foreground/80">{s.body}</p>
+                  </div>
                 </div>
               );
             })}
