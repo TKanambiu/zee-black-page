@@ -118,15 +118,9 @@ function HomePage() {
                     ))}
                   </ul>
                   <div className="mt-6 flex flex-wrap gap-3">
-                    <a
-                      href={`https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(s.waText)}`}
-                      target="_blank" rel="noreferrer"
-                      className="inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 font-semibold text-accent-foreground shadow-lg transition hover:brightness-95"
-                    >
-                      Order via WhatsApp
-                    </a>
+                    <WhatsAppButton text={s.waText} />
                     <Link to="/contact" className="rounded-md border-2 border-white/80 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur-sm hover:bg-white/20">
-                      Request Quote →
+                      Contact Sales →
                     </Link>
                   </div>
                 </div>
@@ -306,9 +300,7 @@ function HomePage() {
             <p className="mt-2 text-brand-foreground/80">Talk to our team for tailored quotes, bulk orders and technical advice.</p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a href={`https://wa.me/${COMPANY.whatsapp}`} target="_blank" rel="noreferrer" className="rounded-md bg-accent px-6 py-3 font-semibold text-accent-foreground hover:brightness-95">
-              Order via WhatsApp
-            </a>
+            <WhatsAppButton />
           </div>
         </div>
       </section>
