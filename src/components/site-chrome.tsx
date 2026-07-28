@@ -79,9 +79,9 @@ export function SiteHeader() {
       </div>
 
       <div className="border-b border-border">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 md:gap-6 md:py-2.5">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-1.5 md:gap-6 md:py-2">
           <Link to="/" className="flex shrink-0 items-center">
-            <img src="/logo.png" alt="Zentramed Health — Advancing Healthcare and Humanitarian Solutions" className="h-28 w-auto md:h-36" />
+            <img src="/logo.png" alt="Zentramed Health — Advancing Healthcare and Humanitarian Solutions" className="h-16 w-auto md:h-20" />
           </Link>
           <form
             onSubmit={(e) => { e.preventDefault(); submitSearch(); }}
