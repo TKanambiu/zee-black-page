@@ -3,7 +3,7 @@ import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { CATEGORIES, COMPANY } from "@/data/catalogue";
 import aboutImg from "@/assets/about.jpg";
-import { ArrowRight, Sparkles, Briefcase, Users, Globe, ClipboardCheck } from "lucide-react";
+import { ArrowRight, Sparkles, Briefcase, Users, Globe, ClipboardCheck, ShieldCheck, Truck, Layers, Headphones, Wrench, GraduationCap, HeartHandshake, PackageSearch, MapPin, Settings2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { CategoryMarquee } from "@/components/category-marquee";
 
@@ -168,18 +168,20 @@ function HomePage() {
 
 
       {/* About — editorial, professional */}
-      <section className="relative mx-auto max-w-7xl px-4 py-16">
-        <div className="grid items-center gap-14 md:grid-cols-2">
+      <section className="relative overflow-hidden bg-gradient-to-b from-background via-muted/30 to-background py-20">
+        <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-brand/5 blur-3xl" />
+        <div className="pointer-events-none absolute -right-40 bottom-10 h-96 w-96 rounded-full bg-accent/10 blur-3xl" />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-4 md:grid-cols-2">
           <div className="relative">
             <div className="absolute -left-4 -top-4 hidden h-full w-full rounded-2xl border-2 border-accent/40 md:block" />
-            <img src={aboutImg} alt="Healthcare professional with instruments" className="relative rounded-2xl shadow-2xl" loading="lazy" />
+            <div className="absolute -right-3 -bottom-3 hidden h-full w-full rounded-2xl bg-gradient-to-br from-brand/20 to-accent/20 md:block" />
+            <img src={aboutImg} alt="Healthcare professional with instruments" className="relative rounded-2xl shadow-2xl ring-1 ring-border" loading="lazy" />
             <div className="absolute -bottom-8 -right-6 hidden rounded-xl bg-background p-5 shadow-2xl ring-1 ring-border md:block">
               <div>
                 <div className="font-display text-2xl font-bold text-brand">15+ Years</div>
                 <div className="text-xs uppercase tracking-widest text-muted-foreground">Industry expertise</div>
               </div>
             </div>
-
           </div>
           <div>
             <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
@@ -196,20 +198,28 @@ function HomePage() {
                 and exceptional service.
               </p>
             </div>
-            <dl className="mt-8 grid gap-x-6 gap-y-5 sm:grid-cols-2">
+            <dl className="mt-8 grid gap-4 sm:grid-cols-2">
               {[
-                { t: "Quality Assured Sourcing", d: "ISO-certified suppliers only." },
-                { t: "Wide Product Range", d: "9 categories, 500+ SKUs." },
-                { t: "Reliable Delivery", d: "Nationwide, cold-chain ready." },
-                { t: "Customer-First Support", d: "Dedicated account managers." },
-              ].map((v) => (
-                <div key={v.t} className="border-t border-border pt-3">
-                  <dt className="font-display text-sm font-bold uppercase tracking-wider text-brand">{v.t}</dt>
-                  <dd className="mt-1 text-sm text-muted-foreground">{v.d}</dd>
-                </div>
-              ))}
+                { icon: ShieldCheck, t: "Quality Assured Sourcing", d: "ISO-certified suppliers only." },
+                { icon: Layers, t: "Wide Product Range", d: "9 categories, 500+ SKUs." },
+                { icon: Truck, t: "Reliable Delivery", d: "Nationwide, cold-chain ready." },
+                { icon: Headphones, t: "Customer-First Support", d: "Dedicated account managers." },
+              ].map((v) => {
+                const Icon = v.icon;
+                return (
+                  <div key={v.t} className="group flex gap-3 rounded-xl border border-border bg-background/70 p-4 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-md">
+                    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-brand to-brand/70 text-brand-foreground shadow-md">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <dt className="font-display text-sm font-bold text-brand">{v.t}</dt>
+                      <dd className="mt-0.5 text-xs text-muted-foreground">{v.d}</dd>
+                    </div>
+                  </div>
+                );
+              })}
             </dl>
-            <Link to="/about" className="mt-10 inline-flex items-center gap-2 rounded-md bg-brand px-6 py-3 text-sm font-semibold text-brand-foreground shadow-md transition hover:brightness-110">
+            <Link to="/about" className="mt-10 inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-brand to-brand/80 px-6 py-3 text-sm font-semibold text-brand-foreground shadow-lg transition hover:brightness-110">
               Learn more about us <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -238,46 +248,51 @@ function HomePage() {
       </section>
 
       {/* Services */}
-      <section className="mx-auto max-w-7xl px-4 py-16">
-        <div className="mx-auto max-w-2xl text-center">
-          <div className="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
-            <span className="h-px w-10 bg-accent" /> Our Services <span className="h-px w-10 bg-accent" />
-          </div>
-          <h2 className="mt-3 font-display text-3xl font-bold text-brand md:text-5xl">
-            Beyond supply — <span className="text-accent">end-to-end support</span>
-          </h2>
-          <p className="mt-4 text-muted-foreground">
-            From procurement to installation, training and maintenance — we stand behind every product we deliver.
-          </p>
-        </div>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { title: "Equipment Installation", body: "Professional installation of hospital, laboratory and imaging equipment." },
-            { title: "Maintenance & Repair", body: "Preventive maintenance contracts and rapid on-site repair services." },
-            { title: "Training & Commissioning", body: "Operator training and commissioning to get your team confident from day one." },
-            { title: "Humanitarian Supply", body: "Bulk supply to NGOs and government programs with reliable logistics." },
-            { title: "Custom Sourcing", body: "Can't find what you need? We source certified products globally on request." },
-            { title: "Regional Delivery", body: "Timely and secure delivery across Kenya and East Africa." },
-          ].map((s, idx) => (
-            <div
-              key={s.title}
-              className="group relative overflow-hidden rounded-xl border border-border bg-background p-7 shadow-sm transition hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg"
-            >
-              <div className="flex items-baseline justify-between border-b border-border pb-3">
-                <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-accent">
-                  0{idx + 1}
-                </span>
-                <span className="font-display text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
-                  Service
-                </span>
-              </div>
-              <div className="mt-5">
-                <h3 className="font-display text-lg font-bold text-brand">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-              </div>
+      <section className="relative overflow-hidden py-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-brand via-brand to-topbar" />
+        <div className="pointer-events-none absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "24px 24px" }} />
+        <div className="relative mx-auto max-w-7xl px-4">
+          <div className="mx-auto max-w-2xl text-center">
+            <div className="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
+              <span className="h-px w-10 bg-accent" /> Our Services <span className="h-px w-10 bg-accent" />
             </div>
-          ))}
-
+            <h2 className="mt-3 font-display text-3xl font-bold text-white md:text-5xl">
+              Beyond supply — <span className="text-accent">end-to-end support</span>
+            </h2>
+            <p className="mt-4 text-brand-foreground/80">
+              From procurement to installation, training and maintenance — we stand behind every product we deliver.
+            </p>
+          </div>
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { icon: Wrench, title: "Equipment Installation", body: "Professional installation of hospital, laboratory and imaging equipment." },
+              { icon: Settings2, title: "Maintenance & Repair", body: "Preventive maintenance contracts and rapid on-site repair services." },
+              { icon: GraduationCap, title: "Training & Commissioning", body: "Operator training and commissioning to get your team confident from day one." },
+              { icon: HeartHandshake, title: "Humanitarian Supply", body: "Bulk supply to NGOs and government programs with reliable logistics." },
+              { icon: PackageSearch, title: "Custom Sourcing", body: "Can't find what you need? We source certified products globally on request." },
+              { icon: MapPin, title: "Regional Delivery", body: "Timely and secure delivery across Kenya and East Africa." },
+            ].map((s, idx) => {
+              const Icon = s.icon;
+              return (
+                <div
+                  key={s.title}
+                  className="group relative overflow-hidden rounded-2xl bg-white/[0.06] p-7 shadow-lg ring-1 ring-white/10 backdrop-blur-sm transition hover:-translate-y-1.5 hover:bg-white/[0.1] hover:ring-accent/60"
+                >
+                  <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-accent/10 blur-2xl transition group-hover:bg-accent/25" />
+                  <div className="relative flex items-center justify-between">
+                    <div className="grid h-14 w-14 place-items-center rounded-xl bg-gradient-to-br from-accent to-accent/70 text-accent-foreground shadow-lg ring-1 ring-white/20">
+                      <Icon className="h-7 w-7" />
+                    </div>
+                    <span className="font-display text-4xl font-black text-white/10 transition group-hover:text-white/20">
+                      0{idx + 1}
+                    </span>
+                  </div>
+                  <h3 className="relative mt-5 font-display text-lg font-bold text-white">{s.title}</h3>
+                  <p className="relative mt-2 text-sm leading-relaxed text-brand-foreground/80">{s.body}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
