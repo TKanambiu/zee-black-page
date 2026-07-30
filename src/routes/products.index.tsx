@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { PageHero } from "./about";
-import { CATEGORIES, COMPANY, allProducts } from "@/data/catalogue";
+import { CATEGORIES, COMPANY, allProducts, formatKES } from "@/data/catalogue";
 import { useEffect, useMemo, useState } from "react";
 import { Search, MessageCircle, ArrowRight } from "lucide-react";
 
