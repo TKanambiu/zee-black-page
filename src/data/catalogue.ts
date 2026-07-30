@@ -40,6 +40,15 @@ import humidifier from "@/assets/products/Humidifier_Bottle.png.asset.json";
 import nebulizer from "@/assets/products/Nebulizer_Compressor.png.asset.json";
 import oxygenMask from "@/assets/products/Oxygen_Mask.png.asset.json";
 import oxygenRegulator from "@/assets/products/Oxygen_Regulator.png.asset.json";
+import fetalDoppler from "@/assets/products/Fetal_Doppler.png.asset.json";
+import babyIncubator from "@/assets/products/Baby_Incubator.png.asset.json";
+import babyWarmer from "@/assets/products/Baby_Warmer_with_Phototherapy.png.asset.json";
+import babyScale from "@/assets/products/Digital_Baby_Scale.png.asset.json";
+import foggingMachine from "@/assets/products/Fogging_Machine.png.asset.json";
+import bodyBag from "@/assets/products/White_Body_Bag_220x90.png.asset.json";
+import diathermy from "@/assets/products/Diathermy_Machine_400W.png.asset.json";
+import firstAidBox from "@/assets/products/First_Aid_Box.png.asset.json";
+import spillKit from "@/assets/products/Multi_use_Biohazard_Spill_Kit.png.asset.json";
 
 /** Product photos keyed by exact product name */
 const PRODUCT_IMG: Record<string, string> = {
@@ -52,6 +61,15 @@ const PRODUCT_IMG: Record<string, string> = {
   "Nebulizer Compressor": nebulizer.url,
   "Oxygen Mask": oxygenMask.url,
   "Oxygen Regulator": oxygenRegulator.url,
+  "Fetal Doppler": fetalDoppler.url,
+  "Baby Incubator": babyIncubator.url,
+  "Baby Warmer with Phototherapy": babyWarmer.url,
+  "Digital Baby Scale": babyScale.url,
+  "Fogging Machine": foggingMachine.url,
+  "White Body Bag 220x90": bodyBag.url,
+  "Diathermy Machine 400W": diathermy.url,
+  "First Aid Box": firstAidBox.url,
+  "Multi-use Biohazard Spill Kit": spillKit.url,
 };
 
 const p = (name: string, reseller: number, price: number): Product => ({
