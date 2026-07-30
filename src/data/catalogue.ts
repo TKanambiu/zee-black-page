@@ -49,6 +49,16 @@ import bodyBag from "@/assets/products/White_Body_Bag_220x90.png.asset.json";
 import diathermy from "@/assets/products/Diathermy_Machine_400W.png.asset.json";
 import firstAidBox from "@/assets/products/First_Aid_Box.png.asset.json";
 import spillKit from "@/assets/products/Multi_use_Biohazard_Spill_Kit.png.asset.json";
+import wardScreen4 from "@/assets/products/4_Fold_Ward_Screen.png.asset.json";
+import wardScreen3 from "@/assets/products/3_Fold_Ward_Screen.png.asset.json";
+import bedsideCabinet from "@/assets/products/Bedside_Cabinet.png.asset.json";
+import crashCart from "@/assets/products/Emergency_Trolley_Crash_Cart.png.asset.json";
+import examLamp from "@/assets/products/LED_Adjustable_Examination_Lamp.png.asset.json";
+import medicineTrolley from "@/assets/products/Medicine_Trolley.png.asset.json";
+import medicineTrolley3 from "@/assets/products/3_Shelf_Medicine_Trolley.png.asset.json";
+import rippleMattress from "@/assets/products/Ripple_Mattress.png.asset.json";
+import sanitaryBin from "@/assets/products/Sanitary_Bin.png.asset.json";
+import hospitalBed2Crank from "@/assets/products/2_Crank_ABS_Hospital_Bed.png.asset.json";
 
 /** Product photos keyed by exact product name */
 const PRODUCT_IMG: Record<string, string> = {
@@ -70,6 +80,16 @@ const PRODUCT_IMG: Record<string, string> = {
   "Diathermy Machine 400W": diathermy.url,
   "First Aid Box": firstAidBox.url,
   "Multi-use Biohazard Spill Kit": spillKit.url,
+  "4 Fold Ward Screen": wardScreen4.url,
+  "3 Fold Ward Screen": wardScreen3.url,
+  "Bedside Cabinet": bedsideCabinet.url,
+  "Emergency Trolley / Crash Cart": crashCart.url,
+  "LED Adjustable Examination Lamp": examLamp.url,
+  "Medicine Trolley": medicineTrolley.url,
+  "3 Shelf Medicine Trolley": medicineTrolley3.url,
+  "Ripple Mattress": rippleMattress.url,
+  "Sanitary Bin": sanitaryBin.url,
+  "2 Crank ABS Hospital Bed": hospitalBed2Crank.url,
 };
 
 const p = (name: string, reseller: number, price: number): Product => ({
