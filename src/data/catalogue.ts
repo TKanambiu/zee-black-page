@@ -49,6 +49,16 @@ import bodyBag from "@/assets/products/White_Body_Bag_220x90.png.asset.json";
 import diathermy from "@/assets/products/Diathermy_Machine_400W.png.asset.json";
 import firstAidBox from "@/assets/products/First_Aid_Box.png.asset.json";
 import spillKit from "@/assets/products/Multi_use_Biohazard_Spill_Kit.png.asset.json";
+import wardScreen4 from "@/assets/products/4_Fold_Ward_Screen.png.asset.json";
+import wardScreen3 from "@/assets/products/3_Fold_Ward_Screen.png.asset.json";
+import bedsideCabinet from "@/assets/products/Bedside_Cabinet.png.asset.json";
+import crashCart from "@/assets/products/Emergency_Trolley_Crash_Cart.png.asset.json";
+import examLamp from "@/assets/products/LED_Adjustable_Examination_Lamp.png.asset.json";
+import medicineTrolley from "@/assets/products/Medicine_Trolley.png.asset.json";
+import medicineTrolley3 from "@/assets/products/3_Shelf_Medicine_Trolley.png.asset.json";
+import rippleMattress from "@/assets/products/Ripple_Mattress.png.asset.json";
+import sanitaryBin from "@/assets/products/Sanitary_Bin.png.asset.json";
+import hospitalBed2Crank from "@/assets/products/2_Crank_ABS_Hospital_Bed.png.asset.json";
 
 /** Product photos keyed by exact product name */
 const PRODUCT_IMG: Record<string, string> = {
