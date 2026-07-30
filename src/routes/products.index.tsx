@@ -63,8 +63,9 @@ function ProductsPage() {
                     src={p.image ?? p.categoryImage}
                     alt={p.name}
                     loading="lazy"
-                    className="h-12 w-12 shrink-0 rounded object-cover"
+                    className={`h-12 w-12 shrink-0 rounded ${p.image ? "bg-white object-contain p-1" : "object-cover"}`}
                   />
+
                   <div className="min-w-0">
                     <div className="truncate font-semibold text-foreground">{p.name}</div>
                     <div className="text-xs text-muted-foreground">{p.category}</div>
