@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
-import { getCategory, COMPANY, CATEGORIES, type Category } from "@/data/catalogue";
+import { getCategory, COMPANY, CATEGORIES, formatKES, type Category } from "@/data/catalogue";
 import { ChevronRight, MessageCircle, Search as SearchIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
