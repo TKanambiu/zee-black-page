@@ -130,16 +130,18 @@ function CategoryPage() {
                         key={prod.name}
                         className="group flex flex-col overflow-hidden rounded-xl border border-border bg-background transition hover:-translate-y-1 hover:border-brand hover:shadow-[var(--shadow-card)]"
                       >
-                        <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                        <div className={`relative aspect-[4/3] overflow-hidden ${prod.image ? "bg-white p-4" : "bg-muted"}`}>
                           <img
                             src={prod.image ?? category.image}
                             alt={prod.name}
                             loading="lazy"
                             width={800}
                             height={600}
-                            className="h-full w-full object-cover brightness-110 transition duration-500 group-hover:scale-105"
+                            className={`h-full w-full transition duration-500 group-hover:scale-105 ${prod.image ? "object-contain" : "object-cover brightness-110"}`}
                           />
-                          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/35 to-transparent" />
+                          {!prod.image && (
+                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/35 to-transparent" />
+                          )}
                           <div className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-brand shadow">
                             {sub.name}
                           </div>
