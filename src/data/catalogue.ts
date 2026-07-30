@@ -31,7 +31,35 @@ const IMG: Record<string, string> = {
   "imaging-radiology": "/cat-imaging.jpg",
 };
 
-const p = (name: string, reseller: number, price: number): Product => ({ name, reseller, price });
+import conc10 from "@/assets/products/10L_Bedside_Oxygen_Concentrator.png.asset.json";
+import spirometer from "@/assets/products/3_Ball_Incentive_Spirometer.png.asset.json";
+import conc5 from "@/assets/products/5L_Portable_Oxygen_Concentrator.png.asset.json";
+import conc7 from "@/assets/products/7L_Portable_Oxygen_Concentrator.png.asset.json";
+import ambuBag from "@/assets/products/Ambu_Bag.png.asset.json";
+import humidifier from "@/assets/products/Humidifier_Bottle.png.asset.json";
+import nebulizer from "@/assets/products/Nebulizer_Compressor.png.asset.json";
+import oxygenMask from "@/assets/products/Oxygen_Mask.png.asset.json";
+import oxygenRegulator from "@/assets/products/Oxygen_Regulator.png.asset.json";
+
+/** Product photos keyed by exact product name */
+const PRODUCT_IMG: Record<string, string> = {
+  "10L Bedside Oxygen Concentrator": conc10.url,
+  "3 Ball Incentive Spirometer": spirometer.url,
+  "5L Portable Oxygen Concentrator": conc5.url,
+  "7L Portable Oxygen Concentrator": conc7.url,
+  "Ambu Bag": ambuBag.url,
+  "Humidifier Bottle": humidifier.url,
+  "Nebulizer Compressor": nebulizer.url,
+  "Oxygen Mask": oxygenMask.url,
+  "Oxygen Regulator": oxygenRegulator.url,
+};
+
+const p = (name: string, reseller: number, price: number): Product => ({
+  name,
+  reseller,
+  price,
+  image: PRODUCT_IMG[name],
+});
 
 const RAW_CATEGORIES: Omit<Category, "image">[] = [
   {
