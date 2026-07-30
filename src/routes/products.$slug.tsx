@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
-import { getCategory, COMPANY, CATEGORIES, type Category } from "@/data/catalogue";
+import { getCategory, COMPANY, CATEGORIES, formatKES, type Category } from "@/data/catalogue";
 import { ChevronRight, MessageCircle, Search as SearchIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -111,61 +111,82 @@ function CategoryPage() {
                 <button onClick={() => setQ("")} className="text-xs font-semibold text-muted-foreground hover:text-brand">Clear</button>
               )}
             </div>
-            {category.subcategories.map((sub, si) => (
-              (() => {
-                const items = query ? sub.products.filter((p) => p.toLowerCase().includes(query)) : sub.products;
-                if (query && items.length === 0) return null;
-                return (
-              <div key={sub.name} className={si === 0 ? "" : "mt-14"}>
-                <div className="flex items-baseline justify-between gap-4 border-b-2 border-brand/20 pb-3">
-                  <h2 className="font-display text-2xl font-bold text-brand">{sub.name}</h2>
-                  <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                    {items.length} products
-                  </span>
-                </div>
-                <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  {items.map((p) => (
-                    <div
-                      key={p}
-                      className="group overflow-hidden rounded-xl border border-border bg-background transition hover:-translate-y-1 hover:border-brand hover:shadow-[var(--shadow-card)]"
-                    >
-                      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
-                        <img
-                          src={category.image}
-                          alt={p}
-                          loading="lazy"
-                          width={800}
-                          height={600}
-                          className="h-full w-full object-cover brightness-110 transition duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/35 to-transparent" />
-                        <div className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-brand shadow">
-                          {sub.name}
+            {category.subcategories.map((sub, si) => {
+              const items = query
+                ? sub.products.filter((p) => p.name.toLowerCase().includes(query))
+                : sub.products;
+              if (query && items.length === 0) return null;
+              return (
+                <div key={sub.name} className={si === 0 ? "" : "mt-14"}>
+                  <div className="flex items-baseline justify-between gap-4 border-b-2 border-brand/20 pb-3">
+                    <h2 className="font-display text-2xl font-bold text-brand">{sub.name}</h2>
+                    <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                      {items.length} products
+                    </span>
+                  </div>
+                  <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                    {items.map((prod) => (
+                      <div
+                        key={prod.name}
+                        className="group flex flex-col overflow-hidden rounded-xl border border-border bg-background transition hover:-translate-y-1 hover:border-brand hover:shadow-[var(--shadow-card)]"
+                      >
+                        <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                          <img
+                            src={prod.image ?? category.image}
+                            alt={prod.name}
+                            loading="lazy"
+                            width={800}
+                            height={600}
+                            className="h-full w-full object-cover brightness-110 transition duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/35 to-transparent" />
+                          <div className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-brand shadow">
+                            {sub.name}
+                          </div>
+                        </div>
+                        <div className="flex flex-1 flex-col p-4">
+                          <div className="font-display text-base font-semibold text-foreground">
+                            {prod.name}
+                          </div>
+                          <div className="mt-1 text-xs text-muted-foreground">{category.name}</div>
+                          <div className="mt-3 flex items-end justify-between gap-2">
+                            <div>
+                              <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                                Retail price
+                              </div>
+                              <div className="font-display text-lg font-bold text-brand">
+                                {formatKES(prod.price)}
+                              </div>
+                            </div>
+                            {prod.reseller !== undefined && prod.reseller < prod.price && (
+                              <div className="rounded-full bg-accent/10 px-2.5 py-1 text-[11px] font-bold text-accent">
+                                Trade {formatKES(prod.reseller)}
+                              </div>
+                            )}
+                          </div>
+                          <a
+                            href={`https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(`Hi Zentramed Health, please send me a quote for: ${prod.name}`)}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-md bg-brand px-3 py-2 text-xs font-bold text-brand-foreground transition hover:bg-accent hover:text-accent-foreground"
+                          >
+                            <MessageCircle className="h-3.5 w-3.5" /> Order via WhatsApp
+                          </a>
                         </div>
                       </div>
-                      <div className="p-4">
-                        <div className="font-display text-base font-semibold text-foreground">{p}</div>
-                        <div className="mt-1 text-xs text-muted-foreground">{category.name}</div>
-                        <a
-                          href={`https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(`Hi Zentramed Health, please send me a quote for: ${p}`)}`}
-                          target="_blank" rel="noreferrer"
-                          className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:brightness-90"
-                        >
-                          <MessageCircle className="h-3.5 w-3.5" /> Order via WhatsApp
-                        </a>
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-                );
-              })()
-            ))}
-            {query && category.subcategories.every((s) => s.products.filter((p) => p.toLowerCase().includes(query)).length === 0) && (
-              <div className="rounded-xl border border-border bg-muted/30 p-10 text-center text-muted-foreground">
-                No products in {category.name} match "{q}".
-              </div>
-            )}
+              );
+            })}
+            {query &&
+              category.subcategories.every(
+                (s) => s.products.filter((p) => p.name.toLowerCase().includes(query)).length === 0,
+              ) && (
+                <div className="rounded-xl border border-border bg-muted/30 p-10 text-center text-muted-foreground">
+                  No products in {category.name} match "{q}".
+                </div>
+              )}
           </div>
         </div>
       </section>

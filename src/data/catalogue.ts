@@ -1,8 +1,14 @@
 export type Product = {
   name: string;
-  category: string;
-  subcategory?: string;
+  /** Retail price in KES */
+  price: number;
+  /** Reseller / trade price in KES */
+  reseller?: number;
+  /** Optional product photo (place file in /public and set path here) */
+  image?: string;
 };
+
+export type Subcategory = { name: string; products: Product[] };
 
 export type Category = {
   slug: string;
@@ -10,7 +16,7 @@ export type Category = {
   tagline: string;
   description: string;
   image: string;
-  subcategories: { name: string; products: string[] }[];
+  subcategories: Subcategory[];
 };
 
 const IMG: Record<string, string> = {
@@ -25,6 +31,8 @@ const IMG: Record<string, string> = {
   "imaging-radiology": "/cat-imaging.jpg",
 };
 
+const p = (name: string, reseller: number, price: number): Product => ({ name, reseller, price });
+
 const RAW_CATEGORIES: Omit<Category, "image">[] = [
   {
     slug: "ppe-protective-wear",
@@ -34,27 +42,37 @@ const RAW_CATEGORIES: Omit<Category, "image">[] = [
       "Complete personal protective equipment for hospitals, laboratories and field response teams.",
     subcategories: [
       {
-        name: "PPE",
+        name: "Masks & Respirators",
         products: [
-          "Coverall with Shoe Cover",
-          "Disposable Apron",
-          "Beard Cover",
-          "Hairnet / Head Cap",
-          "Face Shield",
-          "Safety Goggles",
-          "Sterile Surgical Gown",
+          p("3 Ply Surgical Face Masks (Box of 50)", 180, 220),
+          p("KN95 Mask With Valve", 28, 35),
+          p("KN95 Mask Without Valve", 15, 20),
+          p("3M N95 8210", 110, 120),
+          p("3M N95 1860", 110, 120),
+        ],
+      },
+      {
+        name: "Protective Wear",
+        products: [
+          p("Coverall with Shoe Cover", 400, 600),
+          p("Disposable Apron", 1100, 1350),
+          p("Beard Cover (Pack of 100)", 800, 1000),
+          p("Hairnet / Head Cap", 350, 350),
+          p("Face Shield", 100, 150),
+          p("Safety Goggles", 200, 200),
         ],
       },
       {
         name: "Gloves & Footwear",
         products: [
-          "Latex Powdered Gloves",
-          "Latex Powder Free Gloves",
-          "Nitrile Gloves",
-          "Sterile Gloves",
-          "Medical Gumboots",
-          "Safety Boots",
-          "Medical Crocs / Clogs",
+          p("Latex Powdered Gloves", 320, 350),
+          p("Latex Powder Free Gloves", 400, 450),
+          p("Nitrile Gloves", 350, 380),
+          p("Sterile Gloves", 950, 1050),
+          p("Medical Gumboots", 700, 850),
+          p("Safety Boots", 2400, 2800),
+          p("Medical Crocs / Clogs", 1500, 1800),
+          p("Nurse Watch", 500, 500),
         ],
       },
     ],
@@ -66,18 +84,22 @@ const RAW_CATEGORIES: Omit<Category, "image">[] = [
     description:
       "Trusted wound-care consumables and orthopedic casting materials for hospitals and clinics.",
     subcategories: [
-      { name: "Dressings", products: ["Gauze Roll 1500gms"] },
+      { name: "Dressings", products: [p("Gauze Roll 1500gms", 1200, 1200)] },
       {
-        name: "Gypsona S POP Bandages",
-        products: ['Gypsona S POP 4"', 'Gypsona S POP 6"', 'Gypsona S POP 8"'],
+        name: "Gypsona POP Bandages",
+        products: [
+          p('Gypsona POP 4"', 350, 350),
+          p('Gypsona POP 6"', 380, 380),
+          p('Gypsona POP 8"', 450, 450),
+        ],
       },
       {
-        name: "Orthopedic Padding",
+        name: "Orthopedic Support",
         products: [
-          'Orthopedic Padding 6"',
-          'Orthopedic Padding 8"',
-          "Plaster Cutter (Drill Type)",
-          "Tourniquet",
+          p('Orthopedic Padding 6"', 55, 55),
+          p('Orthopedic Padding 8"', 75, 75),
+          p("Plaster Cutter", 28000, 28000),
+          p("Tourniquet", 200, 250),
         ],
       },
     ],
@@ -92,30 +114,31 @@ const RAW_CATEGORIES: Omit<Category, "image">[] = [
       {
         name: "Core Lab Equipment",
         products: [
-          "Olympus Microscope CX21",
-          "Lab Incubator",
-          "Electronic Lab Centrifuge 4000RPM",
-          "Hematology Analyzer DH31",
+          p("Microscope X701", 22500, 22500),
+          p("Olympus Microscope CX23", 165000, 165000),
+          p("Lab Incubator", 32000, 32000),
+          p("Electronic Lab Centrifuge 4000RPM", 7500, 7500),
+          p("Hematology Analyzer DH31 with Reagents", 365000, 365000),
         ],
       },
       {
         name: "Diagnostics & Screening",
         products: [
-          "HemoCue Hb 301 Microcuvettes",
-          "HemoCue Hb 301 Analyzer",
-          "Diagnostic Kit (ENT Set)",
-          "Vein Finder (Infrared)",
-          "MUAC Tapes",
+          p("Hemocue 301 Machine", 75000, 75000),
+          p("Hemocue Microcuvettes", 3500, 3500),
+          p("Diagnostic Kit", 8500, 9500),
+          p("Vein Finder", 6000, 7500),
+          p("MUAC Tape", 150, 150),
         ],
       },
       {
-        name: "Monitoring & Calibration",
+        name: "Monitoring & Consumables",
         products: [
-          "pH Meter (Drill Type)",
-          "Fridge / Freezer Thermometer",
-          "Temperature Hygrometer",
-          "Vacutainer Tubes",
-          "Urine Container",
+          p("pH Meter (Pen Type)", 2500, 3500),
+          p("Fridge Thermometer", 650, 650),
+          p("Temperature Hygrometer", 1000, 1000),
+          p("Vacutainer Tubes (Red / Yellow / Purple)", 550, 550),
+          p("Stool Container", 13, 13),
         ],
       },
     ],
@@ -130,33 +153,33 @@ const RAW_CATEGORIES: Omit<Category, "image">[] = [
       {
         name: "Blood Pressure",
         products: [
-          "Generic BP Machine",
-          "Omron M1 BP Machine",
-          "Omron M2 BP Machine",
-          "Yuwell Rechargeable BP Machine",
-          "Cordless Tunnel BP Machine",
-          "Extra Large BP Cuff",
+          p("Generic BP Machine", 850, 1300),
+          p("Omron M1 BP Machine", 4500, 4500),
+          p("Omron M2 BP Machine", 6500, 6500),
+          p("Yuwell Rechargeable BP Machine", 2500, 3000),
+          p("Cordless Tunnel BP Machine", 8500, 10500),
+          p("Extra Large BP Cuff", 1000, 1200),
         ],
       },
       {
         name: "Vitals & Screening",
         products: [
-          "Infrared Thermometer",
-          "Digital Thermometer",
-          "Handheld Pulse Oximeter",
-          "Baby Finger Oximeter",
-          "On Call Glucometer",
-          "On Call Strips",
+          p("Infrared Thermometer", 800, 1000),
+          p("Digital Thermometer", 150, 150),
+          p("Handheld Oximeter", 8500, 10000),
+          p("Baby Finger Oximeter", 600, 900),
+          p("On Call Glucometer", 1000, 1300),
+          p("On Call Strips", 650, 700),
         ],
       },
       {
         name: "Continuous Care",
         products: [
-          "Freestyle Libre 2 CGM",
-          "Sibionic Continuous Glucose Monitor",
-          "Adult Diapers",
-          "Pill Organizer",
-          "Digital Height & Weight Scale",
+          p("Freestyle Libre 2 CGM", 20000, 20000),
+          p("Sibionic Continuous Glucose Monitor", 9999, 9999),
+          p("Adult Diapers", 580, 580),
+          p("Pill Organizer", 500, 500),
+          p("Digital Height & Weight Scale", 13000, 14500),
         ],
       },
     ],
@@ -166,33 +189,34 @@ const RAW_CATEGORIES: Omit<Category, "image">[] = [
     name: "Respiratory & Oxygen Therapy",
     tagline: "Breathe easy with complete oxygen solutions.",
     description:
-      "From portable concentrators to full central oxygen manifolds for hospitals and clinics.",
+      "From portable concentrators to oxygen cylinders and gas systems for hospitals and clinics.",
     subcategories: [
       {
         name: "Respiratory Care",
         products: [
-          "Nebulizer Compressor",
-          "Oxygen Mask",
-          "Humidifier Bottle",
-          "Oxygen Regulator",
-          "3 Ball Incentive Spirometer",
-          "Ambu Bag",
-          "5L Portable Oxygen Concentrator",
+          p("Nebulizer Compressor", 2500, 3000),
+          p("Oxygen Mask", 85, 85),
+          p("Humidifier Bottle", 1000, 1200),
+          p("Oxygen Regulator", 2500, 3000),
+          p("3 Ball Incentive Spirometer", 800, 1200),
+          p("Ambu Bag", 4500, 4500),
+        ],
+      },
+      {
+        name: "Oxygen Concentrators",
+        products: [
+          p("5L Portable Oxygen Concentrator", 92000, 98000),
+          p("7L Portable Oxygen Concentrator", 78000, 85000),
+          p("10L Bedside Oxygen Concentrator", 65000, 65000),
         ],
       },
       {
         name: "Oxygen Cylinders",
-        products: ["1.36m³ Cylinder", "3.4m³ Cylinder", "7.0m³ Cylinder", "8.5m³ Cylinder"],
-      },
-      {
-        name: "Oxygen & Gas Systems",
         products: [
-          "Oxygen Flow Meter",
-          "Medical Air Compressor",
-          "Central Oxygen Manifold System",
-          "Oxygen Analyzer",
-          "Suction Machine",
-          "Vacuum Regulator",
+          p("Oxygen Cylinder 1.36m³", 12500, 12500),
+          p("Oxygen Cylinder 3.4m³", 19500, 19500),
+          p("Oxygen Cylinder 7.0m³", 25000, 25000),
+          p("Oxygen Cylinder 8.5m³", 28000, 28000),
         ],
       },
     ],
@@ -202,36 +226,15 @@ const RAW_CATEGORIES: Omit<Category, "image">[] = [
     name: "Neonatal & Maternity",
     tagline: "Advanced care for every new beginning.",
     description:
-      "Equipment and consumables for labour wards, neonatal units and maternity clinics.",
+      "Equipment for labour wards, neonatal units and maternity clinics.",
     subcategories: [
       {
         name: "Neonatal Equipment",
         products: [
-          "Infant Radiant Warmer",
-          "Infant Incubator",
-          "Phototherapy Unit",
-          "Fetal Doppler",
-          "Suction Machine",
-          "Baby Scale",
-        ],
-      },
-      {
-        name: "Maternity Equipment",
-        products: [
-          "Delivery Bed",
-          "Gynecology Couch",
-          "Examination Couch",
-          "Fetal Monitor",
-        ],
-      },
-      {
-        name: "Neonatal Consumables",
-        products: [
-          "Mucus Extractor",
-          "Umbilical Cord Clamp",
-          "Feeding Tubes",
-          "Suction Catheter",
-          "Baby Oxygen Mask",
+          p("Fetal Doppler", 2500, 3500),
+          p("Digital Baby Scale", 3500, 4000),
+          p("Baby Warmer with Phototherapy", 185000, 185000),
+          p("Baby Incubator", 180000, 180000),
         ],
       },
     ],
@@ -244,65 +247,51 @@ const RAW_CATEGORIES: Omit<Category, "image">[] = [
       "Beds, trolleys and ward furniture designed for busy hospital environments.",
     subcategories: [
       {
-        name: "Hospital Beds",
-        products: ["Manual Hospital Bed", "Electric Hospital Bed", "Pediatric Bed"],
-      },
-      {
-        name: "Bedside & Storage",
+        name: "Beds & Bedside",
         products: [
-          "Delivery Bed",
-          "Bedside Locker",
-          "Overbed Table",
-          "Instrument Trolley",
-          "Mayo Trolley",
-          "Dressing Trolley",
+          p("2 Crank ABS Hospital Bed", 25000, 25000),
+          p("Bedside Cabinet", 8500, 8500),
+          p("Ripple Mattress", 4999, 4999),
         ],
       },
       {
-        name: "Patient Movement",
+        name: "Trolleys",
         products: [
-          "Wheelchair",
-          "Stretcher",
-          "Emergency Trolley / Crash Cart",
-          "Transfer Chair",
+          p("Emergency Trolley / Crash Cart", 55000, 55000),
+          p("Medicine Trolley", 8000, 8000),
+          p("3 Shelf Medicine Trolley", 13000, 13000),
         ],
       },
       {
         name: "Ward Support",
-        products: ["Ward Screens", "IV Stand", "Drip Stand", "Linen Hamper", "Waste Bins"],
+        products: [
+          p("3 Fold Ward Screen", 7500, 7500),
+          p("4 Fold Ward Screen", 9000, 9000),
+          p("LED Adjustable Examination Lamp", 12500, 12500),
+          p("Sanitary Bin", 3500, 3500),
+        ],
       },
     ],
   },
   {
     slug: "theater-emergency",
-    name: "Theater & Emergency",
+    name: "Theatre & Emergency",
     tagline: "Equipment for critical care and surgical excellence.",
     description:
-      "Operating theatre lights, anesthesia machines, defibrillators and complete emergency response kits.",
+      "Surgical theatre equipment, biohazard control and emergency response supplies.",
     subcategories: [
       {
-        name: "Emergency Response",
-        products: [
-          "Emergency Trolley (Crash Cart)",
-          "Body Bags",
-          "First Aid Box",
-          "Spill Kit",
-        ],
+        name: "Surgical Theatre",
+        products: [p("Diathermy Machine 400W", 170000, 170000)],
       },
       {
-        name: "Surgical Theater",
+        name: "Emergency & Biohazard",
         products: [
-          "LED Operating Theatre Light",
-          "Anesthesia Machine",
-          "Diathermy Machine",
-          "Defibrillator",
-          "Patient Monitor",
-          "Infusion Pump",
+          p("Multi-use Biohazard Spill Kit", 19500, 19500),
+          p("First Aid Box", 2500, 3000),
+          p("White Body Bag 220x90", 1500, 1800),
+          p("Fogging Machine", 30000, 30000),
         ],
-      },
-      {
-        name: "Patient Transport",
-        products: ["Emergency Stretcher", "Folding Stretcher"],
       },
     ],
   },
@@ -310,39 +299,23 @@ const RAW_CATEGORIES: Omit<Category, "image">[] = [
     slug: "imaging-radiology",
     name: "Imaging & Radiology",
     tagline: "Accurate imaging for better diagnosis.",
-    description:
-      "Mindray ultrasound systems, probes, printers and radiology accessories.",
+    description: "Ultrasound systems, viewers, contrast media and imaging consumables.",
     subcategories: [
       {
         name: "Ultrasound Systems",
         products: [
-          "Mindray DP-20 Ultrasound System",
-          "Mindray DP-30 Ultrasound System",
-          "Mindray Venno 5 Ultrasound System",
-          "Mindray Venno 6 Ultrasound System",
-        ],
-      },
-      {
-        name: "Ultrasound Probes",
-        products: [
-          "Convex Probe",
-          "Linear Probe",
-          "Transvaginal Probe",
-          "Phased Array Probe",
+          p("DP-20 Mindray Ultrasound", 680000, 680000),
+          p("VINNO A3 Color Doppler Ultrasound", 1100000, 1100000),
         ],
       },
       {
         name: "Imaging Accessories",
         products: [
-          "Sony UP-D898MD Printer",
-          "Sony UP-X898MD Printer",
-          "Ultrasound Gel",
-          "Thermal Print Paper",
+          p("Ultrasound Gel", 1500, 1500),
+          p("Single X-Ray Viewer", 7500, 7500),
+          p("UPP-110HG X-Ray Thermal Paper", 950, 1200),
+          p("Omnipaque Contrast Medium", 2500, 2500),
         ],
-      },
-      {
-        name: "Radiology Support",
-        products: ["Lead Apron", "Film Viewer", "X-Ray Cassette", "Collimator"],
       },
     ],
   },
@@ -361,6 +334,10 @@ export const COMPANY = {
   whatsapp: "254722708420",
 };
 
+export function formatKES(n: number) {
+  return `KES ${n.toLocaleString("en-KE")}`;
+}
+
 export function getCategory(slug: string) {
   return CATEGORIES.find((c) => c.slug === slug);
 }
@@ -368,7 +345,13 @@ export function getCategory(slug: string) {
 export function allProducts() {
   return CATEGORIES.flatMap((c) =>
     c.subcategories.flatMap((s) =>
-      s.products.map((p) => ({ name: p, category: c.name, categorySlug: c.slug, subcategory: s.name })),
+      s.products.map((prod) => ({
+        ...prod,
+        category: c.name,
+        categorySlug: c.slug,
+        subcategory: s.name,
+        categoryImage: c.image,
+      })),
     ),
   );
 }
