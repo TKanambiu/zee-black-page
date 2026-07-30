@@ -80,6 +80,16 @@ const PRODUCT_IMG: Record<string, string> = {
   "Diathermy Machine 400W": diathermy.url,
   "First Aid Box": firstAidBox.url,
   "Multi-use Biohazard Spill Kit": spillKit.url,
+  "4 Fold Ward Screen": wardScreen4.url,
+  "3 Fold Ward Screen": wardScreen3.url,
+  "Bedside Cabinet": bedsideCabinet.url,
+  "Emergency Trolley / Crash Cart": crashCart.url,
+  "LED Adjustable Examination Lamp": examLamp.url,
+  "Medicine Trolley": medicineTrolley.url,
+  "3 Shelf Medicine Trolley": medicineTrolley3.url,
+  "Ripple Mattress": rippleMattress.url,
+  "Sanitary Bin": sanitaryBin.url,
+  "2 Crank ABS Hospital Bed": hospitalBed2Crank.url,
 };
 
 const p = (name: string, reseller: number, price: number): Product => ({
