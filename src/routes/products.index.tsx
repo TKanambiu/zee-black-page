@@ -57,10 +57,19 @@ function ProductsPage() {
                   key={p.category + p.name}
                   to="/products/$slug"
                   params={{ slug: p.categorySlug }}
-                  className="rounded-md bg-background p-3 text-sm hover:border-brand hover:shadow"
+                  className="flex items-center gap-3 rounded-md bg-background p-3 text-sm transition hover:shadow"
                 >
-                  <div className="font-semibold text-foreground">{p.name}</div>
-                  <div className="text-xs text-muted-foreground">{p.category}</div>
+                  <img
+                    src={p.image ?? p.categoryImage}
+                    alt={p.name}
+                    loading="lazy"
+                    className="h-12 w-12 shrink-0 rounded object-cover"
+                  />
+                  <div className="min-w-0">
+                    <div className="truncate font-semibold text-foreground">{p.name}</div>
+                    <div className="text-xs text-muted-foreground">{p.category}</div>
+                    <div className="text-xs font-bold text-brand">{formatKES(p.price)}</div>
+                  </div>
                 </Link>
               ))}
             </div>
