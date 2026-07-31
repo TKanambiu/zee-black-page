@@ -187,6 +187,17 @@ export function SiteHeader() {
               {n.label}
             </Link>
           ))}
+          <Link
+            to="/featured-products"
+            className="ml-2 flex items-center gap-2 rounded-full bg-featured px-4 py-2 text-sm font-bold text-featured-foreground shadow-md transition hover:brightness-105"
+            activeProps={{ className: "ml-2 flex items-center gap-2 rounded-full bg-featured px-4 py-2 text-sm font-bold text-featured-foreground shadow-md ring-2 ring-white/70" }}
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-80" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+            </span>
+            Featured Products
+          </Link>
         </div>
 
         {open && (
@@ -196,6 +207,13 @@ export function SiteHeader() {
                 {n.label}
               </Link>
             ))}
+            <Link
+              to="/featured-products"
+              className="block border-b border-brand-foreground/10 bg-featured px-4 py-3 text-sm font-bold text-featured-foreground"
+              onClick={() => setOpen(false)}
+            >
+              Featured Products
+            </Link>
             <div className="p-3">
               <WhatsAppButton size="sm" badge={null} className="w-full justify-center" />
             </div>
