@@ -1,4 +1,4 @@
-import { COMPANY } from "@/data/catalogue";
+import { whatsappLink } from "@/lib/whatsapp";
 
 export function WhatsAppButton({
   text,
@@ -13,7 +13,7 @@ export function WhatsAppButton({
   className?: string;
   badge?: string | null;
 }) {
-  const href = `https://wa.me/${COMPANY.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
+  const href = whatsappLink(text);
   const sizes = {
     sm: "px-4 py-2 text-xs gap-2",
     md: "px-5 py-2.5 text-sm gap-2.5",
@@ -24,7 +24,7 @@ export function WhatsAppButton({
     <a
       href={href}
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
       className={`group inline-flex items-center rounded-full bg-[#25D366] font-semibold text-white shadow-md ring-1 ring-black/5 transition hover:bg-[#1ebe57] hover:shadow-lg ${sizes} ${className}`}
     >

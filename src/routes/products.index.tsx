@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
+import { whatsappLink } from "@/lib/whatsapp";
 import { PageHero } from "./about";
 import { CATEGORIES, COMPANY, allProducts, formatKES } from "@/data/catalogue";
 import { useEffect, useMemo, useState } from "react";
@@ -103,7 +104,7 @@ function ProductsPage() {
               <h3 className="font-display text-2xl font-bold">Can't find what you need?</h3>
               <p className="mt-1 text-brand-foreground/80">We source certified products globally on request.</p>
             </div>
-            <a href={`https://wa.me/${COMPANY.whatsapp}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 font-semibold text-accent-foreground hover:brightness-95">
+            <a href={whatsappLink("Hello Zentramed Health, I need help sourcing a product.")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 font-semibold text-accent-foreground hover:brightness-95">
               <MessageCircle className="h-4 w-4" /> WhatsApp us
             </a>
           </div>

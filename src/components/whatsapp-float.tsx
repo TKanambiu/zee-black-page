@@ -1,14 +1,12 @@
-import { COMPANY } from "@/data/catalogue";
+import { whatsappLink } from "@/lib/whatsapp";
 
 export function WhatsAppFloat() {
-  const href = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(
-    "Hello Zentramed Health, I'd like to inquire about your products."
-  )}`;
+  const href = whatsappLink("Hello Zentramed Health, I'd like to inquire about your products.");
   return (
     <a
       href={href}
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
       className="group fixed bottom-6 right-6 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] shadow-[0_10px_30px_-8px_rgba(37,211,102,0.7)] ring-4 ring-[#25D366]/25 transition hover:scale-110 hover:bg-[#1ebe57]"
     >
