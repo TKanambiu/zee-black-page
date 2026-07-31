@@ -188,6 +188,7 @@ const RAW_CATEGORIES: Omit<Category, "image">[] = [
           p("Latex Powdered Gloves", 320, 350),
           p("Latex Powder Free Gloves", 400, 450),
           p("Nitrile Gloves", 350, 380),
+          p("Nitrile Examination Gloves", 390, 420),
           p("Sterile Gloves", 950, 1050),
           p("Medical Gumboots", 700, 850),
           p("Safety Boots", 2400, 2800),
