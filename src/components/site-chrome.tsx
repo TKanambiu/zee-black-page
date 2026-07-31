@@ -92,7 +92,7 @@ export function SiteHeader() {
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search for products"
+                placeholder={selectedCat ? `Search in ${selectedCat.name}` : "Search for products"}
                 className="min-w-0 flex-1 bg-transparent px-4 py-2.5 text-sm font-medium text-foreground outline-none placeholder:text-muted-foreground"
               />
               <div ref={catRef} className="relative border-l border-border">
