@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
+import { whatsappLink, openWhatsApp } from "@/lib/whatsapp";
 import { PageHero } from "./about";
 import { COMPANY } from "@/data/catalogue";
 import { Mail, MapPin, Phone, MessageCircle } from "lucide-react";
@@ -23,8 +24,8 @@ function ContactPage() {
   function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
-    const msg = `Hello Zentramed Health,%0A%0AName: ${fd.get("name")}%0AEmail: ${fd.get("email")}%0APhone: ${fd.get("phone")}%0A%0A${fd.get("message")}`;
-    window.open(`https://wa.me/${COMPANY.whatsapp}?text=${msg}`, "_blank");
+    const msg = `Hello Zentramed Health,\n\nName: ${fd.get("name")}\nEmail: ${fd.get("email")}\nPhone: ${fd.get("phone")}\n\n${fd.get("message")}`;
+    openWhatsApp(msg);
     setSent(true);
   }
   return (
@@ -58,7 +59,7 @@ function ContactPage() {
                   <div className="text-muted-foreground">{COMPANY.address}</div>
                 </div>
               </div>
-              <a href={`https://wa.me/${COMPANY.whatsapp}`} target="_blank" rel="noreferrer" className="flex items-start gap-3 rounded-lg bg-[#25D366] p-4 text-white hover:brightness-95">
+              <a href={whatsappLink("Hello Zentramed Health, I'd like to chat.")} target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 rounded-lg bg-[#25D366] p-4 text-white hover:brightness-95">
                 <MessageCircle className="h-5 w-5" />
                 <div>
                   <div className="font-semibold">Chat on WhatsApp</div>
