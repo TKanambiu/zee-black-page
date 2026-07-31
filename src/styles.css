@@ -73,10 +73,10 @@
   --topbar: oklch(0.28 0.058 250);
   --topbar-foreground: oklch(0.985 0 0);
 
-  /* Featured Products — deliberately off-brand amber so it stands out in the nav */
-  --featured: oklch(0.72 0.17 62);
-  --featured-foreground: oklch(0.21 0.04 60);
-  --featured-soft: oklch(0.97 0.03 75);
+  /* Featured Products — clinical medical blue/teal, calm and professional */
+  --featured: oklch(0.60 0.13 220);
+  --featured-foreground: oklch(0.99 0 0);
+  --featured-soft: oklch(0.97 0.018 220);
 
   --gradient-hero: linear-gradient(90deg, oklch(0.28 0.058 250 / 0.82) 0%, oklch(0.32 0.07 220 / 0.5) 40%, oklch(0.52 0.093 195 / 0.18) 70%, transparent 100%);
   --shadow-card: 0 8px 28px -12px oklch(0.40 0.08 205 / 0.38);
@@ -94,8 +94,8 @@
 }
 
 @keyframes pulse-ring {
-  0%, 100% { box-shadow: 0 0 0 0 oklch(0.72 0.16 65 / 0.55), 0 0 0 4px oklch(0.72 0.16 65 / 0.35); }
-  50%      { box-shadow: 0 0 0 8px oklch(0.72 0.16 65 / 0.05), 0 0 0 14px oklch(0.72 0.16 65 / 0); }
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.60 0.13 220 / 0.45), 0 0 0 4px oklch(0.60 0.13 220 / 0.28); }
+  50%      { box-shadow: 0 0 0 8px oklch(0.60 0.13 220 / 0.05), 0 0 0 14px oklch(0.60 0.13 220 / 0); }
 }
 .animate-pulse-ring { animation: pulse-ring 1.6s ease-in-out infinite; }
 
