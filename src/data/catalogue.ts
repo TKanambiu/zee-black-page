@@ -31,72 +31,126 @@ const IMG: Record<string, string> = {
   "imaging-radiology": "/cat-imaging.jpg",
 };
 
-import conc10 from "@/assets/products/10L_Bedside_Oxygen_Concentrator.png.asset.json";
-import spirometer from "@/assets/products/3_Ball_Incentive_Spirometer.png.asset.json";
-import conc5 from "@/assets/products/5L_Portable_Oxygen_Concentrator.png.asset.json";
-import conc7 from "@/assets/products/7L_Portable_Oxygen_Concentrator.png.asset.json";
-import ambuBag from "@/assets/products/Ambu_Bag.png.asset.json";
-import humidifier from "@/assets/products/Humidifier_Bottle.png.asset.json";
-import nebulizer from "@/assets/products/Nebulizer_Compressor.png.asset.json";
-import oxygenMask from "@/assets/products/Oxygen_Mask.png.asset.json";
-import oxygenRegulator from "@/assets/products/Oxygen_Regulator.png.asset.json";
-import fetalDoppler from "@/assets/products/Fetal_Doppler.png.asset.json";
-import babyIncubator from "@/assets/products/Baby_Incubator.png.asset.json";
-import babyWarmer from "@/assets/products/Baby_Warmer_with_Phototherapy.png.asset.json";
-import babyScale from "@/assets/products/Digital_Baby_Scale.png.asset.json";
-import foggingMachine from "@/assets/products/Fogging_Machine.png.asset.json";
-import bodyBag from "@/assets/products/White_Body_Bag_220x90.png.asset.json";
-import diathermy from "@/assets/products/Diathermy_Machine_400W.png.asset.json";
-import firstAidBox from "@/assets/products/First_Aid_Box.png.asset.json";
-import spillKit from "@/assets/products/Multi_use_Biohazard_Spill_Kit.png.asset.json";
-import wardScreen4 from "@/assets/products/4_Fold_Ward_Screen.png.asset.json";
-import wardScreen3 from "@/assets/products/3_Fold_Ward_Screen.png.asset.json";
-import bedsideCabinet from "@/assets/products/Bedside_Cabinet.png.asset.json";
-import crashCart from "@/assets/products/Emergency_Trolley_Crash_Cart.png.asset.json";
-import examLamp from "@/assets/products/LED_Adjustable_Examination_Lamp.png.asset.json";
-import medicineTrolley from "@/assets/products/Medicine_Trolley.png.asset.json";
-import medicineTrolley3 from "@/assets/products/3_Shelf_Medicine_Trolley.png.asset.json";
-import rippleMattress from "@/assets/products/Ripple_Mattress.png.asset.json";
-import sanitaryBin from "@/assets/products/Sanitary_Bin.png.asset.json";
-import hospitalBed2Crank from "@/assets/products/2_Crank_ABS_Hospital_Bed.png.asset.json";
+/** Product photos live in /public — matched to products by normalised name. */
+const PRODUCT_FILES: string[] = [
+  "10L_Bedside_Oxygen_Concentrator.png",
+  "2_Crank_ABS_Hospital_Bed.png",
+  "3M_N95_1860.png",
+  "3M_N95_8210.png",
+  "3_Ball_Incentive_Spirometer.png",
+  "3_Fold_Ward_Screen.png",
+  "3_Ply_Surgical_Face_Masks_Box_of_50.png",
+  "3_Shelf_Medicine_Trolley.png",
+  "4_Fold_Ward_Screen.png",
+  "5L_Portable_Oxygen_Concentrator.png",
+  "7L_Portable_Oxygen_Concentrator.png",
+  "Adult_Diapers.png",
+  "Ambu_Bag.png",
+  "Baby_Finger_Oximeter.png",
+  "Baby_Incubator.png",
+  "Baby_Warmer_with_Phototherapy.png",
+  "Beard_Cover_Pack_of_100.png",
+  "Bedside_Cabinet.png",
+  "Cordless_Tunnel_BP_Machine.png",
+  "Coverall_with_Shoe_Cover.png",
+  "DP_20_Mindray_Ultrasound.png",
+  "Diagnostic_Kit.png",
+  "Diathermy_Machine_400W.png",
+  "Digital_Baby_Scale.png",
+  "Digital_Height_Weight_Scale.png",
+  "Digital_Thermometer.png",
+  "Disposable_Apron.png",
+  "Electronic_Lab_Centrifuge_4000RPM.png",
+  "Emergency_Trolley_Crash_Cart.png",
+  "Extra_Large_BP_Cuff.png",
+  "Face_Shield.png",
+  "Fetal_Doppler.png",
+  "First_Aid_Box.png",
+  "Fogging_Machine.png",
+  "Freestyle_Libre_2_CGM.png",
+  "Fridge_Thermometer.png",
+  "Gauze_Roll_1500gms.png",
+  "Generic_BP_Machine.png",
+  "Gypsona_POP_4in.png",
+  "Gypsona_POP_6in.png",
+  "Gypsona_POP_8in.png",
+  "Hairnet_Head_Cap.png",
+  "Handheld_Oximeter.png",
+  "Hematology_Analyzer_DH31_with_Reagents.png",
+  "Hemocue_301_Machine.png",
+  "Hemocue_Microcuvettes.png",
+  "Humidifier_Bottle.png",
+  "Infrared_Thermometer.png",
+  "KN95_Mask_With_Valve.png",
+  "KN95_Mask_Without_Valve.png",
+  "LED_Adjustable_Examination_Lamp.png",
+  "Lab_Incubator.png",
+  "Latex_Powder_Free_Gloves.png",
+  "Latex_Powdered_Gloves.png",
+  "MUAC_Tape.png",
+  "Medical_Crocs_Clogs.png",
+  "Medical_Gumboots.png",
+  "Medicine_Trolley.png",
+  "Microscope_X701.png",
+  "Multi_use_Biohazard_Spill_Kit.png",
+  "Nebulizer_Compressor.png",
+  "Nitrile_Gloves.png",
+  "Nurse_Watch.png",
+  "Olympus_Microscope_CX23.png",
+  "Omnipaque_Contrast_Medium.png",
+  "Omron_M1_BP_Machine.png",
+  "Omron_M2_BP_Machine.png",
+  "On_Call_Glucometer.png",
+  "On_Call_Strips.png",
+  "Orthopedic_Padding_6in.png",
+  "Orthopedic_Padding_8in.png",
+  "Oxygen_Cylinder_1.36m3.png",
+  "Oxygen_Cylinder_3.4m3.png",
+  "Oxygen_Cylinder_7.0m3.png",
+  "Oxygen_Cylinder_8.5m3.png",
+  "Oxygen_Mask.png",
+  "Oxygen_Regulator.png",
+  "Pill_Organizer.png",
+  "Plaster_Cutter.png",
+  "Ripple_Mattress.png",
+  "Safety_Boots.png",
+  "Safety_Goggles.png",
+  "Sanitary_Bin.png",
+  "Sibionic_Continuous_Glucose_Monitor.png",
+  "Single_X_Ray_Viewer.png",
+  "Sterile_Gloves.png",
+  "Stool_Container.png",
+  "Temperature_Hygrometer.png",
+  "Tourniquet.png",
+  "UPP_110HG_X_Ray_Thermal_Paper.png",
+  "Ultrasound_Gel.png",
+  "VINNO_A3_Color_Doppler_Ultrasound.png",
+  "Vacutainer_Tubes_Red_Yellow_Purple.png",
+  "Vein_Finder.png",
+  "White_Body_Bag_220x90.png",
+  "Yuwell_Rechargeable_BP_Machine.png",
+  "pH_Meter_Pen_Type.png",
+];
 
-/** Product photos keyed by exact product name */
-const PRODUCT_IMG: Record<string, string> = {
-  "10L Bedside Oxygen Concentrator": conc10.url,
-  "3 Ball Incentive Spirometer": spirometer.url,
-  "5L Portable Oxygen Concentrator": conc5.url,
-  "7L Portable Oxygen Concentrator": conc7.url,
-  "Ambu Bag": ambuBag.url,
-  "Humidifier Bottle": humidifier.url,
-  "Nebulizer Compressor": nebulizer.url,
-  "Oxygen Mask": oxygenMask.url,
-  "Oxygen Regulator": oxygenRegulator.url,
-  "Fetal Doppler": fetalDoppler.url,
-  "Baby Incubator": babyIncubator.url,
-  "Baby Warmer with Phototherapy": babyWarmer.url,
-  "Digital Baby Scale": babyScale.url,
-  "Fogging Machine": foggingMachine.url,
-  "White Body Bag 220x90": bodyBag.url,
-  "Diathermy Machine 400W": diathermy.url,
-  "First Aid Box": firstAidBox.url,
-  "Multi-use Biohazard Spill Kit": spillKit.url,
-  "4 Fold Ward Screen": wardScreen4.url,
-  "3 Fold Ward Screen": wardScreen3.url,
-  "Bedside Cabinet": bedsideCabinet.url,
-  "Emergency Trolley / Crash Cart": crashCart.url,
-  "LED Adjustable Examination Lamp": examLamp.url,
-  "Medicine Trolley": medicineTrolley.url,
-  "3 Shelf Medicine Trolley": medicineTrolley3.url,
-  "Ripple Mattress": rippleMattress.url,
-  "Sanitary Bin": sanitaryBin.url,
-  "2 Crank ABS Hospital Bed": hospitalBed2Crank.url,
-};
+const normKey = (s: string) =>
+  s
+    .replace(/\u00B3/g, "3")
+    .replace(/"/g, "in")
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
+
+const PRODUCT_IMG: Record<string, string> = Object.fromEntries(
+  PRODUCT_FILES.map((f) => [normKey(f.replace(/\.png$/, "")), `/${f}`]),
+);
+
+const productImage = (name: string) => PRODUCT_IMG[normKey(name)];
+
 
 const p = (name: string, reseller: number, price: number): Product => ({
   name,
   reseller,
   price,
-  image: PRODUCT_IMG[name],
+  image: productImage(name),
 });
 
 const RAW_CATEGORIES: Omit<Category, "image">[] = [
