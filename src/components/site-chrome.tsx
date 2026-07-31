@@ -92,7 +92,7 @@ export function SiteHeader() {
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search for products"
+                placeholder={selectedCat ? `Search in ${selectedCat.name}` : "Search for products"}
                 className="min-w-0 flex-1 bg-transparent px-4 py-2.5 text-sm font-medium text-foreground outline-none placeholder:text-muted-foreground"
               />
               <div ref={catRef} className="relative border-l border-border">
@@ -111,9 +111,8 @@ export function SiteHeader() {
                       onClick={() => {
                         setSelectedCat(null);
                         setCatOpen(false);
-                        navigate({ to: "/products", search: query ? { q: query } : {} });
                       }}
-                      className="block w-full border-b border-border px-4 py-2.5 text-left text-sm text-muted-foreground hover:bg-muted"
+                      className={`block w-full border-b border-border px-4 py-2.5 text-left text-sm hover:bg-muted ${selectedCat ? "text-muted-foreground" : "font-semibold text-brand"}`}
                     >
                       All Categories
                     </button>
@@ -124,9 +123,8 @@ export function SiteHeader() {
                         onClick={() => {
                           setSelectedCat({ slug: c.slug, name: c.name });
                           setCatOpen(false);
-                          navigate({ to: "/products/$slug", params: { slug: c.slug }, search: query ? { q: query } : {} });
                         }}
-                        className="block w-full border-b border-border px-4 py-2.5 text-left text-sm hover:bg-muted hover:text-brand"
+                        className={`block w-full border-b border-border px-4 py-2.5 text-left text-sm hover:bg-muted hover:text-brand ${selectedCat?.slug === c.slug ? "bg-muted font-semibold text-brand" : ""}`}
                       >
                         {c.name}
                       </button>
@@ -189,10 +187,13 @@ export function SiteHeader() {
           ))}
           <Link
             to="/featured-products"
-            className="ml-2 flex items-center gap-2 rounded-md border border-featured/60 bg-featured px-4 py-2 text-sm font-semibold tracking-wide text-featured-foreground shadow-sm transition hover:bg-featured/90"
-            activeProps={{ className: "ml-2 flex items-center gap-2 rounded-md border border-white/40 bg-featured px-4 py-2 text-sm font-semibold tracking-wide text-featured-foreground shadow-sm" }}
+            className="ml-2 flex items-center gap-2 rounded-full bg-featured px-4 py-2 text-sm font-bold text-featured-foreground shadow-md transition hover:brightness-105"
+            activeProps={{ className: "ml-2 flex items-center gap-2 rounded-full bg-featured px-4 py-2 text-sm font-bold text-featured-foreground shadow-md ring-2 ring-white/70" }}
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-white/90" />
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-80" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+            </span>
             Featured Products
           </Link>
         </div>

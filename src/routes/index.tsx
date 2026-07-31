@@ -74,13 +74,6 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Zentramed Health | Medical Equipment Supplier in Nairobi" },
       { property: "og:description", content: "Quality medical supplies, hospital equipment and healthcare solutions across Africa." },
     ],
-    links: [
-      { rel: "preload", as: "image", href: "/hero1.webp", fetchpriority: "high" },
-      { rel: "preload", as: "image", href: "/avatars/woman-1.webp" },
-      { rel: "preload", as: "image", href: "/avatars/man-1.webp" },
-      { rel: "preload", as: "image", href: "/avatars/woman-2.webp" },
-      { rel: "preload", as: "image", href: "/avatars/man-2.webp" },
-    ],
   }),
   component: HomePage,
 });
@@ -104,14 +97,7 @@ function HomePage() {
         >
           {SLIDES.map((s, idx) => (
             <div key={idx} className="relative h-full shrink-0 bg-brand" style={{ width: `${100 / SLIDES.length}%` }}>
-              <img
-                src={s.img}
-                alt=""
-                loading={idx === 0 ? "eager" : "lazy"}
-                decoding="async"
-                fetchPriority={idx === 0 ? "high" : "low"}
-                className="absolute inset-0 h-full w-full object-contain md:object-cover object-center"
-              />
+              <img src={s.img} alt="" className="absolute inset-0 h-full w-full object-contain md:object-cover object-center" />
               <div className="pointer-events-none absolute inset-y-0 left-0 w-full md:w-2/3" style={{ background: "var(--gradient-hero)" }} />
               <div className="absolute inset-0 mx-auto flex h-full max-w-7xl items-center px-4">
                 <div className="max-w-2xl text-white">
@@ -336,28 +322,28 @@ const TESTIMONIALS = [
       "Zentramed has been our go-to partner for theatre consumables for over three years. Their response time and product quality are simply unmatched in the region.",
     name: "Dr. Aisha Wanjiru",
     role: "Medical Director, Nairobi Surgical Centre",
-    avatar: "/avatars/woman-1.webp",
+    initials: "AW",
   },
   {
     quote:
       "We equipped a 60-bed county hospital with Zentramed — from beds to imaging. Installation was seamless and their after-sales support is world-class.",
     name: "Eng. Peter Kimani",
     role: "Biomedical Lead, County Health Services",
-    avatar: "/avatars/man-1.webp",
+    initials: "PK",
   },
   {
     quote:
       "Reliable, transparent and fast. Zentramed supplied a full humanitarian PPE order for our field mission in under a week. A truly professional team.",
     name: "Sarah Odhiambo",
     role: "Logistics Coordinator, International NGO",
-    avatar: "/avatars/woman-2.webp",
+    initials: "SO",
   },
   {
     quote:
       "Their lab team helped us specify, install and train our staff on new hematology analyzers. The precision and follow-through is exceptional.",
     name: "Dr. Michael Otieno",
     role: "Head of Laboratory, Regional Referral Hospital",
-    avatar: "/avatars/man-2.webp",
+    initials: "MO",
   },
 ];
 
@@ -393,13 +379,9 @@ function TestimonialsSection() {
                 <div className="flex items-center gap-3 border-b border-dashed border-border pb-3">
                   <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-brand to-topbar p-0.5 ring-2 ring-accent/40 transition group-hover:scale-105">
                     <img
-                      src={t.avatar}
+                      src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(t.name)}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&radius=50`}
                       alt={t.name}
-                      width={192}
-                      height={192}
-                      loading="eager"
-                      decoding="async"
-                      fetchPriority="high"
+                      loading="lazy"
                       className="h-full w-full rounded-full bg-background object-cover transition duration-500 hover:rotate-6"
                     />
                     <span className="absolute -bottom-0.5 -right-0.5 grid h-4 w-4 place-items-center rounded-full bg-[#25D366] ring-2 ring-background">
