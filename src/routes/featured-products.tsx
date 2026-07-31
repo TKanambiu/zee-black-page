@@ -175,23 +175,44 @@ function FeaturedProductsPage() {
             <div>
               <Badge>Molecular Diagnostics</Badge>
               <h2 className="mt-4 font-display text-3xl font-bold text-brand md:text-4xl">
-                VQ200 Digital PCR / qPCR System
+                VQ-200 Real-Time PCR System
               </h2>
+              <p className="mt-2 text-lg font-semibold text-foreground">
+                96-well, 4-channel qPCR · Yuanzan Life Science
+              </p>
               <p className="mt-4 text-muted-foreground">
-                A compact, fully integrated quantitative PCR platform for laboratories running infectious
-                disease, oncology and molecular screening workloads. Absolute quantification without
-                standard curves, with a walk-away workflow that frees up bench time.
+                An open-platform, 96-well real-time PCR system for laboratories running infectious
+                disease, oncology and molecular screening workloads. Unlike most qPCR systems, the
+                VQ-200 doesn't lock you into proprietary consumables, a bundled computer or a closed
+                analysis algorithm — performance that competes with the best, at a price that makes sense.
               </p>
               <ul className="mt-6 space-y-3">
-                <Tick>Droplet-based absolute quantification — no standard curve required.</Tick>
-                <Tick>High sensitivity for low-copy targets and rare-variant detection.</Tick>
-                <Tick>Multi-channel fluorescence detection for multiplex assays.</Tick>
-                <Tick>Integrated droplet generation, amplification and reading in one workflow.</Tick>
-                <Tick>Intuitive analysis software with exportable, audit-ready reports.</Tick>
+                <Tick><strong>Consumable freedom</strong> — works with any brand of 0.1/0.2 mL tubes, 8-strip tubes and 96-well plates. No proprietary plastics.</Tick>
+                <Tick><strong>No bundled computer</strong> — built-in 9" touch screen and embedded computer; USB/RS485 for custom integration.</Tick>
+                <Tick><strong>Open analysis algorithm</strong> — acquisition parameters customisable per reagent kit, custom reports and LIMS integration.</Tick>
+                <Tick><strong>Automation ready</strong> — motorised lid, auto-loading chamber, ready for robotic and dark-lab environments.</Tick>
+                <Tick>Single-copy sensitivity, dynamic range 1–10<sup>10</sup> copies, linearity r ≥ 0.99, Ct CV ≤ 1%.</Tick>
                 <Tick>Installation, operator training and ongoing service support included.</Tick>
               </ul>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {[
+                  ["Format", "96-well, 4-channel real-time PCR"],
+                  ["Models", "VQ-200A standalone · VQ-200B external PC / OEM"],
+                  ["Thermal accuracy", "±0.1 °C · uniformity ±0.15 °C"],
+                  ["Ramp rate", "Heating ≥ 7 °C/s · cooling ≥ 5 °C/s"],
+                  ["Temperature range", "4.0 – 99.0 °C"],
+                  ["Optics", "White LED 450–750 nm · CMOS detector"],
+                  ["Channels", "FAM/SYBR · HEX/JOE/VIC/TET · CY5/Texas Red · ROX"],
+                  ["Reaction volume", "5 – 100 µL · qualitative, absolute/RQ, melt curve"],
+                ].map(([k, v]) => (
+                  <div key={k} className="rounded-lg border border-border bg-background p-3">
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">{k}</div>
+                    <div className="mt-1 text-sm font-medium text-foreground">{v}</div>
+                  </div>
+                ))}
+              </div>
               <div className="mt-6 flex flex-wrap items-center gap-3">
-                <Enquire product="VQ200 qPCR System" />
+                <Enquire product="VQ-200 Real-Time PCR System" />
                 <a
                   href="/featured/qPCR-VQ200-EN.pdf"
                   target="_blank"
@@ -203,11 +224,13 @@ function FeaturedProductsPage() {
               </div>
               <p className="mt-3 text-sm font-semibold text-muted-foreground">Price on request — configuration dependent.</p>
             </div>
-            <SafeImg
-              src="/featured/vq200-qpcr.jpg"
-              alt="VQ200 qPCR digital PCR system"
-              className="h-80 w-full rounded-xl bg-white object-contain p-6 shadow-[var(--shadow-card)]"
-            />
+            <div className="lg:sticky lg:top-28">
+              <SafeImg
+                src="/featured/vq200-qpcr.jpg"
+                alt="VQ-200 96-well real-time PCR system on a laboratory bench"
+                className="w-full rounded-xl bg-white object-cover shadow-[var(--shadow-card)]"
+              />
+            </div>
           </div>
         </div>
       </section>
