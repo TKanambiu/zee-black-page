@@ -322,28 +322,28 @@ const TESTIMONIALS = [
       "Zentramed has been our go-to partner for theatre consumables for over three years. Their response time and product quality are simply unmatched in the region.",
     name: "Dr. Aisha Wanjiru",
     role: "Medical Director, Nairobi Surgical Centre",
-    initials: "AW",
+    avatar: "/avatars/woman-1.webp",
   },
   {
     quote:
       "We equipped a 60-bed county hospital with Zentramed — from beds to imaging. Installation was seamless and their after-sales support is world-class.",
     name: "Eng. Peter Kimani",
     role: "Biomedical Lead, County Health Services",
-    initials: "PK",
+    avatar: "/avatars/man-1.webp",
   },
   {
     quote:
       "Reliable, transparent and fast. Zentramed supplied a full humanitarian PPE order for our field mission in under a week. A truly professional team.",
     name: "Sarah Odhiambo",
     role: "Logistics Coordinator, International NGO",
-    initials: "SO",
+    avatar: "/avatars/woman-2.webp",
   },
   {
     quote:
       "Their lab team helped us specify, install and train our staff on new hematology analyzers. The precision and follow-through is exceptional.",
     name: "Dr. Michael Otieno",
     role: "Head of Laboratory, Regional Referral Hospital",
-    initials: "MO",
+    avatar: "/avatars/man-2.webp",
   },
 ];
 
