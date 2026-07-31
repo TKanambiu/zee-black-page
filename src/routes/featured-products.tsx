@@ -114,18 +114,11 @@ function FeaturedProductsPage() {
             </div>
 
             <div className="grid gap-6 lg:col-span-7 lg:grid-cols-2">
-              <div className="col-span-full grid gap-4 sm:grid-cols-2">
-                <SafeImg
-                  src="/hero4.webp"
-                  alt="WT-T6000S Online HDF hemodialysis machine, front view"
-                  className="h-64 w-full rounded-xl bg-white object-contain p-4 shadow-[var(--shadow-card)]"
-                />
-                <SafeImg
-                  src="/hero1.webp"
-                  alt="Hemodialysis machine touchscreen console detail"
-                  className="h-64 w-full rounded-xl bg-white object-contain p-4 shadow-[var(--shadow-card)]"
-                />
-              </div>
+              <SafeImg
+                src="/hero4.webp"
+                alt="WT-T6000S Online HDF hemodialysis machine"
+                className="col-span-full h-72 w-full rounded-xl bg-white object-contain p-4 shadow-[var(--shadow-card)]"
+              />
               <div className="rounded-xl bg-background p-6 shadow-[var(--shadow-card)]">
                 <h3 className="font-display text-lg font-semibold text-brand">Program Benefits</h3>
                 <ul className="mt-4 space-y-3">
