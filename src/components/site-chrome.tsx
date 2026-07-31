@@ -189,13 +189,10 @@ export function SiteHeader() {
           ))}
           <Link
             to="/featured-products"
-            className="ml-2 flex items-center gap-2 rounded-full bg-featured px-4 py-2 text-sm font-bold text-featured-foreground shadow-md transition hover:brightness-105"
-            activeProps={{ className: "ml-2 flex items-center gap-2 rounded-full bg-featured px-4 py-2 text-sm font-bold text-featured-foreground shadow-md ring-2 ring-white/70" }}
+            className="ml-2 flex items-center gap-2 rounded-md border border-featured/60 bg-featured px-4 py-2 text-sm font-semibold tracking-wide text-featured-foreground shadow-sm transition hover:bg-featured/90"
+            activeProps={{ className: "ml-2 flex items-center gap-2 rounded-md border border-white/40 bg-featured px-4 py-2 text-sm font-semibold tracking-wide text-featured-foreground shadow-sm" }}
           >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-80" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
-            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-white/90" />
             Featured Products
           </Link>
         </div>
