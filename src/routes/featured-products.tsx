@@ -114,11 +114,18 @@ function FeaturedProductsPage() {
             </div>
 
             <div className="grid gap-6 lg:col-span-7 lg:grid-cols-2">
-              <SafeImg
-                src="/featured/dialysis-wt-t6000s.jpg"
-                alt="WT-T6000S Online HDF hemodialysis machine"
-                className="col-span-full h-64 w-full rounded-xl bg-white object-contain p-4 shadow-[var(--shadow-card)]"
-              />
+              <div className="col-span-full grid gap-4 sm:grid-cols-2">
+                <SafeImg
+                  src="/hero4.webp"
+                  alt="WT-T6000S Online HDF hemodialysis machine, front view"
+                  className="h-64 w-full rounded-xl bg-white object-contain p-4 shadow-[var(--shadow-card)]"
+                />
+                <SafeImg
+                  src="/hero1.webp"
+                  alt="Hemodialysis machine touchscreen console detail"
+                  className="h-64 w-full rounded-xl bg-white object-contain p-4 shadow-[var(--shadow-card)]"
+                />
+              </div>
               <div className="rounded-xl bg-background p-6 shadow-[var(--shadow-card)]">
                 <h3 className="font-display text-lg font-semibold text-brand">Program Benefits</h3>
                 <ul className="mt-4 space-y-3">
@@ -240,7 +247,7 @@ function FeaturedProductsPage() {
         <div className="mx-auto max-w-7xl px-4 py-16">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <img
-              src="/featured/hiv-kit.jpg"
+              src="/hero3.webp"
               alt="KHB Diagnostic Kit for HIV (1+2) Antibody colloidal gold rapid test with cassettes, diluent and lancet"
               loading="lazy"
               className="order-2 h-80 w-full rounded-xl bg-white object-contain p-6 shadow-[var(--shadow-card)] lg:order-1"
