@@ -71,7 +71,7 @@ function FeaturedProductsPage() {
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-topbar text-topbar-foreground">
-        <div className="absolute inset-0 opacity-25 [background:radial-gradient(circle_at_20%_20%,var(--featured),transparent_55%)]" />
+        <div className="animate-soft-glow pointer-events-none absolute inset-0 [background:radial-gradient(circle_at_25%_30%,oklch(0.55_0.06_60),transparent_60%)]" />
         <div className="relative mx-auto max-w-7xl px-4 py-16 md:py-20">
           <Badge>Featured</Badge>
           <h1 className="mt-4 font-display text-3xl font-bold md:text-5xl">Featured Products & Programmes</h1>
