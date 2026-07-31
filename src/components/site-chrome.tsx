@@ -111,9 +111,8 @@ export function SiteHeader() {
                       onClick={() => {
                         setSelectedCat(null);
                         setCatOpen(false);
-                        navigate({ to: "/products", search: query ? { q: query } : {} });
                       }}
-                      className="block w-full border-b border-border px-4 py-2.5 text-left text-sm text-muted-foreground hover:bg-muted"
+                      className={`block w-full border-b border-border px-4 py-2.5 text-left text-sm hover:bg-muted ${selectedCat ? "text-muted-foreground" : "font-semibold text-brand"}`}
                     >
                       All Categories
                     </button>
@@ -124,9 +123,8 @@ export function SiteHeader() {
                         onClick={() => {
                           setSelectedCat({ slug: c.slug, name: c.name });
                           setCatOpen(false);
-                          navigate({ to: "/products/$slug", params: { slug: c.slug }, search: query ? { q: query } : {} });
                         }}
-                        className="block w-full border-b border-border px-4 py-2.5 text-left text-sm hover:bg-muted hover:text-brand"
+                        className={`block w-full border-b border-border px-4 py-2.5 text-left text-sm hover:bg-muted hover:text-brand ${selectedCat?.slug === c.slug ? "bg-muted font-semibold text-brand" : ""}`}
                       >
                         {c.name}
                       </button>
