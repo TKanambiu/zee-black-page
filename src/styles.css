@@ -47,31 +47,31 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.2 0.02 200);
 
-  /* Brand: Empathy Healthcare navy + red accent */
-  --brand: oklch(0.32 0.14 265);
+  /* Brand: ZentraMed teal + deep navy */
+  --brand: oklch(0.52 0.093 195);
   --brand-foreground: oklch(0.99 0 0);
-  --brand-accent: oklch(0.60 0.22 25);
+  --brand-accent: oklch(0.30 0.062 250);
   --brand-accent-foreground: oklch(0.99 0 0);
 
-  --primary: oklch(0.32 0.14 265);
+  --primary: oklch(0.52 0.093 195);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.96 0.02 265);
-  --secondary-foreground: oklch(0.2 0.03 265);
-  --muted: oklch(0.97 0.01 265);
-  --muted-foreground: oklch(0.45 0.03 265);
-  --accent: oklch(0.60 0.22 25);
+  --secondary: oklch(0.96 0.018 195);
+  --secondary-foreground: oklch(0.28 0.05 220);
+  --muted: oklch(0.97 0.012 195);
+  --muted-foreground: oklch(0.47 0.025 215);
+  --accent: oklch(0.30 0.062 250);
   --accent-foreground: oklch(0.99 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.9 0.015 265);
-  --input: oklch(0.9 0.015 265);
-  --ring: oklch(0.32 0.14 265);
+  --border: oklch(0.91 0.015 200);
+  --input: oklch(0.91 0.015 200);
+  --ring: oklch(0.52 0.093 195);
 
-  --topbar: oklch(0.24 0.12 265);
+  --topbar: oklch(0.28 0.058 250);
   --topbar-foreground: oklch(0.985 0 0);
 
-  --gradient-hero: linear-gradient(90deg, oklch(0.24 0.12 265 / 0.78) 0%, oklch(0.24 0.12 265 / 0.48) 40%, oklch(0.24 0.12 265 / 0.15) 70%, transparent 100%);
-  --shadow-card: 0 8px 28px -12px oklch(0.32 0.14 265 / 0.35);
+  --gradient-hero: linear-gradient(90deg, oklch(0.28 0.058 250 / 0.82) 0%, oklch(0.32 0.07 220 / 0.5) 40%, oklch(0.52 0.093 195 / 0.18) 70%, transparent 100%);
+  --shadow-card: 0 8px 28px -12px oklch(0.40 0.08 205 / 0.38);
 }
 
 @layer base {
