@@ -240,27 +240,34 @@ function FeaturedProductsPage() {
         <div className="mx-auto max-w-7xl px-4 py-16">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <img
-              src="/Diagnostic_Kit.png"
-              alt="Diagnostic Kit for HIV 1+2 antibody rapid test"
+              src="/featured/hiv-kit.jpg"
+              alt="KHB Diagnostic Kit for HIV (1+2) Antibody colloidal gold rapid test with cassettes, diluent and lancet"
               loading="lazy"
               className="order-2 h-80 w-full rounded-xl bg-white object-contain p-6 shadow-[var(--shadow-card)] lg:order-1"
             />
             <div className="order-1 lg:order-2">
               <Badge>Rapid Testing</Badge>
               <h2 className="mt-4 font-display text-3xl font-bold text-brand md:text-4xl">
-                Diagnostic Kit for HIV (1+2) Antibody — Colloidal Gold
+                KHB Diagnostic Kit for HIV (1+2) Antibody — Colloidal Gold V2
               </h2>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {["WHO PQ", "CE IVDR", "POCT", "Kehua Biotech"].map((t) => (
+                  <span key={t} className="rounded-full bg-brand/10 px-3 py-1 text-xs font-bold text-brand">{t}</span>
+                ))}
+              </div>
               <p className="mt-4 text-muted-foreground">
                 A rapid, single-use immunochromatographic test for the qualitative detection of antibodies
-                to HIV-1 and HIV-2 in human serum, plasma or whole blood. Designed for clinics, outreach
-                screening programmes and laboratory settings where results are needed on the spot.
+                to HIV-1 and HIV-2 in whole blood, serum or plasma. Built on a superior mammalian-expressed
+                gp160 antigen for high sensitivity and very low cross-reactivity — ideal for clinics,
+                outreach screening programmes and laboratories that need results on the spot.
               </p>
               <ul className="mt-6 space-y-3">
-                <Tick>Results in roughly 15 minutes — no instrumentation required.</Tick>
-                <Tick>Works with serum, plasma or whole blood samples.</Tick>
-                <Tick>Colloidal gold immunochromatography with a built-in procedural control line.</Tick>
-                <Tick>Room-temperature storage; long shelf life for field and outreach programmes.</Tick>
-                <Tick>Individually foil-pouched with desiccant, buffer and disposable dropper.</Tick>
+                <Tick>Small sample size — only 40 µL of whole blood, serum or plasma.</Tick>
+                <Tick>Result read in 15–25 minutes; no equipment required.</Tick>
+                <Tick>Sensitivity 100% (95% CI 99.2–100%) · Specificity 100% (95% CI 99.4–100%) on 1,117 reference samples.</Tick>
+                <Tick>Zero indeterminate, false-negative and false-positive results in reference testing.</Tick>
+                <Tick>Stable storage up to 24 months at 4–30 °C — suited to field conditions.</Tick>
+                <Tick>Kits supplied with test cassettes, sample diluent, safety lancets, alcohol pads and transfer pipettes (1, 25 and 50-test packs).</Tick>
                 <Tick>Suitable for NGO, humanitarian and mass-screening deployments — bulk pricing available.</Tick>
               </ul>
               <div className="mt-6 rounded-xl border border-border bg-background p-4">
