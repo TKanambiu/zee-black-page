@@ -321,17 +321,22 @@ function FeaturedProductsPage() {
               <p className="mt-4 text-sm font-semibold text-muted-foreground">Price on request — configuration dependent.</p>
               <Enquire product="AST-1000 Ophthalmic Workstation" className="mt-6" />
             </div>
-            <div className="overflow-hidden rounded-xl bg-topbar shadow-[var(--shadow-card)]">
-              <video
-                src="/featured/ast-1000.mp4"
-                controls
-                playsInline
-                muted
-                loop
-                preload="metadata"
-                poster="/featured/ast-1000-poster.jpg"
-                className="h-full max-h-[520px] w-full object-contain"
-              />
+            <div className="lg:sticky lg:top-28">
+              <div className="overflow-hidden rounded-xl bg-topbar p-2 shadow-[var(--shadow-card)]">
+                <video
+                  src="/featured/ast-1000.mp4"
+                  controls
+                  playsInline
+                  muted
+                  loop
+                  preload="metadata"
+                  poster="/featured/ast-1000-poster.jpg"
+                  className="mx-auto max-h-[640px] w-auto rounded-lg"
+                />
+              </div>
+              <p className="mt-3 text-center text-xs text-muted-foreground">
+                AST-1000 in use — electric table controls and touchscreen interface.
+              </p>
             </div>
           </div>
         </div>
