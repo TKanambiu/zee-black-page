@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { CATEGORIES, COMPANY } from "@/data/catalogue";
-import aboutImg from "@/assets/about.jpg";
 import { useEffect, useRef, useState } from "react";
 import { CategoryMarquee } from "@/components/category-marquee";
 import { WhatsAppButton } from "@/components/whatsapp-button";
@@ -169,7 +168,12 @@ function HomePage() {
           <div className="relative">
             <div className="absolute -left-4 -top-4 hidden h-full w-full rounded-2xl border-2 border-accent/40 md:block" />
             <div className="absolute -right-3 -bottom-3 hidden h-full w-full rounded-2xl bg-gradient-to-br from-brand/20 to-accent/20 md:block" />
-            <img src={aboutImg} alt="Healthcare professional with instruments" className="relative rounded-2xl shadow-2xl ring-1 ring-border" loading="lazy" />
+            <img
+              src="/medical-grade-storage-facility.webp"
+              alt="Zentramed medical-grade storage facility"
+              className="relative aspect-[4/3] w-full rounded-2xl object-cover shadow-2xl ring-1 ring-border"
+              loading="lazy"
+            />
             <div className="absolute -bottom-8 -right-6 hidden rounded-xl bg-background p-5 shadow-2xl ring-1 ring-border md:block">
               <div>
                 <div className="font-display text-2xl font-bold text-brand">15+ Years</div>

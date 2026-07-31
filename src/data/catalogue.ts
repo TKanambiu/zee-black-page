@@ -130,6 +130,14 @@ const PRODUCT_FILES: string[] = [
   "White_Body_Bag_220x90.png",
   "Yuwell_Rechargeable_BP_Machine.png",
   "pH_Meter_Pen_Type.png",
+  "5ML DISPOSABLE SYRINGE.jpg",
+  "ABSORBETN GAUZE (750G).jpg",
+  "BLOOD GIVING SET.jpg",
+  "BLUE Nitrile-1 EXAMINATION.jpg",
+  "Cotton-WooL 400 G.png",
+  "KY-JELLY-.jpg",
+  "Surgical-Spirit-70-5L-front-view-1-scaled.jpg",
+  "iv-cannula-branula.png",
 ];
 
 const normKey = (s: string) =>
@@ -140,10 +148,19 @@ const normKey = (s: string) =>
     .replace(/[^a-z0-9]/g, "");
 
 const PRODUCT_IMG: Record<string, string> = Object.fromEntries(
-  PRODUCT_FILES.map((f) => [normKey(f.replace(/\.png$/, "")), `/${f}`]),
+  PRODUCT_FILES.map((f) => [normKey(f.replace(/\.(png|jpe?g|webp)$/i, "")), `/${f}`]),
 );
 
-const productImage = (name: string) => PRODUCT_IMG[normKey(name)];
+const PRODUCT_IMAGE_OVERRIDES: Record<string, string> = {
+  [normKey("Branula (Pink) IV Cannula")]: "/iv-cannula-branula.png",
+  [normKey("Surgical Spirit (5 Liters)")]: "/Surgical-Spirit-70-5L-front-view-1-scaled.jpg",
+  [normKey("Nitrile Examination Gloves")]: "/BLUE Nitrile-1 EXAMINATION.jpg",
+  [normKey("Absorbent Gauze (750 g)")]: "/ABSORBETN GAUZE (750G).jpg",
+  [normKey("KY Lubricating Jelly")]: "/KY-JELLY-.jpg",
+};
+
+const productImage = (name: string) =>
+  PRODUCT_IMAGE_OVERRIDES[normKey(name)] ?? PRODUCT_IMG[normKey(name)];
 
 
 const p = (name: string, reseller: number, price: number): Product => ({
