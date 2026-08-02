@@ -102,7 +102,7 @@ function HomePage() {
                 alt=""
                 loading="eager"
                 decoding="async"
-                fetchPriority={i === 0 ? "high" : "low"}
+                fetchPriority={idx === 0 ? "high" : "low"}
                 className="absolute inset-0 h-full w-full object-contain md:object-cover object-center"
               />
               <div className="pointer-events-none absolute inset-y-0 left-0 w-full md:w-2/3" style={{ background: "var(--gradient-hero)" }} />
