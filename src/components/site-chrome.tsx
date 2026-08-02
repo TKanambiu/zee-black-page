@@ -81,31 +81,37 @@ export function SiteHeader() {
 
       <div className="border-b border-border">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-1.5 md:gap-6 md:py-2">
-          <Link to="/" className="flex shrink-0 items-center">
-            <img src="/logo.png" alt="Zentramed Health — Advancing Healthcare and Humanitarian Solutions" className="h-16 w-auto md:h-20" />
+          <Link to="/" className="relative h-16 w-56 shrink-0 overflow-hidden sm:w-64 lg:w-72" aria-label="Zentramed Health home">
+            <img
+              src="/logo.png"
+              alt="Zentramed Health — Advancing Healthcare and Humanitarian Solutions"
+              className="h-full w-full object-cover object-[center_38%]"
+            />
           </Link>
           <form
             onSubmit={(e) => { e.preventDefault(); submitSearch(); }}
             className="hidden flex-1 md:block"
           >
-            <div className="flex items-stretch overflow-hidden rounded-md border-2 border-brand bg-background shadow-sm ring-4 ring-brand/10 transition focus-within:ring-brand/25">
+            <div className="relative flex items-stretch rounded-md border-2 border-brand bg-background shadow-sm ring-4 ring-brand/10 transition focus-within:ring-brand/25">
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={selectedCat ? `Search in ${selectedCat.name}` : "Search for products"}
-                className="min-w-0 flex-1 bg-transparent px-4 py-2.5 text-sm font-medium text-foreground outline-none placeholder:text-muted-foreground"
+                className="min-w-0 flex-1 rounded-l-sm bg-transparent px-4 py-2.5 text-sm font-medium text-foreground outline-none placeholder:text-muted-foreground"
               />
               <div ref={catRef} className="relative border-l border-border">
                 <button
                   type="button"
                   onClick={() => setCatOpen((o) => !o)}
+                  aria-expanded={catOpen}
+                  aria-haspopup="listbox"
                   className="flex h-full items-center gap-2 whitespace-nowrap px-4 text-sm font-semibold text-brand hover:bg-muted"
                 >
                   {selectedCat?.name ?? "Select Category"}
                   <ChevronDown className="h-4 w-4 text-muted-foreground" />
                 </button>
                 {catOpen && (
-                  <div className="absolute right-0 top-full z-50 mt-1 max-h-80 w-72 overflow-auto rounded-md border border-border bg-background shadow-xl">
+                  <div role="listbox" aria-label="Product categories" className="absolute right-0 top-full z-[60] mt-2 max-h-80 w-72 overflow-auto rounded-md border border-border bg-background text-foreground shadow-xl">
                     <button
                       type="button"
                       onClick={() => {
@@ -135,7 +141,7 @@ export function SiteHeader() {
               <button
                 type="submit"
                 aria-label="Search"
-                className="flex items-center justify-center bg-brand px-5 text-brand-foreground hover:bg-brand/90"
+                className="flex items-center justify-center rounded-r-sm bg-brand px-5 text-brand-foreground hover:bg-brand/90"
               >
                 <Search className="h-5 w-5" />
               </button>
