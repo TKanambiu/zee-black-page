@@ -83,7 +83,7 @@ export function SiteHeader() {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-1.5 md:gap-6 md:py-2">
           <Link to="/" className="flex h-16 shrink-0 items-center" aria-label="Zentramed Health home">
             <img
-              src="/logo.png"
+              src="/logo-wide.png"
               alt="Zentramed Health — Advancing Healthcare and Humanitarian Solutions"
               loading="eager"
               decoding="sync"
@@ -253,7 +253,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-12">
         <div className="md:col-span-4">
           <div className="flex w-full max-w-sm items-center justify-center rounded-xl bg-white px-6 py-4 shadow-lg ring-1 ring-white/20">
-            <img src="/logo.png" alt="Zentramed Health" loading="lazy" decoding="async" className="h-auto w-full max-h-24 object-contain" />
+            <img src="/logo-wide.png" alt="Zentramed Health" loading="lazy" decoding="async" className="h-auto w-full max-h-24 object-contain" />
           </div>
           <p className="mt-5 text-sm leading-relaxed text-topbar-foreground/75">
             Trusted supplier of medical supplies, equipment and healthcare solutions to hospitals,
