@@ -97,7 +97,14 @@ function HomePage() {
         >
           {SLIDES.map((s, idx) => (
             <div key={idx} className="relative h-full shrink-0 bg-brand" style={{ width: `${100 / SLIDES.length}%` }}>
-              <img src={s.img} alt="" className="absolute inset-0 h-full w-full object-contain md:object-cover object-center" />
+              <img
+                src={s.img}
+                alt=""
+                loading="eager"
+                decoding="async"
+                fetchPriority={i === 0 ? "high" : "low"}
+                className="absolute inset-0 h-full w-full object-contain md:object-cover object-center"
+              />
               <div className="pointer-events-none absolute inset-y-0 left-0 w-full md:w-2/3" style={{ background: "var(--gradient-hero)" }} />
               <div className="absolute inset-0 mx-auto flex h-full max-w-7xl items-center px-4">
                 <div className="max-w-2xl text-white">
