@@ -81,11 +81,14 @@ export function SiteHeader() {
 
       <div className="border-b border-border">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-1.5 md:gap-6 md:py-2">
-          <Link to="/" className="relative h-16 w-56 shrink-0 overflow-hidden sm:w-64 lg:w-72" aria-label="Zentramed Health home">
+          <Link to="/" className="flex h-16 shrink-0 items-center" aria-label="Zentramed Health home">
             <img
               src="/logo.png"
               alt="Zentramed Health — Advancing Healthcare and Humanitarian Solutions"
-              className="h-full w-full object-cover object-[center_38%]"
+              loading="eager"
+              decoding="sync"
+              fetchPriority="high"
+              className="h-full w-auto max-w-[15rem] object-contain sm:max-w-[18rem] lg:max-w-[22rem]"
             />
           </Link>
           <form
@@ -249,8 +252,8 @@ export function SiteFooter() {
 
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-12">
         <div className="md:col-span-4">
-          <div className="inline-flex items-center justify-center rounded-xl bg-white px-4 py-3 shadow-lg ring-1 ring-white/20">
-            <img src="/logo.png" alt="Zentramed Health" className="h-16 w-auto" />
+          <div className="flex w-full max-w-sm items-center justify-center rounded-xl bg-white px-6 py-4 shadow-lg ring-1 ring-white/20">
+            <img src="/logo.png" alt="Zentramed Health" loading="lazy" decoding="async" className="h-auto w-full max-h-24 object-contain" />
           </div>
           <p className="mt-5 text-sm leading-relaxed text-topbar-foreground/75">
             Trusted supplier of medical supplies, equipment and healthcare solutions to hospitals,
