@@ -252,8 +252,8 @@ export function SiteFooter() {
 
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-12">
         <div className="md:col-span-4">
-          <div className="flex w-full max-w-sm items-center justify-center rounded-xl bg-white px-6 py-4 shadow-lg ring-1 ring-white/20">
-            <img src="/logo-wide.png" alt="Zentramed Health" loading="lazy" decoding="async" className="h-auto w-full max-h-24 object-contain" />
+          <div className="flex w-full max-w-md items-center justify-center rounded-xl bg-white px-5 py-4 shadow-lg ring-1 ring-white/20">
+            <img src="/logo-wide.png" alt="Zentramed Health" loading="lazy" decoding="async" className="block h-auto w-full object-contain" />
           </div>
           <p className="mt-5 text-sm leading-relaxed text-topbar-foreground/75">
             Trusted supplier of medical supplies, equipment and healthcare solutions to hospitals,
