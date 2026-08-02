@@ -97,7 +97,14 @@ function HomePage() {
         >
           {SLIDES.map((s, idx) => (
             <div key={idx} className="relative h-full shrink-0 bg-brand" style={{ width: `${100 / SLIDES.length}%` }}>
-              <img src={s.img} alt="" className="absolute inset-0 h-full w-full object-contain md:object-cover object-center" />
+              <img
+                src={s.img}
+                alt=""
+                loading="eager"
+                decoding="async"
+                fetchPriority={idx === 0 ? "high" : "low"}
+                className="absolute inset-0 h-full w-full object-contain md:object-cover object-center"
+              />
               <div className="pointer-events-none absolute inset-y-0 left-0 w-full md:w-2/3" style={{ background: "var(--gradient-hero)" }} />
               <div className="absolute inset-0 mx-auto flex h-full max-w-7xl items-center px-4">
                 <div className="max-w-2xl text-white">
@@ -323,6 +330,7 @@ const TESTIMONIALS = [
     name: "Dr. Aisha Wanjiru",
     role: "Medical Director, Nairobi Surgical Centre",
     initials: "AW",
+    avatar: "/avatar-woman-1.webp",
   },
   {
     quote:
@@ -330,6 +338,7 @@ const TESTIMONIALS = [
     name: "Eng. Peter Kimani",
     role: "Biomedical Lead, County Health Services",
     initials: "PK",
+    avatar: "/avatar-man-1.webp",
   },
   {
     quote:
@@ -337,6 +346,7 @@ const TESTIMONIALS = [
     name: "Sarah Odhiambo",
     role: "Logistics Coordinator, International NGO",
     initials: "SO",
+    avatar: "/avatar-woman-2.webp",
   },
   {
     quote:
@@ -344,6 +354,7 @@ const TESTIMONIALS = [
     name: "Dr. Michael Otieno",
     role: "Head of Laboratory, Regional Referral Hospital",
     initials: "MO",
+    avatar: "/avatar-man-2.webp",
   },
 ];
 
@@ -379,10 +390,13 @@ function TestimonialsSection() {
                 <div className="flex items-center gap-3 border-b border-dashed border-border pb-3">
                   <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-brand to-topbar p-0.5 ring-2 ring-accent/40 transition group-hover:scale-105">
                     <img
-                      src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(t.name)}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&radius=50`}
+                      src={t.avatar}
                       alt={t.name}
-                      loading="lazy"
-                      className="h-full w-full rounded-full bg-background object-cover transition duration-500 hover:rotate-6"
+                      loading="eager"
+                      decoding="async"
+                      width={56}
+                      height={56}
+                      className="h-full w-full rounded-full bg-background object-cover object-top transition duration-500 hover:rotate-6"
                     />
                     <span className="absolute -bottom-0.5 -right-0.5 grid h-4 w-4 place-items-center rounded-full bg-[#25D366] ring-2 ring-background">
                       <span className="h-1.5 w-1.5 rounded-full bg-white" />
