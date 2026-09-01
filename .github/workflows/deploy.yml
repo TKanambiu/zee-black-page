@@ -21,13 +21,14 @@ jobs:
         bun install
         bun run build
 
-    # Explicit host connection layout for SFTP transmission
+    # Clean, robust file sync via appleboy scp engine
     - name: Sync built files via Secure SFTP
-      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      uses: appleboy/scp-action@v0.1.7
       with:
+        host: '51.91.29.218'
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server: '51.91.29.218'
         port: 1624
-        local_path: ./.output/public/
-        remote_path: public_html/
+        source: ".output/public/*"
+        target: "public_html/"
+        strip_components: 2 # Removes the '.output/public/' folder levels so files land directly inside public_html
