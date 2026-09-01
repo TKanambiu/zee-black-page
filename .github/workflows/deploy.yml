@@ -21,7 +21,7 @@ jobs:
         bun install
         bun run build
 
-    # Syncs your Lovable production output directory straight to cPanel
+    # Syncs your Lovable production output directory straight to cPanel via SFTP
     - name: Sync built files to cPanel via SFTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
