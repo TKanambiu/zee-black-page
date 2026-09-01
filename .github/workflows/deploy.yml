@@ -21,6 +21,11 @@ jobs:
         bun install
         bun run build
 
+    # Debug step to display the exact folders created by your project build
+    - name: List files in output directory
+      run: ls -R dist || ls -R build || echo "No directory found"
+
+    # Targets the base dist directory directly
     - name: Sync built files to cPanel via SFTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
@@ -28,5 +33,5 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         port: 1624
-        local-dir: ./dist/client/
+        local-dir: ./dist/
         server-dir: public_html/
