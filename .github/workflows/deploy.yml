@@ -21,13 +21,13 @@ jobs:
         bun install
         bun run build
 
-    # Syncs your production build files via secure SFTP using correct path tags
+    # Explicit host connection layout for SFTP transmission
     - name: Sync built files via Secure SFTP
       uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server: ${{ secrets.FTP_SERVER }}
+        server: '51.91.29.218'
         port: 1624
         local_path: ./.output/public/
         remote_path: public_html/
