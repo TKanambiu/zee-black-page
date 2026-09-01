@@ -21,14 +21,12 @@ jobs:
         bun install
         bun run build
 
-    # Clean, robust file sync via appleboy scp engine
-    - name: Sync built files via Secure SFTP
-      uses: appleboy/scp-action@v0.1.7
+    # Syncs your Lovable production output directory straight to cPanel via standard FTP
+    - name: Sync built files via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        host: '51.91.29.218'
+        server: '51.91.29.218'
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        port: 1624
-        source: ".output/public/*"
-        target: "public_html/"
-        strip_components: 2 # Removes the '.output/public/' folder levels so files land directly inside public_html
+        local-dir: ./.output/public/
+        server-dir: public_html/
