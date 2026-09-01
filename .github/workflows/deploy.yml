@@ -21,13 +21,13 @@ jobs:
         bun install
         bun run build
 
-    # Syncs your Lovable production output directory straight to cPanel via SFTP
-    - name: Sync built files to cPanel via SFTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+    # Syncs your Lovable production output directory straight to cPanel via secure SFTP
+    - name: Sync built files via Secure SFTP
+      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
-        server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
+        server: ${{ secrets.FTP_SERVER }}
         port: 1624
-        local-dir: ./.output/public/
-        server-dir: public_html/
+        local_dir: ./.output/public/
+        server_dir: public_html/
