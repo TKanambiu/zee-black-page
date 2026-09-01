@@ -11,6 +11,12 @@ jobs:
     - name: Get latest code
       uses: actions/checkout@v4
 
+    - name: Check repository structure
+      run: |
+        echo "=== Root Folder Contents ==="
+        ls -la
+        echo "============================"
+
     - name: Setup Bun
       uses: oven-sh/setup-bun@v2
       with:
@@ -21,11 +27,12 @@ jobs:
         bun install
         bun run build
 
-    # Debug step to display the exact folders created by your project build
-    - name: List files in output directory
-      run: ls -R dist || ls -R build || echo "No directory found"
+    - name: Check where the build folder is
+      run: |
+        echo "=== Finding where build folders went ==="
+        find . -maxdepth 3 -type d \( -name "dist" -o -name "build" -o -name "client" \)
+        echo "========================================"
 
-    # Targets the base dist directory directly
     - name: Sync built files to cPanel via SFTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
