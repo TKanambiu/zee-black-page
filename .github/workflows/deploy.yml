@@ -21,7 +21,7 @@ jobs:
         bun install
         bun run build
 
-    # Syncs your Lovable production output directory straight to cPanel via secure SFTP
+    # Syncs your production build files via secure SFTP using correct path tags
     - name: Sync built files via Secure SFTP
       uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
@@ -29,5 +29,5 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         server: ${{ secrets.FTP_SERVER }}
         port: 1624
-        local_dir: ./.output/public/
-        server_dir: public_html/
+        local_path: ./.output/public/
+        remote_path: public_html/
