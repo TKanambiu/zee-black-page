@@ -16,23 +16,18 @@ jobs:
       with:
         bun-version: latest
 
-    - name: Install dependencies and Build Assets
+    # Compiles your new standalone static browser assets
+    - name: Install dependencies and Build
       run: |
         bun install
-        bun run build || true
+        bun run build
 
-    # Dynamically injects a relative path configuration layout file
-    - name: Inject Dynamic Root Document
-      run: |
-        JS_FILE=$(basename $(ls ./.output/public/assets/index-*.js | head -n 1))
-        CSS_FILE=$(basename $(ls ./.output/public/assets/styles-*.css | head -n 1))
-        echo "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Zentramed Health</title><script type='module' src='./assets/$JS_FILE'></script><link rel='stylesheet' href='./assets/$CSS_FILE'></head><body><div id='root'></div></body></html>" > ./.output/public/index.html
-
+    # Syncs the finalized clean SPA files directly to Truehost
     - name: Sync built files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: '51.91.29.218'
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./.output/public/
+        local-dir: ./dist/
         server-dir: public_html/
