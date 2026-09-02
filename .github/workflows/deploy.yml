@@ -21,13 +21,14 @@ jobs:
         bun install
         bun run build || true
 
-    # Injects the missing fallback landing document so cPanel launches the app
-    - name: Inject Root Fallback Document
+    # Dynamically reads the real hashed asset names to generate a perfect index.html
+    - name: Inject Dynamic Root Document
       run: |
-        if [ -d "./.output/public" ] && [ ! -f "./.output/public/index.html" ]; then
-          echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Zentramed Health</title><script type="module" src="/assets/index-BI0dNmo7.js"></script><link rel="stylesheet" href="/assets/styles-B-kWzFPB.css"></head><body><div id="root"></div></body></html>' > ./.output/public/index.html
-        fi
+        JS_FILE=$(basename $(ls ./.output/public/assets/index-*.js | head -n 1))
+        CSS_FILE=$(basename $(ls ./.output/public/assets/styles-*.css | head -n 1))
+        echo "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Zentramed Health</title><script type='module' src='/assets/$JS_FILE'></script><link rel='stylesheet' href='/assets/$CSS_FILE'></head><body><div id='root'></div></body></html>" > ./.output/public/index.html
 
+    # Safely overwrites your cPanel folder with the working dynamic configuration
     - name: Sync built files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
