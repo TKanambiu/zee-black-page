@@ -21,12 +21,21 @@ jobs:
         bun install
         bun run build
 
-    # Syncs your newly prerendered static assets straight into public_html
+    # Automatically converts full-stack Nitro layout to static HTML fallback files
+    - name: Convert to Static SPA Files
+      run: |
+        mkdir -p ./static-dist
+        cp -r ./.output/public/* ./static-dist/ 2>/dev/null || cp -r ./dist/client/* ./static-dist/ 2>/dev/null || cp -r ./dist/* ./static-dist/ 2>/dev/null || true
+        if [ -f "./static-dist/assets/index-*.js" ] || [ -d "./static-dist/assets" ]; then
+          cp ./static-dist/index.html ./static-dist/404.html 2>/dev/null || true
+        fi
+
+    # Syncs the finalized browser asset package straight to your public directory
     - name: Sync built files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: '51.91.29.218'
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./.output/public/
+        local-dir: ./static-dist/
         server-dir: public_html/
