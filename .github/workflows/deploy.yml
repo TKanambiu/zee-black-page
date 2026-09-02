@@ -16,13 +16,18 @@ jobs:
       with:
         bun-version: latest
 
-    # Forces a clean standalone client assets production compilation loop
     - name: Install dependencies and Build Assets
       run: |
         bun install
         bun run build || true
 
-    # Targets the compiler output folder directly to bypass the directory clutter
+    # Injects the missing fallback landing document so cPanel launches the app
+    - name: Inject Root Fallback Document
+      run: |
+        if [ -d "./.output/public" ] && [ ! -f "./.output/public/index.html" ]; then
+          echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Zentramed Health</title><script type="module" src="/assets/index-BI0dNmo7.js"></script><link rel="stylesheet" href="/assets/styles-B-kWzFPB.css"></head><body><div id="root"></div></body></html>' > ./.output/public/index.html
+        fi
+
     - name: Sync built files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
