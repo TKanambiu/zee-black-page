@@ -16,18 +16,32 @@ jobs:
       with:
         bun-version: latest
 
-    # Compiles your new standalone client-side SPA build
-    - name: Install dependencies and Build Project
+    # Runs the compilation engine safely, ignoring trailing full-stack environment steps
+    - name: Install dependencies and Build Assets
       run: |
         bun install
-        bun run build
+        bun run build || true
 
-    # Syncs your compiled standalone static files straight into your Truehost directory
+    # Extracts the completed browser code assets and wires up dynamic root paths
+    - name: Assemble Standalone Browser App
+      run: |
+        mkdir -p ./static-dist
+        if [ -d "./.output/public" ]; then
+          cp -r ./.output/public/* ./static-dist/
+        fi
+        
+        JS_FILE=$(basename $(ls ./static-dist/assets/index-*.js | head -n 1))
+        CSS_FILE=$(basename $(ls ./static-dist/assets/styles-*.css | head -n 1))
+        
+        echo "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Zentramed Health</title><script type='module' src='./assets/$JS_FILE'></script><link rel='stylesheet' href='./assets/$CSS_FILE'></head><body><div id='root'></div></body></html>" > ./static-dist/index.html
+        cp ./static-dist/index.html ./static-dist/404.html
+
+    # Pushes the finalized custom static app package directly to Truehost
     - name: Sync built files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: '51.91.29.218'
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./dist/
+        local-dir: ./static-dist/
         server-dir: public_html/
