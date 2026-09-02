@@ -21,7 +21,7 @@ jobs:
         bun install
         bun run build
 
-    # Syncs your Lovable production output directory straight to cPanel via standard FTP
+    # Syncs your newly prerendered static assets straight into public_html
     - name: Sync built files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
