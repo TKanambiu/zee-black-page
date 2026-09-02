@@ -16,13 +16,13 @@ jobs:
       with:
         bun-version: latest
 
-    # Compiles your new standalone static browser assets
+    # Runs the now corrected validation build script
     - name: Install dependencies and Build
       run: |
         bun install
         bun run build
 
-    # Syncs the finalized clean SPA files directly to Truehost
+    # Syncs your newly compiled browser SPA files straight to Truehost
     - name: Sync built files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
