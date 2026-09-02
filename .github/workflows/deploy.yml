@@ -16,13 +16,12 @@ jobs:
       with:
         bun-version: latest
 
-    # Compiles your framework code safely
     - name: Install dependencies and Build Assets
       run: |
         bun install
         bun run build || true
 
-    # Manually isolates browser files and dynamically creates the landing file
+    # Safe standalone workspace builder that compiles custom relative path routing
     - name: Assemble Production Assets
       run: |
         mkdir -p ./static-dist
@@ -30,12 +29,14 @@ jobs:
           cp -r ./.output/public/* ./static-dist/
         fi
         
+        # Pulls the active compilation assets and assigns clean relative point tags (./assets/)
         JS_FILE=$(basename $(ls ./static-dist/assets/index-*.js | head -n 1))
         CSS_FILE=$(basename $(ls ./static-dist/assets/styles-*.css | head -n 1))
+        
         echo "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Zentramed Health</title><script type='module' src='./assets/$JS_FILE'></script><link rel='stylesheet' href='./assets/$CSS_FILE'></head><body><div id='root'></div></body></html>" > ./static-dist/index.html
         cp ./static-dist/index.html ./static-dist/404.html
 
-    # Safely targets the exact local folder we manually generated
+    # Syncs your newly assembled standalone site directly to your Truehost directory
     - name: Sync built files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
