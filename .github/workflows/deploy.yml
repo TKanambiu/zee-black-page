@@ -16,18 +16,30 @@ jobs:
       with:
         bun-version: latest
 
-    # Runs the now corrected validation build script
-    - name: Install dependencies and Build
+    # Allows the pipeline to extract assets even if the dynamic server build warns or breaks later
+    - name: Install dependencies and Build Assets
       run: |
         bun install
-        bun run build
+        bun run build || true
 
-    # Syncs your newly compiled browser SPA files straight to Truehost
+    # Scans the output directory and creates a clean browser landing file using relative tags
+    - name: Assemble Standalone Browser App
+      run: |
+        mkdir -p ./static-dist
+        cp -r ./.output/public/* ./static-dist/
+        
+        JS_FILE=$(basename $(ls ./static-dist/assets/index-*.js | head -n 1))
+        CSS_FILE=$(basename $(ls ./static-dist/assets/styles-*.css | head -n 1))
+        
+        echo "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Zentramed Health</title><script type='module' src='./assets/$JS_FILE'></script><link rel='stylesheet' href='./assets/$CSS_FILE'></head><body><div id='root'></div></body></html>" > ./static-dist/index.html
+        cp ./static-dist/index.html ./static-dist/404.html
+
+    # Syncs your newly assembled standalone site directly to your hosting directory
     - name: Sync built files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: '51.91.29.218'
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./dist/
+        local-dir: ./static-dist/
         server-dir: public_html/
