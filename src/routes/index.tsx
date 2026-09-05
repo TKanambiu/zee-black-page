@@ -207,6 +207,27 @@ function HomePage() {
       </section>
 
 
+      {/* Categories grid */}
+      <section className="bg-muted/40 py-14">
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
+                <span className="h-px w-10 bg-accent" /> What We Supply
+              </div>
+              <h2 className="mt-3 font-display text-3xl font-bold text-brand md:text-4xl">Explore Our Categories</h2>
+            </div>
+            <Link to="/products" className="text-sm font-semibold text-brand hover:text-accent">
+              View all products →
+            </Link>
+          </div>
+          <div className="mt-10">
+            <CategoryMarquee categories={CATEGORIES} />
+          </div>
+
+        </div>
+      </section>
+
       {/* About — editorial, professional */}
       <section className="relative overflow-hidden bg-gradient-to-b from-background via-muted/30 to-background py-20">
         <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-brand/5 blur-3xl" />
@@ -260,27 +281,6 @@ function HomePage() {
               Learn more about us →
             </Link>
           </div>
-        </div>
-      </section>
-
-      {/* Categories grid */}
-      <section className="bg-muted/40 py-14">
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
-                <span className="h-px w-10 bg-accent" /> What We Supply
-              </div>
-              <h2 className="mt-3 font-display text-3xl font-bold text-brand md:text-4xl">Explore Our Categories</h2>
-            </div>
-            <Link to="/products" className="text-sm font-semibold text-brand hover:text-accent">
-              View all products →
-            </Link>
-          </div>
-          <div className="mt-10">
-            <CategoryMarquee categories={CATEGORIES} />
-          </div>
-
         </div>
       </section>
 
