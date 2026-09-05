@@ -80,19 +80,41 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   const [i, setI] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const dragX = useRef<number | null>(null);
+
+  const go = (d: number) => setI((v) => (v + d + SLIDES.length) % SLIDES.length);
+
   useEffect(() => {
-    const t = setInterval(() => setI((v) => (v + 1) % SLIDES.length), 6000);
+    if (paused) return;
+    const t = setInterval(() => setI((v) => (v + 1) % SLIDES.length), 3000);
     return () => clearInterval(t);
-  }, []);
+  }, [paused]);
+
+  const onDown = (x: number) => { dragX.current = x; setPaused(true); };
+  const onUp = (x: number) => {
+    const start = dragX.current;
+    dragX.current = null;
+    if (start === null) return;
+    const dx = x - start;
+    if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
+  };
 
   return (
     <div>
       <SiteHeader />
 
-      {/* Hero slider — horizontal slide-left with visible imagery */}
-      <section className="relative h-[560px] w-full overflow-hidden md:h-[600px]">
+      {/* Hero slider — press to pause, swipe or arrows to navigate */}
+      <section
+        className="relative h-[560px] w-full cursor-grab select-none overflow-hidden active:cursor-grabbing md:h-[600px]"
+        onMouseDown={(e) => onDown(e.clientX)}
+        onMouseUp={(e) => onUp(e.clientX)}
+        onMouseLeave={() => { dragX.current = null; setPaused(false); }}
+        onTouchStart={(e) => onDown(e.touches[0].clientX)}
+        onTouchEnd={(e) => { onUp(e.changedTouches[0].clientX); setPaused(false); }}
+      >
         <div
-          className="flex h-full transition-transform duration-[900ms] ease-[cubic-bezier(0.65,0,0.35,1)]"
+          className="flex h-full transition-transform duration-[550ms] ease-[cubic-bezier(0.65,0,0.35,1)]"
           style={{ width: `${SLIDES.length * 100}%`, transform: `translateX(-${i * (100 / SLIDES.length)}%)` }}
         >
           {SLIDES.map((s, idx) => (
@@ -102,6 +124,7 @@ function HomePage() {
                 alt=""
                 loading="eager"
                 decoding="async"
+                draggable={false}
                 fetchPriority={idx === 0 ? "high" : "low"}
                 className="absolute inset-0 h-full w-full object-contain md:object-cover object-center"
               />
@@ -135,6 +158,22 @@ function HomePage() {
             </div>
           ))}
         </div>
+
+        <button
+          aria-label="Previous slide"
+          onClick={() => go(-1)}
+          className="absolute left-3 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-black/35 p-3 text-white backdrop-blur transition hover:bg-black/60 md:block"
+        >
+          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+        </button>
+        <button
+          aria-label="Next slide"
+          onClick={() => go(1)}
+          className="absolute right-3 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-black/35 p-3 text-white backdrop-blur transition hover:bg-black/60 md:block"
+        >
+          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+        </button>
+
         <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 gap-2">
           {SLIDES.map((_, idx) => (
             <button
@@ -146,6 +185,7 @@ function HomePage() {
           ))}
         </div>
       </section>
+
 
       {/* Trust bar — animated counters */}
       <section className="border-y border-border bg-background">
