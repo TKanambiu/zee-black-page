@@ -256,21 +256,32 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-12">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 md:grid-cols-12">
         <div className="md:col-span-4">
-          <div className="flex w-full max-w-md items-center justify-center rounded-xl bg-white px-5 py-4 shadow-lg ring-1 ring-white/20">
-            <img src="/logo-zentramed.png" alt="Zentramed Health" loading="lazy" decoding="async" className="block h-auto w-full object-contain" />
-          </div>
-          <p className="mt-5 text-sm leading-relaxed text-topbar-foreground/75">
+          <img
+            src="/logo-zentramed.png"
+            alt="Zentramed Health"
+            loading="lazy"
+            decoding="async"
+            className="block h-14 w-auto object-contain object-left md:h-16"
+          />
+          <div className="mt-5 h-px w-24 bg-gradient-to-r from-accent to-transparent" />
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-topbar-foreground/70">
             Trusted supplier of medical supplies, equipment and healthcare solutions to hospitals,
             clinics, NGOs and humanitarian organizations across Africa.
           </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80">ISO-aligned</span>
-            <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80">Certified brands</span>
-            <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80">Pan-African delivery</span>
+          <div className="mt-6 flex flex-wrap gap-2">
+            {["ISO-aligned", "Certified brands", "Pan-African delivery"].map((t) => (
+              <span
+                key={t}
+                className="rounded-full border border-white/10 bg-white/[0.06] px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-white/75 backdrop-blur-sm transition hover:border-accent/50 hover:text-accent"
+              >
+                {t}
+              </span>
+            ))}
           </div>
         </div>
+
 
         <div className="md:col-span-2">
           <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white">Company</h4>
