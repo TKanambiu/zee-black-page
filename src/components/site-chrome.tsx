@@ -284,7 +284,7 @@ export function SiteFooter() {
 
 
         <div className="md:col-span-2">
-          <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white">Company</h4>
+          <h4 className="relative pb-3 font-display text-sm font-semibold uppercase tracking-[0.2em] text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-8 after:rounded-full after:bg-accent">Company</h4>
           <ul className="mt-5 space-y-2.5 text-sm text-topbar-foreground/75">
             {NAV.map((n) => (
               <li key={n.to}><Link to={n.to} className="transition hover:text-accent">{n.label}</Link></li>
@@ -293,7 +293,7 @@ export function SiteFooter() {
         </div>
 
         <div className="md:col-span-3">
-          <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white">Top Categories</h4>
+          <h4 className="relative pb-3 font-display text-sm font-semibold uppercase tracking-[0.2em] text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-8 after:rounded-full after:bg-accent">Top Categories</h4>
           <ul className="mt-5 space-y-2.5 text-sm text-topbar-foreground/75">
             {CATEGORIES.slice(0, 5).map((c) => (
               <li key={c.slug}>
@@ -304,7 +304,7 @@ export function SiteFooter() {
         </div>
 
         <div className="md:col-span-3">
-          <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white">Get in Touch</h4>
+          <h4 className="relative pb-3 font-display text-sm font-semibold uppercase tracking-[0.2em] text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-8 after:rounded-full after:bg-accent">Get in Touch</h4>
           <ul className="mt-5 space-y-3 text-sm text-topbar-foreground/75">
             <li>
               <a href={`https://maps.google.com/?q=${encodeURIComponent(COMPANY.address)}`} target="_blank" rel="noreferrer" className="flex items-start gap-2 hover:text-accent">
