@@ -30,9 +30,6 @@ export function SiteHeader() {
     return () => document.removeEventListener("mousedown", onDoc);
   }, [catOpen]);
 
-  const primaryPhone = COMPANY.phones[0];
-  const primaryPhoneHref = primaryPhone.replace(/\s/g, "");
-
   const submitSearch = () => {
     if (selectedCat) {
       navigate({ to: "/products/$slug", params: { slug: selectedCat.slug }, search: query ? { q: query } : {} });
@@ -94,7 +91,7 @@ export function SiteHeader() {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-1.5 md:gap-6 md:py-2">
           <Link to="/" className="flex h-16 shrink-0 items-center" aria-label="Zentramed Health home">
             <img
-              src="/logo-wide.png"
+              src="/logo-zentramed.png"
               alt="Zentramed Health — Advancing Healthcare and Humanitarian Solutions"
               loading="eager"
               decoding="sync"
@@ -228,7 +225,7 @@ export function SiteHeader() {
               className="block border-b border-brand-foreground/10 bg-featured px-4 py-3 text-sm font-bold text-featured-foreground"
               onClick={() => setOpen(false)}
             >
-              Featured Products
+              Offers
             </Link>
             <div className="p-3">
               <WhatsAppButton size="sm" badge={null} className="w-full justify-center" />
@@ -262,7 +259,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-12">
         <div className="md:col-span-4">
           <div className="flex w-full max-w-md items-center justify-center rounded-xl bg-white px-5 py-4 shadow-lg ring-1 ring-white/20">
-            <img src="/logo-wide.png" alt="Zentramed Health" loading="lazy" decoding="async" className="block h-auto w-full object-contain" />
+            <img src="/logo-zentramed.png" alt="Zentramed Health" loading="lazy" decoding="async" className="block h-auto w-full object-contain" />
           </div>
           <p className="mt-5 text-sm leading-relaxed text-topbar-foreground/75">
             Trusted supplier of medical supplies, equipment and healthcare solutions to hospitals,

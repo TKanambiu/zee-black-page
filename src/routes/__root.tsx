@@ -90,7 +90,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-      { rel: "preload", as: "image", href: "/logo-wide.png", fetchPriority: "high" },
+      { rel: "preload", as: "image", href: "/logo-zentramed.png", fetchPriority: "high" },
       { rel: "preload", as: "image", href: "/hero1.webp", fetchPriority: "high" },
       { rel: "prefetch", as: "image", href: "/hero2.webp" },
       { rel: "prefetch", as: "image", href: "/hero3.webp" },
